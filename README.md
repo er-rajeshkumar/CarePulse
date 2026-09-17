@@ -268,26 +268,6 @@ Planned features include:
 * Online Doctor Consultation
 * Reporting and analytics
 
-## Learning Objectives
-
-This project is also being used as a practical learning project for:
-
-* Spring Boot
-* Spring MVC
-* Dependency Injection
-* IoC
-* REST APIs
-* Spring Data JPA
-* Hibernate
-* DTO design
-* Bean Validation
-* Exception Handling
-* Logging
-* Authentication and Authorization
-* REST API design
-* Database design
-* Git and GitHub
-* Enterprise application architecture
 
 ## Project Status
 
