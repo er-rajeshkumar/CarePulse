@@ -30,6 +30,7 @@ public class PatientController {
         this.patientService = patientService;
     }
 
+//    dummy code
     @GetMapping("/carepulse/patients/test")
     public String testPatientService() {
         return patientService.getPatientMessage();
