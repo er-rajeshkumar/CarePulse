@@ -1,12 +1,12 @@
 package com.carepulse.dto;
 
 public class PatientResponseDto {
-	
+
 	private Long patientId;
     private String fullName;
     private String phone;
-    
-    
+
+
     public Long getPatientId() {
 		return patientId;
 	}

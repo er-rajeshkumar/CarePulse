@@ -11,9 +11,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name = "PATIENT")
 public class Patient {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +35,15 @@ public class Patient {
     @Column(name = "SEX")
     private Sex sex;
 
-    @Column(name = "DOB")
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "STATUS")
+//    private Status status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATUS")
+    private Status status;
+
+	@Column(name = "DOB")
     private LocalDate dob;
 
     @Column(name = "EMAIL")
@@ -44,6 +54,7 @@ public class Patient {
 
     @Column(name = "ADDRESS")
     private String address;
+
 
     public Patient() {
     }
@@ -119,4 +130,12 @@ public class Patient {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public Status getStatus() {
+  		return status;
+  	}
+
+  	public void setStatus(Status status) {
+  		this.status = status;
+  	}
 }

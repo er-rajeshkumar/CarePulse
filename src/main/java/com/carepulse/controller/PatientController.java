@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 //import org.hibernate.mapping.Map;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,19 +36,23 @@ public class PatientController {
     public String testPatientService() {
         return patientService.getPatientMessage();
     }
-    
+
 
     @GetMapping("/carepulse/getAllPatients")
     public List<Patient> getAllPatients() {
         return patientService.getAllPatients();
     }
-    
+
+    @GetMapping("/carepulse/getAllActivePatients")
+    public List<Patient> getAllActivePatients() {
+        return patientService.getAllPatientsByStatus();
+    }
 //    @GetMapping("/api/patients/{id}")
 //    public Patient getPatientById(@PathVariable Long id) {
 //		return patientService.getPatientById(id);
 //	}
-    
-    
+
+
     @GetMapping("/carepulse/getPatientById/{id}")
     public ResponseEntity<?> getPatientById(@PathVariable Long id) {
 
@@ -55,12 +60,12 @@ public class PatientController {
 
         return ResponseEntity.ok(patientdto);
     }
-    
+
     @PostMapping("/carepulse/addPatient")
     public ResponseEntity<Map<String, String>> addPatient
-    ( @Valid @RequestBody PatientCreateRequestDto request) 
+    ( @Valid @RequestBody PatientCreateRequestDto request)
     {
-		
+
 		Patient savedPatient = patientService.addPatient(request);
 
 		// Create a response map with the success message and patient ID
@@ -70,12 +75,12 @@ public class PatientController {
 
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
-    
+
     @PutMapping("/carepulse/updatePatient/{id}")
     public ResponseEntity<Map<String, String>> updatePatient(
 			@PathVariable Long id,
 			@Valid @RequestBody PatientCreateRequestDto request) {
-		
+
 		Patient updatedPatient = patientService.updatePatient(id, request);
 
 		// Create a response map with the success message and patient ID
@@ -85,7 +90,16 @@ public class PatientController {
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-    
-    
-    
+
+    @DeleteMapping("/carepulse/deletePatient/{id}")
+	public ResponseEntity<Map<String, String>> deletePatient(@PathVariable Long id) {
+
+//    	Soft delete: Update the status of the patient to DELETED instead of deleting the record
+		Patient deletedPatient = patientService.deletePatient(id);
+		return ResponseEntity.ok(Map.of(
+				"message", "Patient deleted successfully",id.toString(),
+				deletedPatient.getPatientId().toString()));
+
+    }
+
 }

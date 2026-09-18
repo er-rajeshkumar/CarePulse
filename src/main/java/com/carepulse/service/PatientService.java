@@ -10,12 +10,14 @@ import com.carepulse.dto.PatientCreateRequestDto;
 import com.carepulse.dto.PatientResponseDto;
 import com.carepulse.entity.Patient;
 import com.carepulse.entity.Sex;
+import com.carepulse.entity.Status;
 import com.carepulse.exception.PatientNotFoundException;
 import com.carepulse.repository.PatientRepository;
 @Service
 public class PatientService {
+
 	private final PatientRepository patientRepository;
-	
+
     public String getPatientMessage() {
         return "Patient Service is working";
     }
@@ -34,18 +36,25 @@ public class PatientService {
         logger.warn("WARN Log");
         logger.error("ERROR Log");
     }
-    
+
     public List<Patient> getAllPatients() {
     	logger.info("Fetching all patients from the database");
         return patientRepository.findAll();
     }
-    
+
+
+    public List<Patient> getAllPatientsByStatus() {
+    	return patientRepository.findAllByStatus(Status.ACTIVE);
+    }
     public PatientResponseDto getPatientById(Long id) {
-    	Patient patient =  patientRepository.findById(id).orElseThrow(() ->
+    	Patient patient =  patientRepository.findByPatientIdAndStatus(id, Status.ACTIVE).orElseThrow(() ->
         new PatientNotFoundException(
-                "Patient not found with id:rrrrrrr " + id
+                "Patient not found with id: " + id
             )
         );
+    	if(patient.getStatus() == Status.DELETED) {
+			throw new PatientNotFoundException("Patient with id: " + id + " is deleted");
+		}
     	PatientResponseDto dto = new PatientResponseDto();
     	dto.setPatientId(patient.getPatientId());
     	dto.setFullName(
@@ -58,9 +67,9 @@ public class PatientService {
     	logger.debug("Patient details: " + dto.toString());
     	return dto;
     }
-    
+
 	public Patient addPatient(PatientCreateRequestDto request) {
-		
+
 		Patient patient = new Patient();
 		patient.setFirstName(request.getFirstName());
 		patient.setMiddleName(request.getMiddleName());
@@ -74,10 +83,10 @@ public class PatientService {
 		logger.debug("Patient details: " + patient.toString());
 		return patientRepository.save(patient);
 	}
-	
+
 	public Patient updatePatient(Long id, PatientCreateRequestDto request) {
 		Patient existingPatient = patientRepository.findById(id)
-				.orElseThrow(() -> 
+				.orElseThrow(() ->
 				new PatientNotFoundException("Patient not found with id: " + id));
 		if (request.getFirstName() != null) {
 			existingPatient.setFirstName(request.getFirstName());
@@ -90,6 +99,18 @@ public class PatientService {
 		}
 		logger.info("Updated patient with id: " + id);
 		logger.debug("Updated patient details: " + existingPatient.toString());
+		return existingPatient;
+	}
+
+	public Patient deletePatient(Long id) {
+		Patient existingPatient = patientRepository.findById(id)
+				.orElseThrow(() ->
+				new PatientNotFoundException("Patient not found with id: " + id));
+//		Status status = Status.DELETED;
+		existingPatient.setStatus(Status.DELETED);
+		patientRepository.save(existingPatient);
+
+		logger.info("Deleted patient with id: " + id);
 		return existingPatient;
 	}
 }

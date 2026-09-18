@@ -1,2 +1,316 @@
-2026-09-17T02:55:18.276+05:30  WARN 3296 --- [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Thread starvation or clock leap detected (housekeeper delta=12m6s656ms763µs400ns).
-2026-09-17T03:44:46.450+05:30  WARN 3296 --- [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Thread starvation or clock leap detected (housekeeper delta=49m28s169ms96µs500ns).
+2026-09-18T12:25:47.015+05:30  INFO 11836 --- [restartedMain] com.carepulse.CarePulseApplication       : Starting CarePulseApplication using Java 17.0.12 with PID 11836 (D:\Personal\Projects\carepulse\target\classes started by rajesh.h.kumar in D:\Personal\Projects\carepulse)
+2026-09-18T12:25:47.030+05:30 DEBUG 11836 --- [restartedMain] com.carepulse.CarePulseApplication       : Running with Spring Boot v3.1.7, Spring v6.0.15
+2026-09-18T12:25:47.032+05:30  INFO 11836 --- [restartedMain] com.carepulse.CarePulseApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-18T12:25:47.154+05:30  INFO 11836 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-18T12:25:47.156+05:30  INFO 11836 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-18T12:25:48.292+05:30  INFO 11836 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18T12:25:48.374+05:30  INFO 11836 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73 ms. Found 2 JPA repository interfaces.
+2026-09-18T12:25:49.691+05:30  INFO 11836 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2026-09-18T12:25:49.717+05:30  INFO 11836 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-18T12:25:49.718+05:30  INFO 11836 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-09-18T12:25:49.926+05:30  INFO 11836 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-18T12:25:49.927+05:30  INFO 11836 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2769 ms
+2026-09-18T12:25:50.293+05:30  INFO 11836 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-18T12:25:50.373+05:30  INFO 11836 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.17.Final
+2026-09-18T12:25:50.376+05:30  INFO 11836 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2026-09-18T12:25:50.703+05:30  INFO 11836 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18T12:25:50.730+05:30  INFO 11836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-18T12:25:51.259+05:30  INFO 11836 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b33e243
+2026-09-18T12:25:51.261+05:30  INFO 11836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-18T12:25:52.797+05:30  INFO 11836 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18T12:25:52.911+05:30 ERROR 11836 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [created_at] in table [doctor]; found [datetime (Types#TIMESTAMP)], but expecting [date (Types#DATE)]
+2026-09-18T12:25:52.913+05:30  WARN 11836 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [created_at] in table [doctor]; found [datetime (Types#TIMESTAMP)], but expecting [date (Types#DATE)]
+2026-09-18T12:25:52.916+05:30  INFO 11836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-18T12:25:52.933+05:30  INFO 11836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-18T12:25:52.935+05:30  INFO 11836 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-09-18T12:25:52.950+05:30  INFO 11836 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-18T12:25:52.979+05:30 ERROR 11836 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [created_at] in table [doctor]; found [datetime (Types#TIMESTAMP)], but expecting [date (Types#DATE)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1768) ~[spring-beans-6.0.15.jar:6.0.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:596) ~[spring-beans-6.0.15.jar:6.0.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:518) ~[spring-beans-6.0.15.jar:6.0.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.0.15.jar:6.0.15]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.15.jar:6.0.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.0.15.jar:6.0.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.15.jar:6.0.15]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1166) ~[spring-context-6.0.15.jar:6.0.15]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:940) ~[spring-context-6.0.15.jar:6.0.15]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.0.15.jar:6.0.15]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.7.jar:3.1.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:746) ~[spring-boot-3.1.7.jar:3.1.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:448) ~[spring-boot-3.1.7.jar:3.1.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:324) ~[spring-boot-3.1.7.jar:3.1.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1321) ~[spring-boot-3.1.7.jar:3.1.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1310) ~[spring-boot-3.1.7.jar:3.1.7]
+	at com.carepulse.CarePulseApplication.main(CarePulseApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.7.jar:3.1.7]
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [created_at] in table [doctor]; found [datetime (Types#TIMESTAMP)], but expecting [date (Types#DATE)]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421) ~[spring-orm-6.0.15.jar:6.0.15]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.0.15.jar:6.0.15]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.0.15.jar:6.0.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-6.0.15.jar:6.0.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1764) ~[spring-beans-6.0.15.jar:6.0.15]
+	... 21 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [created_at] in table [doctor]; found [datetime (Types#TIMESTAMP)], but expecting [date (Types#DATE)]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateColumnType(AbstractSchemaValidator.java:165) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:152) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458) ~[hibernate-core-6.2.17.Final.jar:6.2.17.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.0.15.jar:6.0.15]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.0.15.jar:6.0.15]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.0.15.jar:6.0.15]
+	... 25 common frames omitted
+
+2026-09-18T12:28:56.825+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Starting CarePulseApplication using Java 17.0.12 with PID 18912 (D:\Personal\Projects\carepulse\target\classes started by rajesh.h.kumar in D:\Personal\Projects\carepulse)
+2026-09-18T12:28:56.829+05:30 DEBUG 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Running with Spring Boot v3.1.7, Spring v6.0.15
+2026-09-18T12:28:56.830+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-18T12:28:56.906+05:30  INFO 18912 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-18T12:28:56.907+05:30  INFO 18912 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-18T12:28:57.893+05:30  INFO 18912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18T12:28:57.961+05:30  INFO 18912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 2 JPA repository interfaces.
+2026-09-18T12:28:58.871+05:30  INFO 18912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2026-09-18T12:28:58.883+05:30  INFO 18912 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-18T12:28:58.884+05:30  INFO 18912 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-09-18T12:28:58.995+05:30  INFO 18912 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-18T12:28:58.996+05:30  INFO 18912 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2087 ms
+2026-09-18T12:28:59.184+05:30  INFO 18912 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-18T12:28:59.231+05:30  INFO 18912 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.17.Final
+2026-09-18T12:28:59.235+05:30  INFO 18912 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2026-09-18T12:28:59.503+05:30  INFO 18912 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18T12:28:59.523+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-18T12:28:59.841+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d17167
+2026-09-18T12:28:59.844+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-18T12:29:00.772+05:30  INFO 18912 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18T12:29:00.950+05:30  INFO 18912 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T12:29:01.685+05:30  WARN 18912 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18T12:29:02.502+05:30  INFO 18912 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-18T12:29:02.619+05:30  INFO 18912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2026-09-18T12:29:02.633+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Started CarePulseApplication in 6.243 seconds (process running for 6.809)
+2026-09-18T12:29:38.111+05:30  INFO 18912 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-18T12:29:38.112+05:30  INFO 18912 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-18T12:29:38.115+05:30  INFO 18912 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-09-18T12:30:09.432+05:30  INFO 22584 --- [restartedMain] com.carepulse.CarePulseApplication       : Starting CarePulseApplication using Java 17.0.12 with PID 22584 (D:\Personal\Projects\carepulse\target\classes started by rajesh.h.kumar in D:\Personal\Projects\carepulse)
+2026-09-18T12:30:09.434+05:30 DEBUG 22584 --- [restartedMain] com.carepulse.CarePulseApplication       : Running with Spring Boot v3.1.7, Spring v6.0.15
+2026-09-18T12:30:09.434+05:30  INFO 22584 --- [restartedMain] com.carepulse.CarePulseApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-18T12:30:09.516+05:30  INFO 22584 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-18T12:30:09.517+05:30  INFO 22584 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-18T12:30:10.492+05:30  INFO 22584 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18T12:30:10.610+05:30  INFO 22584 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 2 JPA repository interfaces.
+2026-09-18T12:30:11.562+05:30  INFO 22584 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2026-09-18T12:30:11.573+05:30  INFO 22584 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-18T12:30:11.574+05:30  INFO 22584 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-09-18T12:30:11.700+05:30  INFO 22584 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-18T12:30:11.701+05:30  INFO 22584 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2182 ms
+2026-09-18T12:30:11.984+05:30  INFO 22584 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-18T12:30:12.057+05:30  INFO 22584 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.17.Final
+2026-09-18T12:30:12.060+05:30  INFO 22584 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2026-09-18T12:30:12.448+05:30  INFO 22584 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18T12:30:12.469+05:30  INFO 22584 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-18T12:30:12.935+05:30  INFO 22584 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b81bfe
+2026-09-18T12:30:12.936+05:30  INFO 22584 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-18T12:30:13.939+05:30  INFO 22584 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18T12:30:14.054+05:30  INFO 22584 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T12:30:14.590+05:30  WARN 22584 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18T12:30:15.069+05:30  WARN 22584 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-09-18T12:30:15.091+05:30  WARN 22584 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-09-18T12:30:15.093+05:30  INFO 22584 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T12:30:15.098+05:30  INFO 22584 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-18T12:30:15.111+05:30  INFO 22584 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-18T12:30:15.115+05:30  INFO 22584 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-09-18T12:30:15.134+05:30  INFO 22584 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-18T12:30:15.159+05:30 ERROR 22584 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-09-18T15:04:02.945+05:30  WARN 18912 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=41m12s873ms478µs700ns).
+2026-09-18T15:06:22.852+05:30  INFO 18912 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 4 class path changes (0 additions, 0 deletions, 4 modifications)
+2026-09-18T15:06:22.931+05:30  INFO 18912 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-09-18T15:06:22.936+05:30  INFO 18912 --- [Thread-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2026-09-18T15:06:22.955+05:30  INFO 18912 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T15:06:22.971+05:30  INFO 18912 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-18T15:06:22.985+05:30  INFO 18912 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-18T15:06:23.190+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Starting CarePulseApplication using Java 17.0.12 with PID 18912 (D:\Personal\Projects\carepulse\target\classes started by rajesh.h.kumar in D:\Personal\Projects\carepulse)
+2026-09-18T15:06:23.190+05:30 DEBUG 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Running with Spring Boot v3.1.7, Spring v6.0.15
+2026-09-18T15:06:23.191+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-18T15:06:23.457+05:30  INFO 18912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18T15:06:23.478+05:30  INFO 18912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 2 JPA repository interfaces.
+2026-09-18T15:06:23.656+05:30  INFO 18912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2026-09-18T15:06:23.657+05:30  INFO 18912 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-18T15:06:23.658+05:30  INFO 18912 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-09-18T15:06:23.692+05:30  INFO 18912 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-18T15:06:23.692+05:30  INFO 18912 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 497 ms
+2026-09-18T15:06:23.747+05:30  INFO 18912 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-18T15:06:23.759+05:30  INFO 18912 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18T15:06:23.761+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-09-18T15:06:23.789+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3a98fff6
+2026-09-18T15:06:23.790+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-09-18T15:06:23.862+05:30  INFO 18912 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18T15:06:23.885+05:30  INFO 18912 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T15:06:24.044+05:30  WARN 18912 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18T15:06:24.194+05:30  INFO 18912 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-18T15:06:24.209+05:30  INFO 18912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2026-09-18T15:06:24.214+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Started CarePulseApplication in 1.087 seconds (process running for 9460.286)
+2026-09-18T15:06:24.217+05:30  INFO 18912 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-09-18T15:06:24.376+05:30  INFO 20512 --- [restartedMain] com.carepulse.CarePulseApplication       : Starting CarePulseApplication using Java 17.0.12 with PID 20512 (D:\Personal\Projects\carepulse\target\classes started by rajesh.h.kumar in D:\Personal\Projects\carepulse)
+2026-09-18T15:06:24.381+05:30 DEBUG 20512 --- [restartedMain] com.carepulse.CarePulseApplication       : Running with Spring Boot v3.1.7, Spring v6.0.15
+2026-09-18T15:06:24.383+05:30  INFO 20512 --- [restartedMain] com.carepulse.CarePulseApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-18T15:06:24.503+05:30  INFO 20512 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-18T15:06:24.504+05:30  INFO 20512 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-18T15:06:25.268+05:30  INFO 20512 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18T15:06:25.353+05:30  INFO 20512 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 2 JPA repository interfaces.
+2026-09-18T15:06:26.393+05:30  INFO 20512 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2026-09-18T15:06:26.425+05:30  INFO 20512 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-18T15:06:26.425+05:30  INFO 20512 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-09-18T15:06:26.516+05:30  INFO 20512 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-18T15:06:26.517+05:30  INFO 20512 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2011 ms
+2026-09-18T15:06:26.810+05:30  INFO 20512 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-18T15:06:26.943+05:30  INFO 20512 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.17.Final
+2026-09-18T15:06:26.946+05:30  INFO 20512 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2026-09-18T15:06:27.258+05:30  INFO 20512 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18T15:06:27.281+05:30  INFO 20512 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-18T15:06:27.661+05:30  INFO 20512 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d17167
+2026-09-18T15:06:27.676+05:30  INFO 20512 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-18T15:06:28.918+05:30  INFO 20512 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18T15:06:28.974+05:30  INFO 20512 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T15:06:29.591+05:30  WARN 20512 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18T15:06:30.187+05:30  WARN 20512 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-09-18T15:06:30.237+05:30  WARN 20512 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-09-18T15:06:30.240+05:30  INFO 20512 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T15:06:30.250+05:30  INFO 20512 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-18T15:06:30.276+05:30  INFO 20512 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-18T15:06:30.283+05:30  INFO 20512 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-09-18T15:06:30.301+05:30  INFO 20512 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-18T15:06:30.340+05:30 ERROR 20512 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-09-18T15:06:31.113+05:30  INFO 18912 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-18T15:06:31.115+05:30  INFO 18912 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-18T15:06:31.115+05:30  INFO 18912 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-09-18T15:08:20.475+05:30  INFO 18912 --- [http-nio-8080-exec-5] com.carepulse.service.DoctorService      : Fetching all patients from the database
+2026-09-18T15:10:31.131+05:30  INFO 18912 --- [http-nio-8080-exec-9] com.carepulse.service.DoctorService      : Fetching all patients from the database
+2026-09-18T15:10:33.607+05:30  INFO 18912 --- [http-nio-8080-exec-10] com.carepulse.service.DoctorService      : Fetching all patients from the database
+2026-09-18T15:10:46.419+05:30  INFO 18912 --- [http-nio-8080-exec-1] com.carepulse.service.DoctorService      : Fetching all patients from the database
+2026-09-18T15:41:57.347+05:30  INFO 18912 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 23 class path changes (0 additions, 0 deletions, 23 modifications)
+2026-09-18T15:41:57.366+05:30  INFO 18912 --- [Thread-7] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-09-18T15:41:57.367+05:30  INFO 18912 --- [Thread-7] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2026-09-18T15:41:57.372+05:30  INFO 18912 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T15:41:57.373+05:30  INFO 18912 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-09-18T15:41:57.380+05:30  INFO 18912 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2026-09-18T15:41:57.452+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Starting CarePulseApplication using Java 17.0.12 with PID 18912 (D:\Personal\Projects\carepulse\target\classes started by rajesh.h.kumar in D:\Personal\Projects\carepulse)
+2026-09-18T15:41:57.453+05:30 DEBUG 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Running with Spring Boot v3.1.7, Spring v6.0.15
+2026-09-18T15:41:57.453+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-18T15:41:57.578+05:30  INFO 18912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18T15:41:57.593+05:30  INFO 18912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 2 JPA repository interfaces.
+2026-09-18T15:41:57.661+05:30  INFO 18912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2026-09-18T15:41:57.662+05:30  INFO 18912 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-18T15:41:57.662+05:30  INFO 18912 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-09-18T15:41:57.690+05:30  INFO 18912 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-18T15:41:57.690+05:30  INFO 18912 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 234 ms
+2026-09-18T15:41:57.719+05:30  INFO 18912 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-18T15:41:57.724+05:30  INFO 18912 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18T15:41:57.725+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-09-18T15:41:57.739+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71c31a2a
+2026-09-18T15:41:57.739+05:30  INFO 18912 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-09-18T15:41:57.793+05:30  INFO 18912 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18T15:41:57.810+05:30  INFO 18912 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T15:41:57.905+05:30  WARN 18912 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18T15:41:57.976+05:30  INFO 18912 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-18T15:41:57.988+05:30  INFO 18912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2026-09-18T15:41:57.991+05:30  INFO 18912 --- [restartedMain] com.carepulse.CarePulseApplication       : Started CarePulseApplication in 0.553 seconds (process running for 11594.783)
+2026-09-18T15:41:57.992+05:30  INFO 18912 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-09-18T15:42:04.012+05:30  INFO 18344 --- [restartedMain] com.carepulse.CarePulseApplication       : Starting CarePulseApplication using Java 17.0.12 with PID 18344 (D:\Personal\Projects\carepulse\target\classes started by rajesh.h.kumar in D:\Personal\Projects\carepulse)
+2026-09-18T15:42:04.013+05:30 DEBUG 18344 --- [restartedMain] com.carepulse.CarePulseApplication       : Running with Spring Boot v3.1.7, Spring v6.0.15
+2026-09-18T15:42:04.015+05:30  INFO 18344 --- [restartedMain] com.carepulse.CarePulseApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-09-18T15:42:04.099+05:30  INFO 18344 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-18T15:42:04.100+05:30  INFO 18344 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-18T15:42:05.005+05:30  INFO 18344 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-18T15:42:05.073+05:30  INFO 18344 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 2 JPA repository interfaces.
+2026-09-18T15:42:05.932+05:30  INFO 18344 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2026-09-18T15:42:05.946+05:30  INFO 18344 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-18T15:42:05.946+05:30  INFO 18344 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-09-18T15:42:06.045+05:30  INFO 18344 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-18T15:42:06.046+05:30  INFO 18344 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1945 ms
+2026-09-18T15:42:06.223+05:30  INFO 18344 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-18T15:42:06.275+05:30  INFO 18344 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.17.Final
+2026-09-18T15:42:06.278+05:30  INFO 18344 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2026-09-18T15:42:06.523+05:30  INFO 18344 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-18T15:42:06.540+05:30  INFO 18344 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-18T15:42:06.784+05:30  INFO 18344 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b81bfe
+2026-09-18T15:42:06.786+05:30  INFO 18344 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-18T15:42:07.584+05:30  INFO 18344 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-18T15:42:07.625+05:30  INFO 18344 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T15:42:08.081+05:30  WARN 18344 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-18T15:42:08.533+05:30  WARN 18344 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-09-18T15:42:08.551+05:30  WARN 18344 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-09-18T15:42:08.553+05:30  INFO 18344 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-18T15:42:08.558+05:30  INFO 18344 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-18T15:42:08.572+05:30  INFO 18344 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-18T15:42:08.576+05:30  INFO 18344 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-09-18T15:42:08.598+05:30  INFO 18344 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-18T15:42:08.628+05:30 ERROR 18344 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-09-18T15:42:13.177+05:30  INFO 18912 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-18T15:42:13.177+05:30  INFO 18912 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-18T15:42:13.178+05:30  INFO 18912 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-09-18T15:42:13.180+05:30  INFO 18912 --- [http-nio-8080-exec-2] com.carepulse.service.DoctorService      : Fetching all active Doctor from the database
+2026-09-18T15:42:47.324+05:30  INFO 18912 --- [http-nio-8080-exec-3] com.carepulse.service.DoctorService      : Fetching Doctor with id 3 from the database
+2026-09-18T16:41:35.793+05:30  INFO 18912 --- [http-nio-8080-exec-10] com.carepulse.service.DoctorService      : Fetching Doctor with id 3 from the database
+2026-09-18T16:41:42.937+05:30  INFO 18912 --- [http-nio-8080-exec-1] com.carepulse.service.DoctorService      : Fetching Doctor with id 3 from the database
+2026-09-18T16:41:52.207+05:30  INFO 18912 --- [http-nio-8080-exec-2] com.carepulse.service.DoctorService      : Fetching Doctor with id 3 from the database
+2026-09-18T16:41:56.975+05:30  INFO 18912 --- [http-nio-8080-exec-3] com.carepulse.service.DoctorService      : Fetching Doctor with id 3 from the database

@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+
+// DTO class for creating a new patient
 public class PatientCreateRequestDto {
 
 	@NotBlank
@@ -13,9 +15,9 @@ public class PatientCreateRequestDto {
 	private String sex;
 	@Email
 	private String email;
-	@Size(min = 10,max = 10)
+	@Size(min = 10,max = 13)
 	private String phone;
-	
+
 	private String address;
 	public String getFirstName() {
 		return firstName;
@@ -59,6 +61,6 @@ public class PatientCreateRequestDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
+
+
 }
