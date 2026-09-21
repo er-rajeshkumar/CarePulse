@@ -10,15 +10,27 @@ import com.carepulse.entity.Status;
 
 public interface HospitalDoctorRepository extends JpaRepository<HospitalDoctor, Long>{
 
-	List<HospitalDoctor> findAll();
-	List<HospitalDoctor> findAllByStatus(Status status);
-	List<HospitalDoctor> findAllByHospitalId(Long hospitalId);
-	List<HospitalDoctor> findAllByHospitalIdAndStatus(Long hospitalId, Status status);
-	
-	List<HospitalDoctor> findAllByDoctorId(Long doctorId);
-	List<HospitalDoctor> findAllByDoctorIdAndStatus(Long doctorId, Status status);
-	
-	Optional<HospitalDoctor> findByHospitalIdAndDoctorId(Long hospitalId, Long doctorId);
-	
-	boolean existsByHospitalIdAndDoctorId(Long hospitalId, Long doctorId);
+	 List<HospitalDoctor> findAll();
+
+	    List<HospitalDoctor> findAllByStatus(Status status);
+
+	    List<HospitalDoctor> findAllByHospital_HospitalId(Long hospitalId);
+
+	    List<HospitalDoctor> findAllByHospital_HospitalIdAndStatus(
+	            Long hospitalId,
+	            Status status);
+
+	    List<HospitalDoctor> findAllByDoctor_DoctorId(Long doctorId);
+
+	    List<HospitalDoctor> findAllByDoctor_DoctorIdAndStatus(
+	            Long doctorId,
+	            Status status);
+
+	    Optional<HospitalDoctor> findByHospital_HospitalIdAndDoctor_DoctorId(
+	            Long hospitalId,
+	            Long doctorId);
+
+	    boolean existsByHospital_HospitalIdAndDoctor_DoctorId(
+	            Long hospitalId,
+	            Long doctorId);
 }

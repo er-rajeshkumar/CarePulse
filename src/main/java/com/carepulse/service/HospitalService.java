@@ -48,6 +48,15 @@ public class HospitalService {
 		return exists;
 	}
 	
+	public Hospital getHospitalEntityById(Long id) {
+		logger.info("Fetching hospital entity with id: {} from the database", id);
+		Hospital hospital = hospitalRepository.findById(id).orElseThrow(() ->
+			new HospitalNotFoundException("Hospital not found with id: " + id)
+		);
+		logger.info("Fetched hospital entity with id: {} from the database", id);
+		return hospital;
+	}
+	
 	public List<HospitalResponseDto> getAllHospitals() {
 		logger.info("Fetching all hospitals from the database");
 		List<Hospital> hospitals = hospitalRepository.findAll();

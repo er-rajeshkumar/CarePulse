@@ -137,6 +137,16 @@ public class DoctorService {
 		doctorRepository.save(doctor);
 	}
 
+//	Method to get doctor entity by id from the database
+	public Doctor getDoctorEntityById(Long id) {
+		logger.info("Fetching Doctor entity with id " + id +" from the database");
+		Doctor doctor =  doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE).orElseThrow(() ->
+		new DoctorNotFoundException(
+				"Doctor not found with id: " + id
+			)
+		);
+		return doctor;
+	}
 
 
 //	Method to map Doctor entity to DoctorResponseDto
