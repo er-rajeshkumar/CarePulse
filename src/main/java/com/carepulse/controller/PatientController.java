@@ -38,12 +38,12 @@ public class PatientController {
     }
 
 
-    @GetMapping("/carepulse/getAllPatients")
+    @GetMapping("/carepulse/patients")
     public List<Patient> getAllPatients() {
         return patientService.getAllPatients();
     }
 
-    @GetMapping("/carepulse/getAllActivePatients")
+    @GetMapping("/carepulse/patients/active")
     public List<Patient> getAllActivePatients() {
         return patientService.getAllPatientsByStatus();
     }
@@ -53,7 +53,7 @@ public class PatientController {
 //	}
 
 
-    @GetMapping("/carepulse/getPatientById/{id}")
+    @GetMapping("/carepulse/patients/{id}")
     public ResponseEntity<?> getPatientById(@PathVariable Long id) {
 
     	PatientResponseDto  patientdto = patientService.getPatientById(id);
@@ -61,7 +61,7 @@ public class PatientController {
         return ResponseEntity.ok(patientdto);
     }
 
-    @PostMapping("/carepulse/addPatient")
+    @PostMapping("/carepulse/patients")
     public ResponseEntity<Map<String, String>> addPatient
     ( @Valid @RequestBody PatientCreateRequestDto request)
     {
@@ -76,7 +76,7 @@ public class PatientController {
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
-    @PutMapping("/carepulse/updatePatient/{id}")
+    @PutMapping("/carepulse/patients/{id}")
     public ResponseEntity<Map<String, String>> updatePatient(
 			@PathVariable Long id,
 			@Valid @RequestBody PatientCreateRequestDto request) {
@@ -91,7 +91,7 @@ public class PatientController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-    @DeleteMapping("/carepulse/deletePatient/{id}")
+    @DeleteMapping("/carepulse/patients/{id}")
 	public ResponseEntity<Map<String, String>> deletePatient(@PathVariable Long id) {
 
 //    	Soft delete: Update the status of the patient to DELETED instead of deleting the record
@@ -99,7 +99,6 @@ public class PatientController {
 		return ResponseEntity.ok(Map.of(
 				"message", "Patient deleted successfully",id.toString(),
 				deletedPatient.getPatientId().toString()));
-
     }
 
 }
