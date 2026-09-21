@@ -16,21 +16,13 @@ public interface HospitalDoctorRepository extends JpaRepository<HospitalDoctor, 
 
 	    List<HospitalDoctor> findAllByHospital_HospitalId(Long hospitalId);
 
-	    List<HospitalDoctor> findAllByHospital_HospitalIdAndStatus(
-	            Long hospitalId,
-	            Status status);
+	    List<HospitalDoctor> findAllByHospital_HospitalIdAndStatus(Long hospitalId, Status status);
 
 	    List<HospitalDoctor> findAllByDoctor_DoctorId(Long doctorId);
 
-	    List<HospitalDoctor> findAllByDoctor_DoctorIdAndStatus(
-	            Long doctorId,
-	            Status status);
+	    List<HospitalDoctor> findAllByDoctor_DoctorIdAndStatus(Long doctorId, Status status);
 
-	    Optional<HospitalDoctor> findByHospital_HospitalIdAndDoctor_DoctorId(
-	            Long hospitalId,
-	            Long doctorId);
+	    Optional<HospitalDoctor> findByHospital_HospitalIdAndDoctor_DoctorId(Long hospitalId, Long doctorId);
 
-	    boolean existsByHospital_HospitalIdAndDoctor_DoctorId(
-	            Long hospitalId,
-	            Long doctorId);
+	    boolean existsByHospital_HospitalIdAndDoctor_DoctorId(Long hospitalId, Long doctorId);
 }
