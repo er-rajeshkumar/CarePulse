@@ -37,6 +37,14 @@ public class PatientService {
         logger.error("ERROR Log");
     }
 
+    public Patient getPatientEntityById(Long id) {
+		logger.info("Fetching patient entity with id: {} from the database", id);
+		Patient patient = patientRepository.findById(id).orElseThrow(() ->
+			new PatientNotFoundException("Patient not found with id: " + id)
+		);
+		logger.info("Fetched patient entity with id: {} from the database", id);
+		return patient;
+	}
     public List<Patient> getAllPatients() {
     	logger.info("Fetching all patients from the database");
         return patientRepository.findAll();

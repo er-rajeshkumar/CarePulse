@@ -2,6 +2,9 @@ package com.carepulse.dto;
 
 public class HospitalPatientDetailedResponseDto {
 
+	private Long hospitalPatientId;
+	private String hospitalPatientNumber;
+	
 	private Long hospitalId;
 	private String hospitalName;
 	private String hospitalAddress;
@@ -13,6 +16,20 @@ public class HospitalPatientDetailedResponseDto {
 	private String patientEmail;
 	private String patientPhoneNumber;
 	private String patientAddress;
+	
+	
+	public Long getHospitalPatientId() {
+		return hospitalPatientId;
+	}
+	public void setHospitalPatientId(Long hospitalPatientId) {
+		this.hospitalPatientId = hospitalPatientId;
+	}
+	public String getHospitalPatientNumber() {
+		return hospitalPatientNumber;
+	}
+	public void setHospitalPatientNumber(String hospitalPatientNumber) {
+		this.hospitalPatientNumber = hospitalPatientNumber;
+	}
 	public Long getHospitalId() {
 		return hospitalId;
 	}

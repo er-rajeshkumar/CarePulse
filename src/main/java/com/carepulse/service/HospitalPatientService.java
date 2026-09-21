@@ -21,9 +21,16 @@ public class HospitalPatientService {
 	}
 	
 	private final HospitalPatientRepository hospitalPatientRepository;
+	private final HospitalService hospitalService;
+	private final PatientService patientService;
 	
-	public HospitalPatientService(HospitalPatientRepository hospitalPatientRepository) {
+	public HospitalPatientService(
+			HospitalPatientRepository hospitalPatientRepository, 
+			HospitalService hospitalService, 
+			PatientService patientService) {
 		this.hospitalPatientRepository = hospitalPatientRepository;
+		this.hospitalService = hospitalService;
+	    this.patientService = patientService;
 	}
 	
 	Logger logger = LoggerFactory.getLogger(HospitalPatientService.class);
@@ -66,32 +73,52 @@ public class HospitalPatientService {
 	
 //	Method to add a new HospitalPatient entry to the database
 	public HospitalPatientDetailedResponseDto addHospitalPatient(HospitalPatientCreateRequestDto requestDto) {
-		logger.info("Adding new HospitalPatient entry to the database");
-		Hospital hospital = new Hospital();
-		hospital.setHospitalId(requestDto.getHospitalId());
-		
-		Patient patient = new Patient();
-		patient.setPatientId(requestDto.getPatientId());
-		
-		HospitalPatient hospitalPatient = new HospitalPatient();
-		hospitalPatient.setHospital(hospital);
-		hospitalPatient.setPatient(patient);
-		
-		HospitalPatient savedHospitalPatient = hospitalPatientRepository.save(hospitalPatient);
-		
-		return mapToDto(savedHospitalPatient);
+	    logger.info("Adding new HospitalPatient entry to the database");
+
+	    Long hospitalId = requestDto.getHospitalId();
+	    Long patientId = requestDto.getPatientId();
+
+	    // Check whether patient is already registered in this hospital
+	    if (hospitalPatientRepository
+	            .findByHospital_HospitalIdAndPatient_PatientId(hospitalId, patientId)
+	            .isPresent()) {
+
+	        throw new RuntimeException(
+	                "Patient is already registered in hospital. "
+	                + "hospitalId: " + hospitalId
+	                + ", patientId: " + patientId);
+	    }
+
+	    // Get existing entities
+	    Hospital hospital = hospitalService.getHospitalEntityById(hospitalId);
+	    Patient patient = patientService.getPatientEntityById(patientId);
+
+	    // Create relationship
+	    HospitalPatient hospitalPatient = new HospitalPatient();
+
+	    hospitalPatient.setHospital(hospital);
+	    hospitalPatient.setPatient(patient);
+
+	    HospitalPatient savedHospitalPatient =
+	            hospitalPatientRepository.save(hospitalPatient);
+
+	    return mapToDto(savedHospitalPatient);
 	}
 	
 //	Helper method to map HospitalPatient entity to HospitalPatientDetailedResponseDto
 	private HospitalPatientDetailedResponseDto mapToDto(HospitalPatient hospitalPatient) {
 		HospitalPatientDetailedResponseDto dto = new HospitalPatientDetailedResponseDto();
+		dto.setHospitalPatientId(hospitalPatient.getHospitalPatientId());
+		dto.setHospitalPatientNumber(hospitalPatient.getHospitalPatientNo());
 		dto.setHospitalId(hospitalPatient.getHospital().getHospitalId());
 		dto.setHospitalName(hospitalPatient.getHospital().getHospitalName());
 		dto.setPatientId(hospitalPatient.getPatient().getPatientId());
 		
 		dto.setPatientFullName(hospitalPatient.getPatient().getFirstName() + " " + hospitalPatient.getPatient().getLastName());
 		dto.setPatientGender(hospitalPatient.getPatient().getSex().toString());
-		dto.setPatientDateOfBirth(hospitalPatient.getPatient().getDob().toString());
+		if (hospitalPatient.getPatient().getDob() != null) {
+			dto.setPatientDateOfBirth(hospitalPatient.getPatient().getDob().toString());
+		}
 		dto.setPatientEmail(hospitalPatient.getPatient().getEmail());
 		dto.setPatientPhoneNumber(hospitalPatient.getPatient().getPhone());
 		dto.setPatientAddress(hospitalPatient.getPatient().getAddress());
