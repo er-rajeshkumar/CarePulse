@@ -33,6 +33,13 @@ public class DoctorService {
 		logger.error("ERROR Log");
 	}
 
+	public boolean isDoctorExistsByDoctorId(Long doctorId) {
+		logger.info("Checking if Doctor exists with ID : " + doctorId);
+		boolean isExists =  doctorRepository.existsByDoctorId(doctorId);
+		logger.info("Doctor exists with ID : " + doctorId + " - " + isExists);
+		return isExists;
+	}
+	
 //	Method to get all doctors from the database
 	public List<DoctorResponseDto> getAllDoctor() {
 		logger.info("Fetching all Doctor from the database");
@@ -142,7 +149,8 @@ public class DoctorService {
 	    dto.setEmail(doctor.getEmail());
 	    dto.setPhone(doctor.getPhone());
 	    dto.setDoctorRegistrationNo(doctor.getDoctorRegistrationNo());
-	    return dto;	}
+	    return dto;	
+	    }
 
 }
 
