@@ -7,12 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.carepulse.dto.PatientCaseCreateRequestDto;
 import com.carepulse.dto.PatientCaseDetailedResponseDto;
 import com.carepulse.entity.PatientCase;
 import com.carepulse.repository.DoctorRepository;
 import com.carepulse.repository.HospitalRepository;
 import com.carepulse.repository.PatientCaseRepository;
 import com.carepulse.repository.PatientRepository;
+import java.time.LocalDate;
 
 @Service
 public class PatientCaseService {
@@ -88,6 +90,40 @@ public class PatientCaseService {
 		}
 		return dto;
 	}
+	
+//	Method to add a new patient case
+	public PatientCaseDetailedResponseDto addPatientCase(PatientCaseCreateRequestDto patientCaseCreateDto) {
+		logger.info("Adding new patient case");
+		PatientCase patientCase = convertToEntity(patientCaseCreateDto);
+		PatientCase savedPatientCase = patientCaseRepository.save(patientCase);
+		return convertToDto(savedPatientCase);
+	}
+	
+//	Helper method to convert PatientCaseCreateRequestDto to PatientCase entity
+	private PatientCase convertToEntity(PatientCaseCreateRequestDto patientCaseCreateDto) {
+		PatientCase patientCase = new PatientCase();
+		patientCase.setHospital(hospitalRepository.findById(patientCaseCreateDto.getHospitalId())
+				.orElseThrow(() -> new RuntimeException("Hospital not found with ID: " + patientCaseCreateDto.getHospitalId())));
+		patientCase.setPatient(patientRepository.findById(patientCaseCreateDto.getPatientId())
+				.orElseThrow(() -> new RuntimeException("Patient not found with ID: " + patientCaseCreateDto.getPatientId())));
+		patientCase.setDoctor(doctorRepository.findById(patientCaseCreateDto.getDoctorId())
+				.orElseThrow(() -> new RuntimeException("Doctor not found with ID: " + patientCaseCreateDto.getDoctorId())));
+		
+		patientCase.setCaseTitle(patientCaseCreateDto.getCaseTitle());
+		patientCase.setDiagnosis(patientCaseCreateDto.getDiagnosis());
+		
+		patientCase.setAdmissionDate(LocalDate.parse(patientCaseCreateDto.getAdmissionDate()));
+		if (patientCaseCreateDto.getDischargeDate() != null && !patientCaseCreateDto.getDischargeDate().isBlank()) {
+		    patientCase.setDischargeDate(LocalDate.parse(patientCaseCreateDto.getDischargeDate()));
+		} else {
+		    patientCase.setDischargeDate(null);
+		}
+		
+		patientCase.setNotes(patientCaseCreateDto.getNote());
+		
+		return patientCase;
+	}
+	
 	
 //	Helper method to convert PatientCase entity to PatientCaseDetailedResponseDto
 	private PatientCaseDetailedResponseDto convertToDto(PatientCase patientCase) {

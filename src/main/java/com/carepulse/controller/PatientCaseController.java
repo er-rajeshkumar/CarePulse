@@ -4,10 +4,15 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.carepulse.dto.PatientCaseCreateRequestDto;
 import com.carepulse.dto.PatientCaseDetailedResponseDto;
 import com.carepulse.service.PatientCaseService;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class PatientCaseController {
@@ -46,5 +51,10 @@ public class PatientCaseController {
 	@GetMapping("/carepulse/patient-case/hospital/{hospitalId}")
 	public List<PatientCaseDetailedResponseDto> getPatientCasesByHospitalId(@PathVariable Long hospitalId) {
 		return patientCaseService.getPatientCasesByHospitalId(hospitalId);
+	}
+	
+	@PostMapping("/carepulse/patient-case")
+	public PatientCaseDetailedResponseDto createPatientCase(@RequestBody @Valid PatientCaseCreateRequestDto patientCaseDto) {
+		return patientCaseService.addPatientCase(patientCaseDto);
 	}
 }

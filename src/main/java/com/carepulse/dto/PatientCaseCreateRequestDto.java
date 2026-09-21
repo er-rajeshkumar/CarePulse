@@ -1,11 +1,17 @@
 package com.carepulse.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 public class PatientCaseCreateRequestDto {
 
+	@NotNull(message = "Hospital ID cannot be null")
 	private Long hospitalId;
+	@NotNull(message = "Patient ID cannot be null")
 	private Long patientId;
+	@NotNull(message = "Doctor ID cannot be null")
 	private Long doctorId;
 	
+	@NotNull(message = "Case title cannot be null")
 	private String caseTitle;
 	private String diagnosis;
 	
