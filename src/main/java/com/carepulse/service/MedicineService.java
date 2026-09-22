@@ -34,7 +34,7 @@ public class MedicineService {
 		logger.error("ERROR Log");
 	}
 	
-	
+//	Method to get medicine service message
 	public String getMedicineMessage() {
 		return "Medicine Service is working!";
 	}
