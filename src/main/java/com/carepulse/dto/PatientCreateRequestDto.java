@@ -1,5 +1,7 @@
 package com.carepulse.dto;
 
+import com.carepulse.entity.Status;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -19,6 +21,8 @@ public class PatientCreateRequestDto {
 	private String phone;
 
 	private String address;
+	
+	private Status status = Status.ACTIVE;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -60,6 +64,12 @@ public class PatientCreateRequestDto {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 

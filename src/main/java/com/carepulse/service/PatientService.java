@@ -45,14 +45,30 @@ public class PatientService {
 		logger.info("Fetched patient entity with id: {} from the database", id);
 		return patient;
 	}
-    public List<Patient> getAllPatients() {
+    public List<PatientResponseDto> getAllPatients() {
     	logger.info("Fetching all patients from the database");
-        return patientRepository.findAll();
+    	List<Patient> patients = patientRepository.findAll();
+    	List<PatientResponseDto> patientDtos = new java.util.ArrayList<>();
+    	for (Patient patient : patients) {
+		    PatientResponseDto dto = convertToDto(patient);
+		    patientDtos.add(dto);
+		  }
+    	logger.info("Fetched all patients from the database");
+    	logger.debug("Total Patient founds: {}" , patientDtos.size());
+        return patientDtos;
     }
 
 
-    public List<Patient> getAllPatientsByStatus() {
-    	return patientRepository.findAllByStatus(Status.ACTIVE);
+    public List<PatientResponseDto>  getAllPatientsByStatus() {
+    	List<Patient> patients =  patientRepository.findAllByStatus(Status.ACTIVE);
+    	List<PatientResponseDto> patientDtos = new java.util.ArrayList<>();
+    	for (Patient patient : patients) {
+		    PatientResponseDto dto = convertToDto(patient);
+		    patientDtos.add(dto);
+    	}
+    	logger.info("Fetched all active patients from the database");
+    	logger.debug("Total Active Patient founds: {}" , patientDtos.size());
+		return patientDtos;
     }
     public PatientResponseDto getPatientById(Long id) {
     	Patient patient =  patientRepository.findByPatientIdAndStatus(id, Status.ACTIVE).orElseThrow(() ->
@@ -63,21 +79,20 @@ public class PatientService {
     	if(patient.getStatus() == Status.DELETED) {
 			throw new PatientNotFoundException("Patient with id: " + id + " is deleted");
 		}
-    	PatientResponseDto dto = new PatientResponseDto();
-    	dto.setPatientId(patient.getPatientId());
-    	dto.setFullName(
-    	        patient.getFirstName()
-    	        + " "
-    	        + patient.getLastName());
-
-    	dto.setPhone(patient.getPhone());
+    	PatientResponseDto dto = convertToDto(patient);
     	logger.info("Fetched patient with id: " + id);
     	logger.debug("Patient details: " + dto.toString());
     	return dto;
     }
 
-	public Patient addPatient(PatientCreateRequestDto request) {
+	public PatientResponseDto addPatient(PatientCreateRequestDto request) {
 
+		if(patientRepository.existsByEmail(request.getEmail())) {
+			throw new PatientNotFoundException("Patient with email: " + request.getEmail() + " already exists");
+		}
+		if(patientRepository.existsByPhone(request.getPhone())) {
+			throw new PatientNotFoundException("Patient with phone: " + request.getPhone() + " already exists");
+		}
 		Patient patient = new Patient();
 		patient.setFirstName(request.getFirstName());
 		patient.setMiddleName(request.getMiddleName());
@@ -87,12 +102,16 @@ public class PatientService {
 		patient.setSex(
 			    Sex.valueOf(request.getSex().toUpperCase())
 			);
+		patient.setAddress(request.getAddress());
 		logger.info("Adding new patient: " + patient.getFirstName() + " " + patient.getLastName());
 		logger.debug("Patient details: " + patient.toString());
-		return patientRepository.save(patient);
+		Patient saved =  patientRepository.save(patient);
+		PatientResponseDto dto =  convertToDto(saved);
+		logger.info("Added new patient with id: " + saved.getPatientId());
+		return dto;
 	}
 
-	public Patient updatePatient(Long id, PatientCreateRequestDto request) {
+	public PatientResponseDto updatePatient(Long id, PatientCreateRequestDto request) {
 		Patient existingPatient = patientRepository.findById(id)
 				.orElseThrow(() ->
 				new PatientNotFoundException("Patient not found with id: " + id));
@@ -103,11 +122,13 @@ public class PatientService {
 			existingPatient.setPhone(request.getPhone());
 			existingPatient.setEmail(request.getEmail());
 			existingPatient.setSex(Sex.valueOf(request.getSex().toUpperCase()));
+			existingPatient.setAddress(request.getAddress());
+			existingPatient.setStatus(request.getStatus());
 			existingPatient = patientRepository.save(existingPatient);
 		}
 		logger.info("Updated patient with id: " + id);
 		logger.debug("Updated patient details: " + existingPatient.toString());
-		return existingPatient;
+		return convertToDto(existingPatient);
 	}
 
 	public Patient deletePatient(Long id) {
@@ -120,5 +141,23 @@ public class PatientService {
 
 		logger.info("Deleted patient with id: " + id);
 		return existingPatient;
+	}
+	
+//	Helper method to convert Patient entity to PatientResponseDto
+	private PatientResponseDto convertToDto(Patient patient) {
+		PatientResponseDto dto = new PatientResponseDto();
+		dto.setPatientId(patient.getPatientId());
+		
+		String lastName = patient.getLastName() != null ? patient.getLastName() : "";
+		String middleName = patient.getMiddleName() != null ? patient.getMiddleName() : "";
+		String fullName = patient.getFirstName() + " " + middleName + " " + lastName;
+		dto.setFullName(fullName.trim());
+		dto.setPhone(patient.getPhone());
+		dto.setEmail(patient.getEmail());
+		dto.setSex(patient.getSex());
+		dto.setAddress(patient.getAddress());
+		dto.setStatus(patient.getStatus());
+		dto.setDob(patient.getDob() != null ? patient.getDob().toString() : null);
+		return dto;
 	}
 }

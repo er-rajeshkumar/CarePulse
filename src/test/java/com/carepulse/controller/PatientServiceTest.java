@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.carepulse.dto.PatientResponseDto;
 import com.carepulse.entity.Patient;
 import com.carepulse.entity.Status;
 import com.carepulse.repository.PatientRepository;
@@ -43,18 +44,15 @@ public class PatientServiceTest {
 
 		when(repository.findAllByStatus(Status.ACTIVE)).thenReturn(patients);
 
-		List<Patient> result = service.getAllPatientsByStatus();
+		List<PatientResponseDto> result = service.getAllPatientsByStatus();
 		assertEquals(2, result.size());
 		assert result.size() == 2;
-		assertEquals("Rajesh", result.get(0).getFirstName());
-		assertEquals("Juhi", result.get(1).getFirstName());
+		assertEquals("Rajesh Kumar", result.get(0).getFullName());
+		assertEquals("Juhi Singh", result.get(1).getFullName());
 		assertEquals(Status.ACTIVE, result.get(0).getStatus());
 		assertEquals(Status.ACTIVE, result.get(1).getStatus());
 		assertEquals(1L, result.get(0).getPatientId());
 		assertEquals(2L, result.get(1).getPatientId());
-		assertEquals("Kumar", result.get(0).getLastName());
-		assertEquals("Singh", result.get(1).getLastName());
-		assertEquals("Singh", result.get(1).getLastName());
 
 		verify(repository).findAllByStatus(Status.ACTIVE);
 

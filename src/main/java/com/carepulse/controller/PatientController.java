@@ -39,12 +39,12 @@ public class PatientController {
 
 
     @GetMapping("/carepulse/patients")
-    public List<Patient> getAllPatients() {
+    public List<PatientResponseDto> getAllPatients() {
         return patientService.getAllPatients();
     }
 
     @GetMapping("/carepulse/patients/active")
-    public List<Patient> getAllActivePatients() {
+    public List<PatientResponseDto> getAllActivePatients() {
         return patientService.getAllPatientsByStatus();
     }
 //    @GetMapping("/api/patients/{id}")
@@ -62,18 +62,18 @@ public class PatientController {
     }
 
     @PostMapping("/carepulse/patients")
-    public ResponseEntity<Map<String, String>> addPatient
+    public PatientResponseDto addPatient
     ( @Valid @RequestBody PatientCreateRequestDto request)
     {
 
-		Patient savedPatient = patientService.addPatient(request);
+    	PatientResponseDto patientDto = patientService.addPatient(request);
 
 		// Create a response map with the success message and patient ID
 		Map<String, String> response = new HashMap<>();
 		response.put("message", "Patient added successfully");
-		response.put("patientId", savedPatient.getPatientId().toString());
+		response.put("patientId", patientDto.getPatientId().toString());
 
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		return patientDto;
 	}
 
     @PutMapping("/carepulse/patients/{id}")
@@ -81,7 +81,7 @@ public class PatientController {
 			@PathVariable Long id,
 			@Valid @RequestBody PatientCreateRequestDto request) {
 
-		Patient updatedPatient = patientService.updatePatient(id, request);
+    	PatientResponseDto updatedPatient = patientService.updatePatient(id, request);
 
 		// Create a response map with the success message and patient ID
 		Map<String, String> response = new HashMap<>();
