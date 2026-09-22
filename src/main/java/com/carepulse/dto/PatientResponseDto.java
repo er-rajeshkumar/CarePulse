@@ -63,5 +63,9 @@ public class PatientResponseDto {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	public Object toSJON() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

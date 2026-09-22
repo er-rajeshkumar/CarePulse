@@ -10,6 +10,7 @@ import com.carepulse.entity.Status;
 
 public interface HospitalDoctorRepository extends JpaRepository<HospitalDoctor, Long>{
 
+	 @Override
 	 List<HospitalDoctor> findAll();
 
 	    List<HospitalDoctor> findAllByStatus(Status status);

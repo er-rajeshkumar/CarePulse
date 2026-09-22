@@ -9,7 +9,7 @@ public class HospitalPatientCreateRequestDto {
 
     @NotNull(message = "Patient ID cannot be null")
     private Long patientId;
-    
+
     @NotBlank(message = "Hospital patient number cannot be blank")
     private String hospitalPatientNo;
 

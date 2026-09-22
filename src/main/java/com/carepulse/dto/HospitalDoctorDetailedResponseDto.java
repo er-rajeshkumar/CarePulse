@@ -3,12 +3,12 @@ package com.carepulse.dto;
 public class HospitalDoctorDetailedResponseDto {
 
 	private Long hospitalDoctorId;
-	
+
 	private Long doctorId;
 	private String doctorName;
 	private Long doctorSpecialization;
 	private String doctorRegistrationNo;
-	
+
 	private Long hospitalId;
 	private String hospitalName;
 	private String hospitalAddress;
@@ -67,6 +67,6 @@ public class HospitalDoctorDetailedResponseDto {
 	public void setHospitalCode(String hospitalCode) {
 		this.hospitalCode = hospitalCode;
 	}
-	
-	
+
+
 }

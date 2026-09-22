@@ -4,11 +4,11 @@ public class HospitalPatientDetailedResponseDto {
 
 	private Long hospitalPatientId;
 	private String hospitalPatientNumber;
-	
+
 	private Long hospitalId;
 	private String hospitalName;
 	private String hospitalAddress;
-	
+
 	private Long patientId;
 	private String patientFullName;
 	private String patientGender;
@@ -16,8 +16,8 @@ public class HospitalPatientDetailedResponseDto {
 	private String patientEmail;
 	private String patientPhoneNumber;
 	private String patientAddress;
-	
-	
+
+
 	public Long getHospitalPatientId() {
 		return hospitalPatientId;
 	}

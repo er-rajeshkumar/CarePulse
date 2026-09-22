@@ -10,14 +10,14 @@ public class PatientCaseCreateRequestDto {
 	private Long patientId;
 	@NotNull(message = "Doctor ID cannot be null")
 	private Long doctorId;
-	
+
 	@NotNull(message = "Case title cannot be null")
 	private String caseTitle;
 	private String diagnosis;
-	
+
 	private String admissionDate;
 	private String dischargeDate;
-	
+
 	private String note;
 
 	public Long getHospitalId() {

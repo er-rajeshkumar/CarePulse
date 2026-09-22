@@ -21,7 +21,7 @@ public class PatientCreateRequestDto {
 	private String phone;
 
 	private String address;
-	
+
 	private Status status = Status.ACTIVE;
 	public String getFirstName() {
 		return firstName;

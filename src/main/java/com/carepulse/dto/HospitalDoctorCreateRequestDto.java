@@ -6,7 +6,7 @@ public class HospitalDoctorCreateRequestDto {
 
 	@NotNull(message = "Hospital ID cannot be null")
 	private Long hospitalId;
-	
+
 	@NotNull(message = "Doctor ID cannot be null")
 	private Long doctorId;
 

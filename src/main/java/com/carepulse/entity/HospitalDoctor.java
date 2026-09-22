@@ -19,13 +19,13 @@ public class HospitalDoctor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "HOSPITAL_DOCTOR_ID")
 	private Long hospitalDoctorId;
-	
+
 //	@Column(name = "HOSPITAL_ID")
 //	private Long hospitalId;
-//	
+//
 //	@Column(name = "DOCTOR_ID")
 //	private Long doctorId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "HOSPITAL_ID", nullable = false)
 	private Hospital hospital;
@@ -33,10 +33,10 @@ public class HospitalDoctor {
 	@ManyToOne
 	@JoinColumn(name = "DOCTOR_ID", nullable = false)
 	private Doctor doctor;
-	
+
 	@Column(name = "JOIN_DATE")
 	private LocalDate joinDate;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
 	private Status status;
@@ -67,7 +67,7 @@ public class HospitalDoctor {
 	}
 
 	**/
-	
+
 	public LocalDate getJoinDate() {
 		return joinDate;
 	}
@@ -99,6 +99,6 @@ public class HospitalDoctor {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	
+
+
 }

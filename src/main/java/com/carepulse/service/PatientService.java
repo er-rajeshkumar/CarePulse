@@ -142,12 +142,12 @@ public class PatientService {
 		logger.info("Deleted patient with id: " + id);
 		return existingPatient;
 	}
-	
+
 //	Helper method to convert Patient entity to PatientResponseDto
 	private PatientResponseDto convertToDto(Patient patient) {
 		PatientResponseDto dto = new PatientResponseDto();
 		dto.setPatientId(patient.getPatientId());
-		
+
 		String lastName = patient.getLastName() != null ? patient.getLastName() : "";
 		String middleName = patient.getMiddleName() != null ? patient.getMiddleName() : "";
 		String fullName = patient.getFirstName() + " " + middleName + " " + lastName;

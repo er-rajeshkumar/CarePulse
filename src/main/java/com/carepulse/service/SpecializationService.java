@@ -17,17 +17,17 @@ import com.carepulse.repository.SpecializationRepository;
 public class SpecializationService {
 
 	private final SpecializationRepository specializationRepository;
-	
+
 	public SpecializationService(SpecializationRepository specializationRepository) {
 		this.specializationRepository = specializationRepository;
 	}
-	
+
 	private static final Logger logger =LoggerFactory.getLogger(SpecializationService.class);
 
 	public String getSpecializationMessage() {
 		return "Specialization Service is working";
 	}
-	
+
 	public void testLog() {
 		logger.trace("TRACE Log");
 		logger.debug("DEBUG Log");
@@ -35,7 +35,7 @@ public class SpecializationService {
 		logger.warn("WARN Log");
 		logger.error("ERROR Log");
 	}
-	
+
 	public List<SpecializationResponseDto> getAllSpecializations() {
 		logger.info("Fetching all Specializations from the database");
 		List<Specialization> specializations =  specializationRepository.findAll();
@@ -46,7 +46,7 @@ public class SpecializationService {
 		}
 		return specializationResponseDtos;
 	}
-	
+
 	public List<SpecializationResponseDto> getAllActiveSpecializations() {
 		logger.info("Fetching all active Specializations from the database");
 		List<Specialization> specializations = specializationRepository.findAllByStatus(com.carepulse.entity.Status.ACTIVE);
@@ -57,15 +57,15 @@ public class SpecializationService {
 		}
 		return specializationResponseDtos;
 	}
-	
+
 	public SpecializationResponseDto getSpecializationById(Long id) {
 		logger.info("Fetching Specialization with ID: {}", id);
-		Specialization specialization = specializationRepository.findBySpecializationIdAndStatus(id, Status.ACTIVE).orElseThrow(() -> new SpecializationException("Specialization not found with ID: " + id));	
+		Specialization specialization = specializationRepository.findBySpecializationIdAndStatus(id, Status.ACTIVE).orElseThrow(() -> new SpecializationException("Specialization not found with ID: " + id));
 		logger.info("Found Specialization: ID: {}, Name: {}", specialization.getSpecializationId(), specialization.getSpecializationName());
 		SpecializationResponseDto specializationResponseDto = mapToDto(specialization);
 		return specializationResponseDto;
 	}
-	
+
 	public SpecializationResponseDto addSpecialization(SpecializationCreateRequestDto specializationCeateRequestDto) {
 		Specialization specialization = mapToEntity(specializationCeateRequestDto);
 		if(specializationRepository.existsBySpecializationCode(specialization.getSpecializationCode())) {
@@ -75,7 +75,7 @@ public class SpecializationService {
 		logger.info("Added Specialization: ID: {}, Name: {}", savedSpecialization.getSpecializationId(), savedSpecialization.getSpecializationName());
 		return mapToDto(savedSpecialization);
 	}
-	
+
 	public SpecializationResponseDto updateSpecialization(Long id, SpecializationCreateRequestDto specializationCreateRequestDto) {
 		Specialization specialization = specializationRepository.findBySpecializationIdAndStatus(id, Status.ACTIVE).orElseThrow(() -> new SpecializationException("Specialization not found with ID: " + id));
 		if(specializationRepository.findBySpecializationCodeAndSpecializationIdNot(specializationCreateRequestDto.getSpecializationCode(), id).isPresent()) {
@@ -88,7 +88,7 @@ public class SpecializationService {
 		logger.info("Updated Specialization: ID: {}, Name: {}", updatedSpecialization.getSpecializationId(), updatedSpecialization.getSpecializationName());
 		return mapToDto(updatedSpecialization);
 	}
-	
+
 	public SpecializationResponseDto deleteSpecialization(Long id) {
 		Specialization specialization = specializationRepository.findBySpecializationIdAndStatus(id, Status.ACTIVE).orElseThrow(() -> new SpecializationException("Specialization not found with ID: " + id));
 		specialization.setStatus(Status.DELETED);
@@ -96,7 +96,7 @@ public class SpecializationService {
 		logger.info("Deleted Specialization: ID: {}, Name: {}", deletedSpecialization.getSpecializationId(), deletedSpecialization.getSpecializationName());
 		return mapToDto(deletedSpecialization);
 	}
-	
+
 	private SpecializationResponseDto mapToDto(Specialization specialization) {
 		SpecializationResponseDto specializationResponseDto = new SpecializationResponseDto();
 		specializationResponseDto.setSpecializationId(specialization.getSpecializationId());
@@ -105,7 +105,7 @@ public class SpecializationService {
 		specializationResponseDto.setSpecializationDescription(specialization.getSpecializationDescription());
 		return specializationResponseDto;
 	}
-	
+
 	private Specialization mapToEntity(SpecializationCreateRequestDto specializationCreateRequestDto) {
 		Specialization specialization = new Specialization();
 		specialization.setSpecializationCode(specializationCreateRequestDto.getSpecializationCode());

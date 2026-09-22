@@ -26,28 +26,28 @@ public class HospitalService {
 	public String getHospitalMessage() {
 		return "Hospital Service is working";
 	}
-	
+
 	public boolean isHospitalExistsByEmail(String email) {
 		logger.info("Checking if hospital exists with email: {}", email);
 		boolean exists = hospitalRepository.existsByHospitalEmail(email);
 		logger.info("Hospital exists with email {}: {}", email, exists);
 		return exists;
 	}
-	
+
 	public boolean isHospitalExistsByCode(String code) {
 		logger.info("Checking if hospital exists with code: {}", code);
 		boolean exists = hospitalRepository.existsByHospitalCode(code);
 		logger.info("Hospital exists with code {}: {}", code, exists);
 		return exists;
 	}
-	
+
 	public boolean isHospitalExistsById(Long id) {
 		logger.info("Checking if hospital exists with id: {}", id);
 		boolean exists = hospitalRepository.existsByHospitalId(id);
 		logger.info("Hospital exists with id {}: {}", id, exists);
 		return exists;
 	}
-	
+
 	public Hospital getHospitalEntityById(Long id) {
 		logger.info("Fetching hospital entity with id: {} from the database", id);
 		Hospital hospital = hospitalRepository.findById(id).orElseThrow(() ->
@@ -56,7 +56,7 @@ public class HospitalService {
 		logger.info("Fetched hospital entity with id: {} from the database", id);
 		return hospital;
 	}
-	
+
 	public List<HospitalResponseDto> getAllHospitals() {
 		logger.info("Fetching all hospitals from the database");
 		List<Hospital> hospitals = hospitalRepository.findAll();
@@ -68,11 +68,11 @@ public class HospitalService {
 		logger.info("Fetched {} hospitals from the database", hospitals.size());
 		return hospitalResponseDtos;
 	}
-	
+
 	public HospitalResponseDto getHospitalById(Long id) {
 		logger.info("Fetching hospital with id: {} from the database",id);
 		Hospital hospital = hospitalRepository.findById(id).orElseThrow(() ->
-			
+
 			new HospitalNotFoundException("Hospital not found with id: " + id)
 		);
 		HospitalResponseDto hospitalResponseDto = mapHospitaltoDto(hospital);
@@ -80,7 +80,7 @@ public class HospitalService {
 		logger.debug("Hospital details: {}", hospital);
 		return hospitalResponseDto;
 	}
-	
+
 	public List<HospitalResponseDto> getAllHospitalsByStatus() {
 		logger.info("Fetching all hospitals with status ACTIVE from the database");
 		List<Hospital> hospitals = hospitalRepository.findAllByStatus(Status.ACTIVE);
@@ -92,7 +92,7 @@ public class HospitalService {
 		logger.info("Fetched {} hospitals with status ACTIVE from the database", hospitals.size());
 		return hospitalResponseDtos;
 	}
-	
+
 	public HospitalResponseDto addHospital(HospitalCreateRequestDto hospitalCreateRequestDto) {
 		logger.info("Adding new hospital to the database");
 		if (hospitalRepository.existsByHospitalEmail(hospitalCreateRequestDto.getHospitalEmail())) {
@@ -111,8 +111,8 @@ public class HospitalService {
 		HospitalResponseDto hospitalResponseDto = mapHospitaltoDto(savedHospital);
 		return hospitalResponseDto;
 	}
-	
-	
+
+
 	public HospitalResponseDto updateHospital(Long id, HospitalCreateRequestDto hospitalCreateRequestDto) {
 		logger.info("Updating hospital with id: {} in the database", id);
 		Hospital existingHospital = hospitalRepository.findById(id).orElseThrow(() ->
@@ -137,7 +137,7 @@ public class HospitalService {
 		HospitalResponseDto hospitalResponseDto = mapHospitaltoDto(updatedHospital);
 		return hospitalResponseDto;
 	}
-	
+
 	public HospitalResponseDto deleteHospital(Long id) {
 		logger.info("Deleting hospital with id: {} from the database", id);
 		Hospital existingHospital = hospitalRepository.findById(id).orElseThrow(() ->
@@ -150,7 +150,7 @@ public class HospitalService {
 		HospitalResponseDto hospitalResponseDto = mapHospitaltoDto(existingHospital);
 		return hospitalResponseDto;
 	}
-	
+
 	public Hospital mapCreateDtoToHospital(HospitalCreateRequestDto hospitalCreateRequestDto) {
 		Hospital hospital = new Hospital();
 		hospital.setHospitalName(hospitalCreateRequestDto.getHospitalName());
@@ -161,7 +161,7 @@ public class HospitalService {
 		hospital.setStatus(Status.ACTIVE);
 		return hospital;
 	}
-	
+
 	public HospitalResponseDto mapHospitaltoDto(Hospital hospital) {
 		HospitalResponseDto hospitalResponseDto = new HospitalResponseDto();
 		hospitalResponseDto.setHospitalId(hospital.getHospitalId());
@@ -172,6 +172,6 @@ public class HospitalService {
 		hospitalResponseDto.setHospitalAddress(hospital.getHospitalAddress());
 		return hospitalResponseDto;
 	}
-	
-	
+
+
 }

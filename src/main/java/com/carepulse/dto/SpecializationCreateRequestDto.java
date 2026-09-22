@@ -12,18 +12,18 @@ public class SpecializationCreateRequestDto {
 
 	@Column(name = "SPECIALIZATION_ID")
 	private Long specializationId;
-	
+
 	@NotNull(message = "Specialization code cannot be null")
 	@Column(name = "SPECIALIZATION_CODE")
 	private String specializationCode;
-	
+
 	@NotNull(message = "Specialization name cannot be null")
 	@Column(name = "SPECIALIZATION_NAME")
 	private String specializationName;
-	
+
 	@Column(name = "SPECIALIZATION_DESCRIPTION")
 	private String specializationDescription;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
 	private Status status;
@@ -67,6 +67,6 @@ public class SpecializationCreateRequestDto {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	
+
+
 }

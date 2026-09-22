@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class HospitalPatient {
-	
+
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "HOSPITAL_PATIENT_ID")
@@ -58,6 +58,6 @@ public class HospitalPatient {
 		public void setPatient(Patient patient) {
 			this.patient = patient;
 		}
-	    
-	    
+
+
 }

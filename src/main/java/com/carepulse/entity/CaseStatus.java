@@ -4,5 +4,6 @@ public enum CaseStatus {
     ACTIVE,
     COMPLETED,
     CANCELLED,
-    ON_HOLD
+    ON_HOLD,
+    DELETED
 }

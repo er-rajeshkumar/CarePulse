@@ -7,16 +7,16 @@ public class SpecializationResponseDto {
 
 	@Column(name = "SPECIALIZATION_ID")
 	private Long specializationId;
-	
+
 	@Column(name = "SPECIALIZATION_CODE")
 	private String specializationCode;
-	
+
 	@Column(name = "SPECIALIZATION_NAME")
 	private String specializationName;
-	
+
 	@Column(name = "SPECIALIZATION_DESCRIPTION")
 	private String specializationDescription;
-	
+
 	public Long getSpecializationId() {
 		return specializationId;
 	}
@@ -47,5 +47,5 @@ public class SpecializationResponseDto {
 	public void setSpecializationDescription(String specializationDescription) {
 		this.specializationDescription = specializationDescription;
 	}
-	
+
 }

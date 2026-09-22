@@ -21,27 +21,27 @@ public class HospitalPatientController {
 	public HospitalPatientController(HospitalPatientService hospitalPatientService) {
 		this.hospitalPatientService = hospitalPatientService;
 	}
-	
+
 	@GetMapping("/carepulse/hospital-patient/test")
 	public String getHospitalPatientMessage() {
 		return "Hospital Patient Controller is working";
 	}
-	
+
 	@GetMapping("/carepulse/hospital-patient")
 	public List<HospitalPatientDetailedResponseDto> getAllHospitalPatient() {
 		return hospitalPatientService.getAllHospitalPatient();
 	}
-	
+
 	@GetMapping("/carepulse/hospital-patient/hospital/{hospitalId}")
 	public List<HospitalPatientDetailedResponseDto> getAllHospitalPatientByHospitalId(@PathVariable Long hospitalId) {
 		return hospitalPatientService.getAllHospitalPatientByHospitalId(hospitalId);
 	}
-	
+
 	@GetMapping("/carepulse/hospital-patient/patient/{patientId}")
 	public List<HospitalPatientDetailedResponseDto> getAllHospitalPatientByPatientId(@PathVariable Long patientId) {
 		return hospitalPatientService.getAllHospitalPatientByPatientId(patientId);
 	}
-	
+
 	@PostMapping("/carepulse/hospital-patient")
 	public HospitalPatientDetailedResponseDto addHospitalPatient(@RequestBody @Valid HospitalPatientCreateRequestDto hospitalPatientDto) {
 		return hospitalPatientService.addHospitalPatient(hospitalPatientDto);

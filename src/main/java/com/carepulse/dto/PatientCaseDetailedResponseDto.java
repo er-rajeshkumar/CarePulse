@@ -1,37 +1,39 @@
 package com.carepulse.dto;
 
+import com.carepulse.entity.CaseStatus;
+
 public class PatientCaseDetailedResponseDto {
 
 	private Long id;
-	
+
 //	private Hospital hospital;
 	private Long hospitalId;
 	private String hospitalName;
 	private String hospitalAddress;
-	
+
 
 //	private Patient patient;
 	private Long patientId;
 	private String patientFullName;
 	private String patientEmail;
 	private String patientPhone;
-	
+
 
 //	private Doctor doctor;
 	private Long doctorId;
 	private String doctorFullName;
 	private String doctorEmail;
-	
+
 	private String caseTitle;
-	
+
 	private String diagnosis;
-	
+
 	private String admissionDate;
-	
+
 	private String dischargeDate;
-	
-	private String caseStatus;
-	
+
+	private CaseStatus caseStatus;
+
 	private String notes;
 
 	public String getNotes() {
@@ -42,7 +44,7 @@ public class PatientCaseDetailedResponseDto {
 		this.notes = notes;
 	}
 
-	public void setCaseStatus(String caseStatus) {
+	public void setCaseStatus(CaseStatus caseStatus) {
 		this.caseStatus = caseStatus;
 	}
 
@@ -166,8 +168,8 @@ public class PatientCaseDetailedResponseDto {
 		this.dischargeDate = dischargeDate;
 	}
 
-	public String getCaseStatus() {
+	public CaseStatus getCaseStatus() {
 		return caseStatus;
 	}
-	
+
 }

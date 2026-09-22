@@ -5,6 +5,9 @@ public enum Status {
 	ACTIVE,
 	INACTIVE,
 	DELETED,
-	SUSPENDED
+	SUSPENDED,
+	COMPLETED,
+	CANCELLED,
+	ON_HOLD
 }
 

@@ -4,7 +4,7 @@ public class HospitalDoctorResponseDto {
 
 	private Long hospitalDoctorId;
 	private Long doctorId;
-	
+
 	private Long hospitalId;
 
 	public Long getHospitalDoctorId() {

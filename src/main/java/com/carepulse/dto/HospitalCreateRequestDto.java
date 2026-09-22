@@ -22,35 +22,35 @@ public class HospitalCreateRequestDto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "HOSPITAL_ID")
 	private Long hospitalId;
-	
+
 	@NotNull(message = "Hospital code cannot be null")
 	@Column(name = "HOSPITAL_CODE")
 	private String hospitalCode;
-	
+
 	@NotNull(message = "Hospital name cannot be null")
 	@Column(name = "HOSPITAL_NAME")
 	private String hospitalName;
-	
+
 	@Email(message = "Invalid email format")
 	@NotNull(message = "Hospital email cannot be null")
 	@Column(name = "HOSPITAL_EMAIL")
 	private String hospitalEmail;
-	
+
 	@Length(min = 10, max = 15, message = "Hospital phone number must be between 10 and 15 digits")
 	@Pattern(regexp = "\\d+", message = "Hospital phone number must contain only digits")
 	@Column(name = "HOSPITAL_PHONE")
 	private String hospitalPhone;
-	
+
 	@Column(name = "ADDRESS")
 	private String hospitalAddress;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
 	private Status status;
-	
+
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
-	
+
 	@Column(name = "UPDATED_AT")
 	private LocalDateTime updatedAt;
 
@@ -125,7 +125,7 @@ public class HospitalCreateRequestDto {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
-	
+
+
+
 }

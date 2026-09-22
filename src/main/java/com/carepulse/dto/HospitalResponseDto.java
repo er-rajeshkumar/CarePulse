@@ -6,19 +6,19 @@ public class HospitalResponseDto {
 
 	@Column(name = "HOSPITAL_ID")
 	private Long hospitalId;
-	
+
 	@Column(name = "HOSPITAL_CODE")
 	private String hospitalCode;
-	
+
 	@Column(name = "HOSPITAL_NAME")
 	private String hospitalName;
-	
+
 	@Column(name = "HOSPITAL_EMAIL")
 	private String hospitalEmail;
-	
+
 	@Column(name = "HOSPITAL_PHONE")
 	private String hospitalPhone;
-	
+
 	@Column(name = "ADDRESS")
 	private String hospitalAddress;
 
@@ -69,5 +69,5 @@ public class HospitalResponseDto {
 	public void setHospitalAddress(String hospitalAddress) {
 		this.hospitalAddress = hospitalAddress;
 	}
-	
+
 }

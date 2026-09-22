@@ -12,34 +12,34 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Hospital {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "HOSPITAL_ID")
 	private Long hospitalId;
-	
+
 	@Column(name = "HOSPITAL_CODE")
 	private String hospitalCode;
-	
+
 	@Column(name = "HOSPITAL_NAME")
 	private String hospitalName;
-	
+
 	@Column(name = "HOSPITAL_EMAIL")
 	private String hospitalEmail;
-	
+
 	@Column(name = "HOSPITAL_PHONE")
 	private String hospitalPhone;
-	
+
 	@Column(name = "ADDRESS")
 	private String hospitalAddress;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
 	private Status status;
-	
+
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
-	
+
 	@Column(name = "UPDATED_AT")
 	private LocalDateTime updatedAt;
 

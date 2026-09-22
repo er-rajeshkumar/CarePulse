@@ -39,7 +39,7 @@ public class DoctorService {
 		logger.info("Doctor exists with ID : " + doctorId + " - " + isExists);
 		return isExists;
 	}
-	
+
 //	Method to get all doctors from the database
 	public List<DoctorResponseDto> getAllDoctor() {
 		logger.info("Fetching all Doctor from the database");
@@ -119,7 +119,7 @@ public class DoctorService {
 		doctor.setPhone(doctorCreateRequestDto.getPhone());
 		doctor.setDoctorRegistrationNo(doctorCreateRequestDto.getDoctorRegistrationNo());
 		doctor.setCreatedAt(java.time.LocalDateTime.now());
-		
+
 		Doctor savedDoctor = doctorRepository.save(doctor);
 		logger.info("Doctor created successfully with id {}",savedDoctor.getDoctorId());
 		return mapToDto(savedDoctor);
@@ -159,7 +159,7 @@ public class DoctorService {
 	    dto.setEmail(doctor.getEmail());
 	    dto.setPhone(doctor.getPhone());
 	    dto.setDoctorRegistrationNo(doctor.getDoctorRegistrationNo());
-	    return dto;	
+	    return dto;
 	    }
 
 }

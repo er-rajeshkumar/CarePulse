@@ -20,41 +20,41 @@ public class PatientCase {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PATIENT_CASE_ID", nullable = false)
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "HOSPITAL_ID", nullable = false)
 	private Hospital hospital;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "PATIENT_ID", nullable = false)
 	private Patient patient;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "DOCTOR_ID", nullable = false)
 	private Doctor doctor;
-	
+
 	@Column(name = "CASE_TITLE")
 	private String caseTitle;
-	
+
 	@Column(name = "DIAGNOSIS")
 	private String diagnosis;
-	
+
 	@Column(name = "START_DATE")
 	private LocalDate admissionDate;
-	
+
 	@Column(name = "END_DATE")
 	private LocalDate dischargeDate;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "CASE_STATUS")
 	private CaseStatus caseStatus;
-	
+
 	@Column(name = "NOTES")
 	private String notes;
-	
+
 	@Column(name = "CREATED_AT")
 	private Date createdAt;
-	
+
 	@Column(name = "UPDATED_AT")
 	private Date updatedAt;
 

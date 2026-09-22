@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.http.HttpStatus;
 //import org.hibernate.mapping.Map;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -77,7 +76,7 @@ public class PatientController {
 	}
 
     @PutMapping("/carepulse/patients/{id}")
-    public ResponseEntity<Map<String, String>> updatePatient(
+    public PatientResponseDto updatePatient(
 			@PathVariable Long id,
 			@Valid @RequestBody PatientCreateRequestDto request) {
 
@@ -88,7 +87,7 @@ public class PatientController {
 		response.put("message", "Patient updated successfully");
 		response.put("patientId", updatedPatient.getPatientId().toString());
 
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return updatedPatient;
 	}
 
     @DeleteMapping("/carepulse/patients/{id}")
