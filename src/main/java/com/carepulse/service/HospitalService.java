@@ -22,7 +22,7 @@ public class HospitalService {
 		this.hospitalRepository = hospitalRepository;
 	}
 
-	private static final Logger logger = LoggerFactory.getLogger(PatientService.class);
+	private static final Logger logger = LoggerFactory.getLogger(HospitalService.class);
 
 	public String getHospitalMessage() {
 		return "Hospital Service is working";

@@ -3,6 +3,8 @@ package com.carepulse.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.carepulse.dto.ReminderCreateRequestDto;
@@ -19,6 +21,8 @@ import com.carepulse.repository.ReminderRepository;
 @Service
 public class ReminderService {
 
+	private static final Logger logger = LoggerFactory.getLogger(ReminderService.class);
+
 	private final ReminderRepository reminderRepository;
 	private final MedicationService medicationService;
 
@@ -31,7 +35,7 @@ public class ReminderService {
 		return "Reminder Service is working";
 	}
 
-//	Method to get all reminders 
+	// Method to get all reminders
 	public List<ReminderDetailedResponseDto> getAllReminders() {
 		List<Reminder> reminders = reminderRepository.findAll();
 		List<ReminderDetailedResponseDto> reminderDTOs = new ArrayList<>();
@@ -41,20 +45,20 @@ public class ReminderService {
 		return reminderDTOs;
 	}
 
-//	Method to get a reminder by ID
+	// Method to get a reminder by ID
 	public ReminderDetailedResponseDto getReminderById(Long reminderId) {
 		Reminder reminder = reminderRepository.findById(reminderId)
 				.orElseThrow(() -> new ReminderException("Reminder not found with id: " + reminderId));
 		return convertToDTO(reminder);
 	}
 
-//	Method to get a reminder entity by ID
+	// Method to get a reminder entity by ID
 	public Reminder getReminderEntityById(Long reminderId) {
 		return reminderRepository.findById(reminderId)
 				.orElseThrow(() -> new ReminderException("Reminder not found with id: " + reminderId));
 	}
 
-//	Method to get reminders by patient ID
+	// Method to get reminders by patient ID
 	public List<ReminderDetailedResponseDto> getRemindersByPatientId(Long patientId) {
 		List<Reminder> reminders = reminderRepository.findAllByMedication_PatientCase_Patient_PatientId(patientId);
 		List<ReminderDetailedResponseDto> reminderDTOs = new ArrayList<>();
@@ -64,7 +68,7 @@ public class ReminderService {
 		return reminderDTOs;
 	}
 
-//	Method to get reminders by doctor ID
+	// Method to get reminders by doctor ID
 	public List<ReminderDetailedResponseDto> getRemindersByDoctorId(Long doctorId) {
 		List<Reminder> reminders = reminderRepository.findAllByMedication_PatientCase_Doctor_DoctorId(doctorId);
 		List<ReminderDetailedResponseDto> reminderDTOs = new ArrayList<>();
@@ -74,17 +78,23 @@ public class ReminderService {
 		return reminderDTOs;
 	}
 
-//	Method to create a new reminder
+	// Method to create a new reminder
 	public ReminderDetailedResponseDto createReminder(ReminderCreateRequestDto dto) {
+		logger.info("Creating new reminder for medication id: {}", dto.getMedicationId());
 		Reminder reminder = convertToEntity(dto);
 		Reminder savedReminder = reminderRepository.save(reminder);
+		logger.info("Reminder created with id: {}", savedReminder.getReminderId());
 		return convertToDTO(savedReminder);
 	}
 
-//	Method to update an existing reminder
+	// Method to update an existing reminder
 	public ReminderDetailedResponseDto updateReminder(Long reminderId, ReminderCreateRequestDto dto) {
+		logger.info("Updating reminder with id: {}", reminderId);
 		Reminder existingReminder = reminderRepository.findById(reminderId)
-				.orElseThrow(() -> new ReminderException("Reminder not found with id: " + reminderId));
+				.orElseThrow(() -> {
+					logger.error("Reminder not found with id: {}", reminderId);
+					return new ReminderException("Reminder not found with id: " + reminderId);
+				});
 
 		existingReminder.setReminderTime(dto.getReminderTime());
 		existingReminder.setReminderType(dto.getReminderType());
@@ -100,7 +110,7 @@ public class ReminderService {
 		return convertToDTO(updatedReminder);
 	}
 
-//	Helper method to convert a Reminder entity to a ReminderDTO
+	// Helper method to convert a Reminder entity to a ReminderDTO
 	public ReminderDetailedResponseDto convertToDTO(Reminder reminder) {
 		ReminderDetailedResponseDto dto = new ReminderDetailedResponseDto();
 		dto.setReminderId(reminder.getReminderId());
@@ -139,7 +149,7 @@ public class ReminderService {
 		return dto;
 	}
 
-//	Helper method to convert a ReminderCreateRequestDto to a Reminder entity
+	// Helper method to convert a ReminderCreateRequestDto to a Reminder entity
 	public Reminder convertToEntity(ReminderCreateRequestDto dto) {
 		Reminder reminder = new Reminder();
 		reminder.setReminderId(dto.getReminderId());

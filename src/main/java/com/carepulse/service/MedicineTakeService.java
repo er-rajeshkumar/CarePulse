@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.carepulse.dto.MedicineTakeCreateRequestDto;
@@ -18,6 +20,8 @@ import com.carepulse.repository.MedicineTakeRepository;
 
 @Service
 public class MedicineTakeService {
+
+	private static final Logger logger = LoggerFactory.getLogger(MedicineTakeService.class);
 
 	private final MedicineTakeRepository medicineTakeRepository;
 	private final ReminderService reminderService;
@@ -77,16 +81,22 @@ public class MedicineTakeService {
 
 	// Method to create a new MedicineTake
 	public MedicineTakeDetailedResponseDto createMedicineTake(MedicineTakeCreateRequestDto dto) {
+		logger.info("Creating new MedicineTake for medication id: {}", dto.getMedicationId());
 		MedicineTake medicineTake = convertToEntity(dto);
 		medicineTake.setCreatedAt(LocalDateTime.now());
 		medicineTake = medicineTakeRepository.save(medicineTake);
+		logger.info("MedicineTake created with id: {}", medicineTake.getId());
 		return convertToDto(medicineTake);
 	}
 
 	// Method to update an existing MedicineTake
 	public MedicineTakeDetailedResponseDto updateMedicineTake(Long id, MedicineTakeCreateRequestDto dto) {
+		logger.info("Updating MedicineTake with id: {}", id);
 		MedicineTake existingMedicineTake = medicineTakeRepository.findById(id)
-				.orElseThrow(() -> new MedicineTakeException("MedicineTake not found with id: " + id));
+				.orElseThrow(() -> {
+					logger.error("MedicineTake not found with id: {}", id);
+					return new MedicineTakeException("MedicineTake not found with id: " + id);
+				});
 
 		existingMedicineTake.setScheduledTime(dto.getScheduledTime());
 		existingMedicineTake.setActionTime(dto.getActionTime());

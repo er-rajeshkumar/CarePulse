@@ -3,6 +3,8 @@ package com.carepulse.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.carepulse.dto.MedicationCreateRequestDto;
@@ -18,6 +20,8 @@ import com.carepulse.repository.MedicationRepository;
 
 @Service
 public class MedicationService {
+
+	private static final Logger logger = LoggerFactory.getLogger(MedicationService.class);
 
 	private final MedicationRepository medicationRepository;
 
@@ -39,7 +43,7 @@ public class MedicationService {
 		return "Medication Service is working!";
 	}
 
-//	Method to get all medications from the database
+	// Method to get all medications from the database
 	public List<MedicationResponseDto> getAllMedications() {
 		List<Medication> medications = medicationRepository.findAll();
 		List<MedicationResponseDto> medicationResponseDtos = new ArrayList<>();
@@ -50,20 +54,20 @@ public class MedicationService {
 		return medicationResponseDtos;
 	}
 
-//	Method to get medication by ID
+	// Method to get medication by ID
 	public MedicationResponseDto getMedicationById(Long medicationId) {
 		Medication medication = medicationRepository.findById(medicationId)
 				.orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
 		return mapToDto(medication);
 	}
 
-//	Method to get Medication entity by ID
+	// Method to get Medication entity by ID
 	public Medication getMedicationEntityById(Long medicationId) {
 		return medicationRepository.findById(medicationId)
 				.orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
 	}
 
-//	Method to get all medications by patient case ID
+	// Method to get all medications by patient case ID
 	public List<MedicationResponseDto> getAllMedicationsByPatientCaseId(Long patientCaseId) {
 		List<Medication> medications = medicationRepository.findAllByPatientCase_Id(patientCaseId);
 		List<MedicationResponseDto> medicationResponseDtos = new ArrayList<>();
@@ -74,7 +78,7 @@ public class MedicationService {
 		return medicationResponseDtos;
 	}
 
-//	Method to get all medications by doctor ID
+	// Method to get all medications by doctor ID
 	public List<MedicationResponseDto> getAllMedicationsByDoctorId(Long doctorId) {
 		List<Medication> medications = medicationRepository.findAllByDoctor_DoctorId(doctorId);
 		List<MedicationResponseDto> medicationResponseDtos = new ArrayList<>();
@@ -85,28 +89,37 @@ public class MedicationService {
 		return medicationResponseDtos;
 	}
 
-//	Method to create a new medication
+	// Method to create a new medication
 	public MedicationResponseDto createMedication(MedicationCreateRequestDto dto) {
+		logger.info("Creating new medication for patient case id: {}", dto.getPatientCaseId());
 		Medication medication = mapToEntiy(dto);
 		// check if the patient case, medicine, and doctor exist
 		if (!patientCaseService.checkPatientCaseExistsById(dto.getPatientCaseId())) {
+			logger.error("Patient case not found with ID: {}", dto.getPatientCaseId());
 			throw new PatientCaseException("Patient case not found with ID: " + dto.getPatientCaseId());
 		}
 		if (!medicineService.isMedicineExistsById(dto.getMedicineId())) {
+			logger.error("Medicine not found with ID: {}", dto.getMedicineId());
 			throw new MedicineException("Medicine not found with ID: " + dto.getMedicineId());
 		}
 		if (!doctorService.isDoctorExistsById(dto.getDoctorId())) {
+			logger.error("Doctor not found with ID: {}", dto.getDoctorId());
 			throw new DoctorNotFoundException("Doctor not found with ID: " + dto.getDoctorId());
 		}
 		medication.setCreatedAt(java.util.Date.from(java.time.Instant.now()));
 		Medication savedMedication = medicationRepository.save(medication);
+		logger.info("Medication created with ID: {}", savedMedication.getMedicationId());
 		return mapToDto(savedMedication);
 	}
 
-//	Method to update an existing medication
+	// Method to update an existing medication
 	public MedicationResponseDto updateMedication(Long medicationId, MedicationCreateRequestDto dto) {
+		logger.info("Updating medication with ID: {}", medicationId);
 		Medication existingMedication = medicationRepository.findById(medicationId)
-				.orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
+				.orElseThrow(() -> {
+					logger.error("Medication not found with ID: {}", medicationId);
+					return new RuntimeException("Medication not found with ID: " + medicationId);
+				});
 		existingMedication.setPatientCase(patientCaseService.getPatientCaseEntityById(dto.getPatientCaseId()));
 		existingMedication.setMedicine(medicineService.getMedicineEntityById(dto.getMedicineId()));
 		existingMedication.setDoctor(doctorService.getDoctorEntityById(dto.getDoctorId()));
@@ -122,25 +135,25 @@ public class MedicationService {
 		return mapToDto(updatedMedication);
 	}
 
-//	Helper method to convert Medication entity to MedicationResponseDto
+	// Helper method to convert Medication entity to MedicationResponseDto
 	public MedicationResponseDto mapToDto(Medication medication) {
 		MedicationResponseDto dto = new MedicationResponseDto();
 
 		dto.setMedicationId(medication.getMedicationId());
-//		Patient Case details
+		// Patient Case details
 		PatientCase patientCase = medication.getPatientCase();
 		dto.setPatientCaseId(patientCase.getId());
 		dto.setPatientId(patientCase.getPatient().getPatientId());
 		dto.setPatientFullName(patientCase.getPatient().getFirstName() + " " + patientCase.getPatient().getLastName());
 		dto.setCaseTitle(patientCase.getCaseTitle());
 
-//		Medicine details
+		// Medicine details
 		Medicine medicine = medication.getMedicine();
 		dto.setMedicineId(medicine.getMedicineId());
 		dto.setMedicineName(medicine.getMedicineName());
 		dto.setStrength(medicine.getStrength());
 
-//		Doctor details
+		// Doctor details
 		Doctor doctor = medication.getDoctor();
 		dto.setDoctorFullName(doctor.getFirstName() + " " + doctor.getLastName());
 		dto.setDoctorId(doctor.getDoctorId());
@@ -154,12 +167,12 @@ public class MedicationService {
 		return dto;
 	}
 
-//	Helper method to map MedicationCreateRequestDto to Medication entity
+	// Helper method to map MedicationCreateRequestDto to Medication entity
 	public Medication mapToEntiy(MedicationCreateRequestDto dto) {
 		Medication medication = new Medication();
-//		medication.setPatientCaseId(dto.getPatientCaseId());
-//		medication.setMedicineId(dto.getMedicineId());
-//		medication.setDoctorId(dto.getDoctorId());
+		// medication.setPatientCaseId(dto.getPatientCaseId());
+		// medication.setMedicineId(dto.getMedicineId());
+		// medication.setDoctorId(dto.getDoctorId());
 		medication.setPatientCase(patientCaseService.getPatientCaseEntityById(dto.getPatientCaseId()));
 		medication.setMedicine(medicineService.getMedicineEntityById(dto.getMedicineId()));
 		medication.setDoctor(doctorService.getDoctorEntityById(dto.getDoctorId()));
