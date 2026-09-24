@@ -15,7 +15,6 @@ import com.carepulse.entity.Status;
 import com.carepulse.repository.PatientRepository;
 import com.carepulse.service.PatientService;
 
-
 public class PatientServiceTest {
 
 	PatientRepository repository = mock(PatientRepository.class);
@@ -25,6 +24,7 @@ public class PatientServiceTest {
 	void testPatientServiceCreation() {
 
 	}
+
 	@Test
 	void testGetAllPatientsByStatus() {
 
@@ -55,7 +55,6 @@ public class PatientServiceTest {
 		assertEquals(2L, result.get(1).getPatientId());
 
 		verify(repository).findAllByStatus(Status.ACTIVE);
-
 
 	}
 }

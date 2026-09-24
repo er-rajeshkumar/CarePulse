@@ -1,4 +1,5 @@
 package com.carepulse.controller;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -45,7 +46,6 @@ public class DoctorController {
 		return doctorService.getAllDoctorByStatus();
 	}
 
-
 //	Get doctor by id
 	@GetMapping("/carepulse/doctors/{id}")
 	public ResponseEntity<?> getDoctorById(@PathVariable Long id) {
@@ -55,7 +55,8 @@ public class DoctorController {
 
 //	Update doctor by id
 	@PutMapping("/carepulse/doctors/{id}")
-	public ResponseEntity<?> updateDoctorById(@PathVariable Long id,@Valid @RequestBody  DoctorCreateRequestDto doctorCreateRequestDto) {
+	public ResponseEntity<?> updateDoctorById(@PathVariable Long id,
+			@Valid @RequestBody DoctorCreateRequestDto doctorCreateRequestDto) {
 		DoctorResponseDto updatedDoctor = doctorService.updateDoctorById(id, doctorCreateRequestDto);
 		return new ResponseEntity<>(updatedDoctor, HttpStatus.OK);
 	}

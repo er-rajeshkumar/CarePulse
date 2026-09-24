@@ -18,6 +18,7 @@ import jakarta.validation.Valid;
 public class HospitalPatientController {
 
 	private final HospitalPatientService hospitalPatientService;
+
 	public HospitalPatientController(HospitalPatientService hospitalPatientService) {
 		this.hospitalPatientService = hospitalPatientService;
 	}
@@ -43,7 +44,8 @@ public class HospitalPatientController {
 	}
 
 	@PostMapping("/carepulse/hospital-patient")
-	public HospitalPatientDetailedResponseDto addHospitalPatient(@RequestBody @Valid HospitalPatientCreateRequestDto hospitalPatientDto) {
+	public HospitalPatientDetailedResponseDto addHospitalPatient(
+			@RequestBody @Valid HospitalPatientCreateRequestDto hospitalPatientDto) {
 		return hospitalPatientService.addHospitalPatient(hospitalPatientDto);
 	}
 }

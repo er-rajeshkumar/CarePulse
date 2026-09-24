@@ -9,7 +9,9 @@ import com.carepulse.entity.Medication;
 
 public interface MedicationRepository extends JpaRepository<Medication, Long> {
 	Optional<Medication> findByMedicationId(Long medicationId);
+
 	List<Medication> findAllByPatientCase_Id(Long patientCaseId);
+
 	List<Medication> findAllByDoctor_DoctorId(Long doctorId);
 
 }

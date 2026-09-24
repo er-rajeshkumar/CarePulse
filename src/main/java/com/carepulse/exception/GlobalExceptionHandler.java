@@ -11,16 +11,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(PatientNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handlePatientNotFound(
-            PatientNotFoundException exception) {
+	@ExceptionHandler(PatientNotFoundException.class)
+	public ResponseEntity<Map<String, String>> handlePatientNotFound(PatientNotFoundException exception) {
 
-        Map<String, String> response = new HashMap<>();
+		Map<String, String> response = new HashMap<>();
 
-        response.put("message", exception.getMessage());
+		response.put("message", exception.getMessage());
 
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(response);
-    }
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+	}
 }

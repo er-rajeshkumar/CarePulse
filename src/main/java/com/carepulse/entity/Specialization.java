@@ -71,5 +71,4 @@ public class Specialization {
 		this.status = status;
 	}
 
-
 }

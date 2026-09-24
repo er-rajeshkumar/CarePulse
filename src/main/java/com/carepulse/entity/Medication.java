@@ -69,7 +69,6 @@ public class Medication {
 		this.medicationId = medicationId;
 	}
 
-
 	public PatientCase getPatientCase() {
 		return patientCase;
 	}

@@ -11,53 +11,52 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class HospitalPatient {
 
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "HOSPITAL_PATIENT_ID")
-	    private Long hospitalPatientId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "HOSPITAL_PATIENT_ID")
+	private Long hospitalPatientId;
 
-	    @Column(name = "HOSPITAL_PATIENT_NO", nullable = false)
-	    private String hospitalPatientNo;
+	@Column(name = "HOSPITAL_PATIENT_NO", nullable = false)
+	private String hospitalPatientNo;
 
-	    @ManyToOne
-	    @JoinColumn(name = "HOSPITAL_ID", nullable = false)
-	    private Hospital hospital;
+	@ManyToOne
+	@JoinColumn(name = "HOSPITAL_ID", nullable = false)
+	private Hospital hospital;
 
-	    @ManyToOne
-	    @JoinColumn(name = "PATIENT_ID", nullable = false)
-	    private Patient patient;
+	@ManyToOne
+	@JoinColumn(name = "PATIENT_ID", nullable = false)
+	private Patient patient;
 
-		public Long getHospitalPatientId() {
-			return hospitalPatientId;
-		}
+	public Long getHospitalPatientId() {
+		return hospitalPatientId;
+	}
 
-		public void setHospitalPatientId(Long hospitalPatientId) {
-			this.hospitalPatientId = hospitalPatientId;
-		}
+	public void setHospitalPatientId(Long hospitalPatientId) {
+		this.hospitalPatientId = hospitalPatientId;
+	}
 
-		public String getHospitalPatientNo() {
-			return hospitalPatientNo;
-		}
+	public String getHospitalPatientNo() {
+		return hospitalPatientNo;
+	}
 
-		public void setHospitalPatientNo(String hospitalPatientNo) {
-			this.hospitalPatientNo = hospitalPatientNo;
-		}
+	public void setHospitalPatientNo(String hospitalPatientNo) {
+		this.hospitalPatientNo = hospitalPatientNo;
+	}
 
-		public Hospital getHospital() {
-			return hospital;
-		}
+	public Hospital getHospital() {
+		return hospital;
+	}
 
-		public void setHospital(Hospital hospital) {
-			this.hospital = hospital;
-		}
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
 
-		public Patient getPatient() {
-			return patient;
-		}
+	public Patient getPatient() {
+		return patient;
+	}
 
-		public void setPatient(Patient patient) {
-			this.patient = patient;
-		}
-
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
 }

@@ -1,4 +1,5 @@
 package com.carepulse.service;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import com.carepulse.entity.Doctor;
 import com.carepulse.entity.Status;
 import com.carepulse.exception.DoctorNotFoundException;
 import com.carepulse.repository.DoctorRepository;
+
 @Service
 public class DoctorService {
 
@@ -19,11 +21,12 @@ public class DoctorService {
 	public String getDoctorMessage() {
 		return "Doctor Service is working";
 	}
+
 	public DoctorService(DoctorRepository doctorRepository) {
 		this.doctorRepository = doctorRepository;
 	}
 
-	private static final Logger logger =LoggerFactory.getLogger(DoctorService.class);
+	private static final Logger logger = LoggerFactory.getLogger(DoctorService.class);
 
 	public void testLog() {
 		logger.trace("TRACE Log");
@@ -35,7 +38,7 @@ public class DoctorService {
 
 	public boolean isDoctorExistsByDoctorId(Long doctorId) {
 		logger.info("Checking if Doctor exists with ID : " + doctorId);
-		boolean isExists =  doctorRepository.existsByDoctorId(doctorId);
+		boolean isExists = doctorRepository.existsByDoctorId(doctorId);
 		logger.info("Doctor exists with ID : " + doctorId + " - " + isExists);
 		return isExists;
 	}
@@ -43,7 +46,7 @@ public class DoctorService {
 //	Method to get all doctors from the database
 	public List<DoctorResponseDto> getAllDoctor() {
 		logger.info("Fetching all Doctor from the database");
-		List<Doctor> doctors =  doctorRepository.findAll();
+		List<Doctor> doctors = doctorRepository.findAll();
 		List<DoctorResponseDto> doctorResponseDtos = new java.util.ArrayList<>();
 		for (Doctor doctor : doctors) {
 			DoctorResponseDto doctorResponseDto = mapToDto(doctor);
@@ -55,7 +58,7 @@ public class DoctorService {
 //	Method to get all active doctors from the database
 	public List<DoctorResponseDto> getAllDoctorByStatus() {
 		logger.info("Fetching all active Doctor from the database");
-		List<Doctor> doctors =  doctorRepository.findAllByStatus(Status.ACTIVE);
+		List<Doctor> doctors = doctorRepository.findAllByStatus(Status.ACTIVE);
 		List<DoctorResponseDto> doctorResponseDtos = new java.util.ArrayList<>();
 		for (Doctor doctor : doctors) {
 			DoctorResponseDto doctorResponseDto = mapToDto(doctor);
@@ -66,31 +69,25 @@ public class DoctorService {
 
 //	Method to get doctor by id from the database
 	public DoctorResponseDto getDoctorById(Long id) {
-		logger.info("Fetching Doctor with id " + id +" from the database");
-		Doctor doctor =  doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE).orElseThrow(() ->
-		new DoctorNotFoundException(
-				"Doctor not found with id: " + id
-			)
-		);
+		logger.info("Fetching Doctor with id " + id + " from the database");
+		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
+				.orElseThrow(() -> new DoctorNotFoundException("Doctor not found with id: " + id));
 		DoctorResponseDto doctorResponseDto = mapToDto(doctor);
 		return doctorResponseDto;
 	}
-	
+
 //	Method to check if doctor exists by id from the database
 	public boolean isDoctorExistsById(Long id) {
-		logger.info("Checking if Doctor exists with id " + id +" in the database");
-		boolean isExists =  doctorRepository.existsByDoctorId(id);
+		logger.info("Checking if Doctor exists with id " + id + " in the database");
+		boolean isExists = doctorRepository.existsByDoctorId(id);
 		return isExists;
 	}
 
 //	Method to update doctor by id from the database
 	public DoctorResponseDto updateDoctorById(Long id, DoctorCreateRequestDto doctorCreateRequestDto) {
-		logger.info("Updating Doctor with id " + id +" in the database");
-		Doctor doctor =  doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE).orElseThrow(() ->
-		new DoctorNotFoundException(
-				"Doctor not found with id: " + id
-			)
-		);
+		logger.info("Updating Doctor with id " + id + " in the database");
+		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
+				.orElseThrow(() -> new DoctorNotFoundException("Doctor not found with id: " + id));
 		doctor.setFirstName(doctorCreateRequestDto.getFirstName());
 		doctor.setLastName(doctorCreateRequestDto.getLastName());
 		doctor.setSex(doctorCreateRequestDto.getSex());
@@ -108,12 +105,12 @@ public class DoctorService {
 	public DoctorResponseDto addDoctor(DoctorCreateRequestDto doctorCreateRequestDto) {
 		logger.info("Adding new Doctor to the database");
 		logger.debug("DoctorCreateRequestDto: " + doctorCreateRequestDto.toString());
-		if(doctorRepository.existsByEmail(doctorCreateRequestDto.getEmail())){
+		if (doctorRepository.existsByEmail(doctorCreateRequestDto.getEmail())) {
 			logger.error("Doctor email already exists: " + doctorCreateRequestDto.getEmail());
-		    throw new RuntimeException("Doctor email already exists");
+			throw new RuntimeException("Doctor email already exists");
 		}
-		if(doctorRepository.existsByDoctorRegistrationNo(doctorCreateRequestDto.getDoctorRegistrationNo())){
-		    logger.error("Registration number already exists: " + doctorCreateRequestDto.getDoctorRegistrationNo());
+		if (doctorRepository.existsByDoctorRegistrationNo(doctorCreateRequestDto.getDoctorRegistrationNo())) {
+			logger.error("Registration number already exists: " + doctorCreateRequestDto.getDoctorRegistrationNo());
 			throw new RuntimeException("Registration number already exists");
 		}
 		Doctor doctor = new Doctor();
@@ -128,46 +125,38 @@ public class DoctorService {
 		doctor.setCreatedAt(java.time.LocalDateTime.now());
 
 		Doctor savedDoctor = doctorRepository.save(doctor);
-		logger.info("Doctor created successfully with id {}",savedDoctor.getDoctorId());
+		logger.info("Doctor created successfully with id {}", savedDoctor.getDoctorId());
 		return mapToDto(savedDoctor);
 	}
 
 //	Delete doctor by id from the database
 	public void deleteDoctorById(Long id) {
-		logger.info("Deleting Doctor with id " + id +" from the database");
-		Doctor doctor =  doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE).orElseThrow(() ->
-		new DoctorNotFoundException(
-				"Doctor not found with id: " + id
-			)
-		);
+		logger.info("Deleting Doctor with id " + id + " from the database");
+		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
+				.orElseThrow(() -> new DoctorNotFoundException("Doctor not found with id: " + id));
 		doctor.setStatus(Status.DELETED);
 		doctorRepository.save(doctor);
 	}
 
 //	Method to get doctor entity by id from the database
 	public Doctor getDoctorEntityById(Long id) {
-		logger.info("Fetching Doctor entity with id " + id +" from the database");
-		Doctor doctor =  doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE).orElseThrow(() ->
-		new DoctorNotFoundException(
-				"Doctor not found with id: " + id
-			)
-		);
+		logger.info("Fetching Doctor entity with id " + id + " from the database");
+		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
+				.orElseThrow(() -> new DoctorNotFoundException("Doctor not found with id: " + id));
 		return doctor;
 	}
-
 
 //	Method to map Doctor entity to DoctorResponseDto
 //	Helper method to map Doctor entity to DoctorResponseDto
 	private DoctorResponseDto mapToDto(Doctor doctor) {
-	    DoctorResponseDto dto = new DoctorResponseDto();
-	    dto.setFullName(doctor.getFirstName() + " " + doctor.getLastName());
-	    dto.setSex(doctor.getSex());
-	    dto.setSpecializationId(doctor.getSpecializationId());
-	    dto.setEmail(doctor.getEmail());
-	    dto.setPhone(doctor.getPhone());
-	    dto.setDoctorRegistrationNo(doctor.getDoctorRegistrationNo());
-	    return dto;
-	    }
+		DoctorResponseDto dto = new DoctorResponseDto();
+		dto.setFullName(doctor.getFirstName() + " " + doctor.getLastName());
+		dto.setSex(doctor.getSex());
+		dto.setSpecializationId(doctor.getSpecializationId());
+		dto.setEmail(doctor.getEmail());
+		dto.setPhone(doctor.getPhone());
+		dto.setDoctorRegistrationNo(doctor.getDoctorRegistrationNo());
+		return dto;
+	}
 
 }
-

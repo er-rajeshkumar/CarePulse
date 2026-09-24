@@ -54,7 +54,8 @@ public class PatientCaseController {
 	}
 
 	@PostMapping("/carepulse/patient-case")
-	public PatientCaseDetailedResponseDto createPatientCase(@RequestBody @Valid PatientCaseCreateRequestDto patientCaseDto) {
+	public PatientCaseDetailedResponseDto createPatientCase(
+			@RequestBody @Valid PatientCaseCreateRequestDto patientCaseDto) {
 		return patientCaseService.addPatientCase(patientCaseDto);
 	}
 

@@ -16,96 +16,97 @@ import com.carepulse.exception.MedicineException;
 import com.carepulse.exception.PatientCaseException;
 import com.carepulse.repository.MedicationRepository;
 
-
 @Service
 public class MedicationService {
 
 	private final MedicationRepository medicationRepository;
-	
+
 	private final DoctorService doctorService;
 	private final PatientService patientService;
 	private final PatientCaseService patientCaseService;
 	private final MedicineService medicineService;
-	
-	
-	
-	public MedicationService(MedicationRepository medicationRepository, DoctorService doctorService, PatientService patientService, PatientCaseService patientCaseService, MedicineService medicineService) {
+
+	public MedicationService(MedicationRepository medicationRepository, DoctorService doctorService,
+			PatientService patientService, PatientCaseService patientCaseService, MedicineService medicineService) {
 		this.medicationRepository = medicationRepository;
 		this.doctorService = doctorService;
 		this.patientService = patientService;
 		this.patientCaseService = patientCaseService;
 		this.medicineService = medicineService;
 	}
-	
+
 	public String getMessage() {
 		return "Medication Service is working!";
 	}
-	
+
 //	Method to get all medications from the database
-	public List<MedicationResponseDto> getAllMedications(){
+	public List<MedicationResponseDto> getAllMedications() {
 		List<Medication> medications = medicationRepository.findAll();
 		List<MedicationResponseDto> medicationResponseDtos = new ArrayList<>();
-		for(Medication medication : medications) {
+		for (Medication medication : medications) {
 			MedicationResponseDto dto = mapToDto(medication);
 			medicationResponseDtos.add(dto);
 		}
 		return medicationResponseDtos;
 	}
-	
+
 //	Method to get medication by ID
 	public MedicationResponseDto getMedicationById(Long medicationId) {
-		Medication medication = medicationRepository.findById(medicationId).orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
+		Medication medication = medicationRepository.findById(medicationId)
+				.orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
 		return mapToDto(medication);
 	}
-	
+
 //	Method to get Medication entity by ID
 	public Medication getMedicationEntityById(Long medicationId) {
-		return medicationRepository.findById(medicationId).orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
+		return medicationRepository.findById(medicationId)
+				.orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
 	}
-	
+
 //	Method to get all medications by patient case ID
-	public List<MedicationResponseDto> getAllMedicationsByPatientCaseId(Long patientCaseId){
+	public List<MedicationResponseDto> getAllMedicationsByPatientCaseId(Long patientCaseId) {
 		List<Medication> medications = medicationRepository.findAllByPatientCase_Id(patientCaseId);
 		List<MedicationResponseDto> medicationResponseDtos = new ArrayList<>();
-		for(Medication medication : medications) {
+		for (Medication medication : medications) {
 			MedicationResponseDto dto = mapToDto(medication);
 			medicationResponseDtos.add(dto);
 		}
 		return medicationResponseDtos;
 	}
-	
+
 //	Method to get all medications by doctor ID
-	public List<MedicationResponseDto> getAllMedicationsByDoctorId(Long doctorId){
+	public List<MedicationResponseDto> getAllMedicationsByDoctorId(Long doctorId) {
 		List<Medication> medications = medicationRepository.findAllByDoctor_DoctorId(doctorId);
 		List<MedicationResponseDto> medicationResponseDtos = new ArrayList<>();
-		for(Medication medication : medications) {
+		for (Medication medication : medications) {
 			MedicationResponseDto dto = mapToDto(medication);
 			medicationResponseDtos.add(dto);
 		}
 		return medicationResponseDtos;
 	}
-	
+
 //	Method to create a new medication
 	public MedicationResponseDto createMedication(MedicationCreateRequestDto dto) {
 		Medication medication = mapToEntiy(dto);
-		//check if the patient case, medicine, and doctor exist
-		if(!patientCaseService.checkPatientCaseExistsById(dto.getPatientCaseId())) {
+		// check if the patient case, medicine, and doctor exist
+		if (!patientCaseService.checkPatientCaseExistsById(dto.getPatientCaseId())) {
 			throw new PatientCaseException("Patient case not found with ID: " + dto.getPatientCaseId());
 		}
-		if(!medicineService.isMedicineExistsById(dto.getMedicineId())) {
+		if (!medicineService.isMedicineExistsById(dto.getMedicineId())) {
 			throw new MedicineException("Medicine not found with ID: " + dto.getMedicineId());
 		}
-		if(!doctorService.isDoctorExistsById(dto.getDoctorId())) {
+		if (!doctorService.isDoctorExistsById(dto.getDoctorId())) {
 			throw new DoctorNotFoundException("Doctor not found with ID: " + dto.getDoctorId());
 		}
 		medication.setCreatedAt(java.util.Date.from(java.time.Instant.now()));
 		Medication savedMedication = medicationRepository.save(medication);
 		return mapToDto(savedMedication);
 	}
-	
+
 //	Method to update an existing medication
 	public MedicationResponseDto updateMedication(Long medicationId, MedicationCreateRequestDto dto) {
-		Medication existingMedication = medicationRepository.findById(medicationId).orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
+		Medication existingMedication = medicationRepository.findById(medicationId)
+				.orElseThrow(() -> new RuntimeException("Medication not found with ID: " + medicationId));
 		existingMedication.setPatientCase(patientCaseService.getPatientCaseEntityById(dto.getPatientCaseId()));
 		existingMedication.setMedicine(medicineService.getMedicineEntityById(dto.getMedicineId()));
 		existingMedication.setDoctor(doctorService.getDoctorEntityById(dto.getDoctorId()));
@@ -120,11 +121,11 @@ public class MedicationService {
 		Medication updatedMedication = medicationRepository.save(existingMedication);
 		return mapToDto(updatedMedication);
 	}
-	
+
 //	Helper method to convert Medication entity to MedicationResponseDto
 	public MedicationResponseDto mapToDto(Medication medication) {
 		MedicationResponseDto dto = new MedicationResponseDto();
-		
+
 		dto.setMedicationId(medication.getMedicationId());
 //		Patient Case details
 		PatientCase patientCase = medication.getPatientCase();
@@ -132,18 +133,18 @@ public class MedicationService {
 		dto.setPatientId(patientCase.getPatient().getPatientId());
 		dto.setPatientFullName(patientCase.getPatient().getFirstName() + " " + patientCase.getPatient().getLastName());
 		dto.setCaseTitle(patientCase.getCaseTitle());
-		
+
 //		Medicine details
 		Medicine medicine = medication.getMedicine();
 		dto.setMedicineId(medicine.getMedicineId());
 		dto.setMedicineName(medicine.getMedicineName());
 		dto.setStrength(medicine.getStrength());
-		
+
 //		Doctor details
 		Doctor doctor = medication.getDoctor();
 		dto.setDoctorFullName(doctor.getFirstName() + " " + doctor.getLastName());
 		dto.setDoctorId(doctor.getDoctorId());
-		
+
 		dto.setDosage(medication.getDosage());
 		dto.setFrequency(medication.getFrequency());
 		dto.setRoute(medication.getRoute());
@@ -152,7 +153,7 @@ public class MedicationService {
 		dto.setInstructions(medication.getInstructions());
 		return dto;
 	}
-	
+
 //	Helper method to map MedicationCreateRequestDto to Medication entity
 	public Medication mapToEntiy(MedicationCreateRequestDto dto) {
 		Medication medication = new Medication();
@@ -162,7 +163,7 @@ public class MedicationService {
 		medication.setPatientCase(patientCaseService.getPatientCaseEntityById(dto.getPatientCaseId()));
 		medication.setMedicine(medicineService.getMedicineEntityById(dto.getMedicineId()));
 		medication.setDoctor(doctorService.getDoctorEntityById(dto.getDoctorId()));
-		
+
 		medication.setDosage(dto.getDosage());
 		medication.setFrequency(dto.getFrequency());
 		medication.setRoute(dto.getRoute());

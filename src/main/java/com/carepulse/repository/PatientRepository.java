@@ -1,4 +1,5 @@
 package com.carepulse.repository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -10,12 +11,12 @@ import com.carepulse.entity.Status;
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
 	List<Patient> findAllByStatus(Status status);
-	Optional<Patient> findByPatientIdAndStatus(
-			Long patientId,
-			Status status
-			);
+
+	Optional<Patient> findByPatientIdAndStatus(Long patientId, Status status);
 
 	boolean existsByPatientIdAndStatus(Long patientId, Status status);
+
 	boolean existsByEmail(String email);
+
 	boolean existsByPhone(String phoneNumber);
 }

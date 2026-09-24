@@ -126,6 +126,4 @@ public class HospitalCreateRequestDto {
 		this.updatedAt = updatedAt;
 	}
 
-
-
 }

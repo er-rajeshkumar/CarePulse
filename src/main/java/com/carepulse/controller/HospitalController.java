@@ -24,6 +24,7 @@ public class HospitalController {
 	public HospitalController(HospitalService hospitalService) {
 		this.hospitalService = hospitalService;
 	}
+
 	@GetMapping("/carepulse/hospital/message")
 	public String getHospitalMessage() {
 		return hospitalService.getHospitalMessage();
@@ -50,7 +51,8 @@ public class HospitalController {
 	}
 
 	@PutMapping("/carepulse/hospital/{id}")
-	public HospitalResponseDto updateHospital(@PathVariable Long id, @Valid @RequestBody HospitalCreateRequestDto hospitalCreateRequestDto) {
+	public HospitalResponseDto updateHospital(@PathVariable Long id,
+			@Valid @RequestBody HospitalCreateRequestDto hospitalCreateRequestDto) {
 		return hospitalService.updateHospital(id, hospitalCreateRequestDto);
 	}
 

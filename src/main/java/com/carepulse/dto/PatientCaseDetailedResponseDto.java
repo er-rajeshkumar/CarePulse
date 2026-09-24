@@ -11,13 +11,11 @@ public class PatientCaseDetailedResponseDto {
 	private String hospitalName;
 	private String hospitalAddress;
 
-
 //	private Patient patient;
 	private Long patientId;
 	private String patientFullName;
 	private String patientEmail;
 	private String patientPhone;
-
 
 //	private Doctor doctor;
 	private Long doctorId;

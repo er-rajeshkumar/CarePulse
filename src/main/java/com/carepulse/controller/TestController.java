@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @GetMapping("/corepulse/test")
-    public String test() {
+	@GetMapping("/corepulse/test")
+	public String test() {
 
-        return "CarePulse API Running by rajuuuuu";
+		return "CarePulse API Running by rajuuuuu";
 
-    }
+	}
 
 }

@@ -20,53 +20,55 @@ import jakarta.validation.Valid;
 public class MedicineController {
 
 	private final MedicineService medicineService;
-	
+
 	public MedicineController(MedicineService medicineService) {
 		this.medicineService = medicineService;
 	}
-	
+
 	@GetMapping("/carepulse/medicine/message")
 	public String getMedicineMessage() {
 		return medicineService.getMedicineMessage();
 	}
-	
+
 	@GetMapping("/carepulse/medicine")
 	public List<MedicineResponseDto> getAllMedicines() {
 		return medicineService.getAllMedicines();
 	}
-	
+
 	@GetMapping("/carepulse/medicine/active")
 	public List<MedicineResponseDto> getAllActiveMedicines() {
 		return medicineService.getAllActiveMedicines();
 	}
-	
+
 	@GetMapping("/carepulse/medicine/{id}")
 	public MedicineResponseDto getMedicineById(@PathVariable Long id) {
 		return medicineService.getMedicineById(id);
 	}
+
 	@GetMapping("/carepulse/medicine/name/{name}")
 	public List<MedicineResponseDto> getMedicineByName(@PathVariable String name) {
 		return medicineService.getMedicineByName(name);
 	}
-	
+
 	@GetMapping("/carepulse/medicine/brand/{brand}")
 	public List<MedicineResponseDto> getMedicineByBrand(@PathVariable String brand) {
 		return medicineService.getAllMedicinesByBrandName(brand);
 	}
-	
+
 	@PostMapping("/carepulse/medicine")
 	public MedicineResponseDto addMedicine(@Valid @RequestBody MedicineCreateRequestDto medicineCreateRequestDto) {
 		return medicineService.addMedicine(medicineCreateRequestDto);
 	}
-	
+
 	@PutMapping("/carepulse/medicine/{id}")
-	public MedicineResponseDto updateMedicine(@PathVariable Long id, @Valid @RequestBody MedicineCreateRequestDto medicineCreateRequestDto) {
+	public MedicineResponseDto updateMedicine(@PathVariable Long id,
+			@Valid @RequestBody MedicineCreateRequestDto medicineCreateRequestDto) {
 		return medicineService.updateMedicine(id, medicineCreateRequestDto);
 	}
-	
+
 	@DeleteMapping("/carepulse/medicine/{id}")
 	public MedicineResponseDto deleteMedicine(@PathVariable Long id) {
 		return medicineService.deleteMedicine(id);
 	}
-	
+
 }

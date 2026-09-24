@@ -8,32 +8,32 @@ import com.carepulse.entity.Status;
 import jakarta.validation.constraints.NotNull;
 
 public class MedicationCreateRequestDto {
-	
+
 	@NotNull(message = "Patient case ID cannot be null")
 	private Long patientCaseId;
-	
+
 	@NotNull(message = "Medicine ID cannot be null")
 	private Long medicineId;
-	
+
 	@NotNull(message = "Doctor ID cannot be null")
 	private Long doctorId;
-	
+
 	private String dosage;
-	
+
 	private String frequency;
-	
+
 	private String route;
-	
+
 	private LocalDate startDate;
-	
+
 	private LocalDate endDate;
-	
+
 	private String instructions;
-	
-	private Status status  = Status.ACTIVE;
-	
+
+	private Status status = Status.ACTIVE;
+
 	private Date createdAt;
-	
+
 	private Date updatedAt;
 
 	public Long getPatientCaseId() {
@@ -131,5 +131,5 @@ public class MedicationCreateRequestDto {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
+
 }

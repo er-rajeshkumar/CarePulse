@@ -19,43 +19,45 @@ import jakarta.validation.Valid;
 public class MedicationController {
 
 	private final MedicationService medicationService;
-	
+
 	public MedicationController(MedicationService medicationService) {
 		this.medicationService = medicationService;
 	}
-	
+
 	@GetMapping("/carepulse/medication/message")
 	public String getMessage() {
 		return medicationService.getMessage();
 	}
-	
+
 	@GetMapping("/carepulse/medication")
 	public List<MedicationResponseDto> getAllMedications() {
 		return medicationService.getAllMedications();
 	}
-	
+
 	@GetMapping("/carepulse/medication/{medicationId}")
 	public MedicationResponseDto getMedicationById(@PathVariable Long medicationId) {
 		return medicationService.getMedicationById(medicationId);
 	}
-	
+
 	@GetMapping("/carepulse/medication/patientCase/{patientCaseId}")
 	public List<MedicationResponseDto> getAllMedicationsByPatientCaseId(@PathVariable Long patientCaseId) {
 		return medicationService.getAllMedicationsByPatientCaseId(patientCaseId);
 	}
-	
+
 	@GetMapping("/carepulse/medication/doctor/{doctorId}")
 	public List<MedicationResponseDto> getAllMedicationsByDoctorId(@PathVariable Long doctorId) {
 		return medicationService.getAllMedicationsByDoctorId(doctorId);
 	}
-	
+
 	@PostMapping("/carepulse/medication")
-	public MedicationResponseDto createMedication(@Valid @RequestBody MedicationCreateRequestDto medicationCreateRequestDto) {
+	public MedicationResponseDto createMedication(
+			@Valid @RequestBody MedicationCreateRequestDto medicationCreateRequestDto) {
 		return medicationService.createMedication(medicationCreateRequestDto);
 	}
-	
+
 	@PutMapping("/carepulse/medication/{medicationId}")
-	public MedicationResponseDto updateMedication(@PathVariable Long medicationId, @Valid @RequestBody MedicationCreateRequestDto medicationCreateRequestDto) {
+	public MedicationResponseDto updateMedication(@PathVariable Long medicationId,
+			@Valid @RequestBody MedicationCreateRequestDto medicationCreateRequestDto) {
 		return medicationService.updateMedication(medicationId, medicationCreateRequestDto);
 	}
 }

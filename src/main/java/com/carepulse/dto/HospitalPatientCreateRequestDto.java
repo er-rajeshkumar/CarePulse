@@ -4,14 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class HospitalPatientCreateRequestDto {
-    @NotNull(message = "Hospital ID cannot be null")
-    private Long hospitalId;
+	@NotNull(message = "Hospital ID cannot be null")
+	private Long hospitalId;
 
-    @NotNull(message = "Patient ID cannot be null")
-    private Long patientId;
+	@NotNull(message = "Patient ID cannot be null")
+	private Long patientId;
 
-    @NotBlank(message = "Hospital patient number cannot be blank")
-    private String hospitalPatientNo;
+	@NotBlank(message = "Hospital patient number cannot be blank")
+	private String hospitalPatientNo;
 
 	public Long getHospitalId() {
 		return hospitalId;

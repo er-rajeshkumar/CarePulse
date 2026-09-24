@@ -26,7 +26,8 @@ public class PatientCaseService {
 	private final DoctorRepository doctorRepository;
 	private final HospitalRepository hospitalRepository;
 
-	public PatientCaseService(PatientCaseRepository patientCaseRepository, PatientRepository patientRepository, DoctorRepository doctorRepository, HospitalRepository hospitalRepository) {
+	public PatientCaseService(PatientCaseRepository patientCaseRepository, PatientRepository patientRepository,
+			DoctorRepository doctorRepository, HospitalRepository hospitalRepository) {
 		this.patientCaseRepository = patientCaseRepository;
 		this.patientRepository = patientRepository;
 		this.doctorRepository = doctorRepository;
@@ -50,14 +51,14 @@ public class PatientCaseService {
 			dto.add(patientCaseDto);
 		}
 		return dto;
-		}
+	}
 
 //	Method to check if a patient case exists by ID
 	public boolean checkPatientCaseExistsById(Long id) {
 		logger.info("Checking if patient case exists with ID: {}", id);
 		return patientCaseRepository.existsById(id);
 	}
-	
+
 //	Method to get patient case by ID
 	public PatientCaseDetailedResponseDto getPatientCaseById(Long id) {
 		logger.info("Fetching patient case with ID: {}", id);
@@ -65,7 +66,7 @@ public class PatientCaseService {
 				.orElseThrow(() -> new RuntimeException("Patient case not found with ID: " + id));
 		return convertToDto(patientCase);
 	}
-	
+
 //	Method to get patient case entity by ID
 	public PatientCase getPatientCaseEntityById(Long id) {
 		logger.info("Fetching patient case entity with ID: {}", id);
@@ -127,28 +128,27 @@ public class PatientCaseService {
 //	Helper method to convert PatientCaseCreateRequestDto to PatientCase entity
 	private PatientCase convertToEntity(PatientCaseCreateRequestDto patientCaseCreateDto) {
 		PatientCase patientCase = new PatientCase();
-		patientCase.setHospital(hospitalRepository.findById(patientCaseCreateDto.getHospitalId())
-				.orElseThrow(() -> new RuntimeException("Hospital not found with ID: " + patientCaseCreateDto.getHospitalId())));
-		patientCase.setPatient(patientRepository.findById(patientCaseCreateDto.getPatientId())
-				.orElseThrow(() -> new RuntimeException("Patient not found with ID: " + patientCaseCreateDto.getPatientId())));
-		patientCase.setDoctor(doctorRepository.findById(patientCaseCreateDto.getDoctorId())
-				.orElseThrow(() -> new RuntimeException("Doctor not found with ID: " + patientCaseCreateDto.getDoctorId())));
+		patientCase.setHospital(hospitalRepository.findById(patientCaseCreateDto.getHospitalId()).orElseThrow(
+				() -> new RuntimeException("Hospital not found with ID: " + patientCaseCreateDto.getHospitalId())));
+		patientCase.setPatient(patientRepository.findById(patientCaseCreateDto.getPatientId()).orElseThrow(
+				() -> new RuntimeException("Patient not found with ID: " + patientCaseCreateDto.getPatientId())));
+		patientCase.setDoctor(doctorRepository.findById(patientCaseCreateDto.getDoctorId()).orElseThrow(
+				() -> new RuntimeException("Doctor not found with ID: " + patientCaseCreateDto.getDoctorId())));
 
 		patientCase.setCaseTitle(patientCaseCreateDto.getCaseTitle());
 		patientCase.setDiagnosis(patientCaseCreateDto.getDiagnosis());
 
 		patientCase.setAdmissionDate(LocalDate.parse(patientCaseCreateDto.getAdmissionDate()));
 		if (patientCaseCreateDto.getDischargeDate() != null && !patientCaseCreateDto.getDischargeDate().isBlank()) {
-		    patientCase.setDischargeDate(LocalDate.parse(patientCaseCreateDto.getDischargeDate()));
+			patientCase.setDischargeDate(LocalDate.parse(patientCaseCreateDto.getDischargeDate()));
 		} else {
-		    patientCase.setDischargeDate(null);
+			patientCase.setDischargeDate(null);
 		}
 
 		patientCase.setNotes(patientCaseCreateDto.getNote());
 
 		return patientCase;
 	}
-
 
 //	Helper method to convert PatientCase entity to PatientCaseDetailedResponseDto
 	private PatientCaseDetailedResponseDto convertToDto(PatientCase patientCase) {
@@ -161,17 +161,13 @@ public class PatientCaseService {
 		dto.setPatientId(patientCase.getPatient().getPatientId());
 		StringBuilder fullName = new StringBuilder();
 		if (patientCase.getPatient().getFirstName() != null) {
-		    fullName.append(patientCase.getPatient().getFirstName());
+			fullName.append(patientCase.getPatient().getFirstName());
 		}
-		if (patientCase.getPatient().getMiddleName() != null
-		        && !patientCase.getPatient().getMiddleName().isBlank()) {
-		    fullName.append(" ")
-		            .append(patientCase.getPatient().getMiddleName());
+		if (patientCase.getPatient().getMiddleName() != null && !patientCase.getPatient().getMiddleName().isBlank()) {
+			fullName.append(" ").append(patientCase.getPatient().getMiddleName());
 		}
-		if (patientCase.getPatient().getLastName() != null
-		        && !patientCase.getPatient().getLastName().isBlank()) {
-		    fullName.append(" ")
-		            .append(patientCase.getPatient().getLastName());
+		if (patientCase.getPatient().getLastName() != null && !patientCase.getPatient().getLastName().isBlank()) {
+			fullName.append(" ").append(patientCase.getPatient().getLastName());
 		}
 		dto.setPatientFullName(fullName.toString().trim());
 		dto.setPatientEmail(patientCase.getPatient().getEmail());

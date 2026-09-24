@@ -46,12 +46,14 @@ public class SpecializationController {
 	}
 
 	@PostMapping("/carepulse/specializations")
-	public SpecializationResponseDto addSpecialization(@Valid @RequestBody SpecializationCreateRequestDto specializationCreateRequestDto) {
+	public SpecializationResponseDto addSpecialization(
+			@Valid @RequestBody SpecializationCreateRequestDto specializationCreateRequestDto) {
 		return specializationService.addSpecialization(specializationCreateRequestDto);
 	}
 
 	@PutMapping("/carepulse/specializations/{id}")
-	public SpecializationResponseDto updateSpecialization(@PathVariable Long id, @Valid @RequestBody SpecializationCreateRequestDto specializationCreateRequestDto) {
+	public SpecializationResponseDto updateSpecialization(@PathVariable Long id,
+			@Valid @RequestBody SpecializationCreateRequestDto specializationCreateRequestDto) {
 		return specializationService.updateSpecialization(id, specializationCreateRequestDto);
 	}
 

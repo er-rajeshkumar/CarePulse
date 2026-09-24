@@ -20,35 +20,35 @@ public class Reminder {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "REMINDER_ID")
 	private Long reminderId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "MEDICATION_ID", nullable = false)
 	private Medication medication;
-	
+
 	@Column(name = "REMINDER_TIME")
 	private LocalTime reminderTime;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "REMINDER_TYPE")
 	private ReminderType reminderType = ReminderType.MEDICINE;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "REPEAT_TYPE")
 	private RepeatType repeatType = RepeatType.DAILY;
-	
+
 	@Column(name = "REPEAT_DAYS")
 	private String repeatDays;
-	
+
 	@Column(name = "REMINDER_MESSAGE")
 	private String reminderMessage;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
 	private Status status = Status.ACTIVE;
-	
+
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
-	
+
 	@Column(name = "UPDATED_AT")
 	private LocalDateTime updatedAt;
 

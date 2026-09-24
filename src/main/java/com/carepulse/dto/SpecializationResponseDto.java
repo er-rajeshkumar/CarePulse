@@ -1,6 +1,5 @@
 package com.carepulse.dto;
 
-
 import jakarta.persistence.Column;
 
 public class SpecializationResponseDto {
@@ -24,6 +23,7 @@ public class SpecializationResponseDto {
 	public void setSpecializationId(Long specializationId) {
 		this.specializationId = specializationId;
 	}
+
 	public String getSpecializationCode() {
 		return specializationCode;
 	}

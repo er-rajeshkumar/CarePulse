@@ -19,44 +19,46 @@ import jakarta.validation.Valid;
 public class ReminderController {
 
 	private final ReminderService reminderService;
-	
+
 	public ReminderController(ReminderService reminderService) {
 		this.reminderService = reminderService;
 	}
-	
+
 	@GetMapping("/carepulse/reminder/test")
 	public String testReminderService() {
 		return reminderService.getReminderMessage();
 	}
-	
+
 	@GetMapping("/carepulse/reminder")
 	public List<ReminderDetailedResponseDto> getAllReminders() {
 		return reminderService.getAllReminders();
 	}
-	
+
 	@GetMapping("/carepulse/reminder/{reminderId}")
 	public ReminderDetailedResponseDto getReminderById(@PathVariable Long reminderId) {
 		return reminderService.getReminderById(reminderId);
 	}
-	
+
 	@GetMapping("/carepulse/reminder/patient/{patientId}")
 	public List<ReminderDetailedResponseDto> getRemindersByPatientId(@PathVariable Long patientId) {
 		return reminderService.getRemindersByPatientId(patientId);
 	}
-	
+
 	@GetMapping("/carepulse/reminder/doctor/{doctorId}")
 	public List<ReminderDetailedResponseDto> getRemindersByDoctorId(@PathVariable Long doctorId) {
 		return reminderService.getRemindersByDoctorId(doctorId);
 	}
-	
+
 	@PostMapping("/carepulse/reminder")
-	public ReminderDetailedResponseDto createReminder(@RequestBody @Valid ReminderCreateRequestDto reminderCreateRequestDto) {
+	public ReminderDetailedResponseDto createReminder(
+			@RequestBody @Valid ReminderCreateRequestDto reminderCreateRequestDto) {
 		return reminderService.createReminder(reminderCreateRequestDto);
 	}
-	
+
 	@PutMapping("/carepulse/reminder/{reminderid}")
-	public ReminderDetailedResponseDto createReminderForMedication(@PathVariable Long medicationId, @RequestBody @Valid ReminderCreateRequestDto reminderCreateRequestDto) {
+	public ReminderDetailedResponseDto createReminderForMedication(@PathVariable Long medicationId,
+			@RequestBody @Valid ReminderCreateRequestDto reminderCreateRequestDto) {
 		return reminderService.updateReminder(medicationId, reminderCreateRequestDto);
 	}
-	
+
 }

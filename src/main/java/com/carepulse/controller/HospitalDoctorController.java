@@ -24,7 +24,6 @@ public class HospitalDoctorController {
 		this.hospitalDoctorService = hospitalDoctorService;
 	}
 
-
 //	Get List of all hospital-doctors
 	@GetMapping("/carepulse/hospital-doctor")
 	public List<HospitalDoctorDetailedResponseDto> getAllHospitalDoctors() {
@@ -43,9 +42,10 @@ public class HospitalDoctorController {
 		return hospitalDoctorService.getAllHospitalDoctorsByHospitalId(hospitalId);
 	}
 
-	//	Get List of all active hospital-doctors by hospitalId
+	// Get List of all active hospital-doctors by hospitalId
 	@GetMapping("/carepulse/hospital-doctor/active/hospital/{hospitalId}")
-	public List<HospitalDoctorDetailedResponseDto> getAllActiveHospitalDoctorsByHospitalId(@PathVariable Long hospitalId) {
+	public List<HospitalDoctorDetailedResponseDto> getAllActiveHospitalDoctorsByHospitalId(
+			@PathVariable Long hospitalId) {
 		return hospitalDoctorService.getAllActiveHospitalDoctorsByHospitalId(hospitalId);
 	}
 
@@ -55,7 +55,7 @@ public class HospitalDoctorController {
 		return hospitalDoctorService.getAllHospitalDoctorsByDoctorId(doctorId);
 	}
 
-	//	Get List of all active hospital-doctor by doctorId
+	// Get List of all active hospital-doctor by doctorId
 	@GetMapping("/carepulse/hospital-doctor/active/doctor/{doctorId}")
 	public List<HospitalDoctorDetailedResponseDto> getAllActiveHospitalDoctorsByDoctorId(@PathVariable Long doctorId) {
 		return hospitalDoctorService.getAllActiveHospitalDoctorsByDoctorId(doctorId);

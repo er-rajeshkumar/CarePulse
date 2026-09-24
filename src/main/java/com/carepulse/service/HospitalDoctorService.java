@@ -26,18 +26,19 @@ public class HospitalDoctorService {
 	private final DoctorService doctorService;
 	private final HospitalService hospitalService;
 
-	public HospitalDoctorService(HospitalDoctorRepository hospitalDoctorRepository, DoctorService doctorService, HospitalService hospitalService) {
+	public HospitalDoctorService(HospitalDoctorRepository hospitalDoctorRepository, DoctorService doctorService,
+			HospitalService hospitalService) {
 		this.hospitalDoctorRepository = hospitalDoctorRepository;
 		this.doctorService = doctorService;
 		this.hospitalService = hospitalService;
 	}
 
-	private static final Logger logger =LoggerFactory.getLogger(HospitalDoctorService.class);
+	private static final Logger logger = LoggerFactory.getLogger(HospitalDoctorService.class);
 
 //	Get all hospital-doctors  (All Status)
 	public List<HospitalDoctorDetailedResponseDto> getAllHospitalDoctors() {
 		logger.info("Fetching all hospital doctors from the database");
-		List<HospitalDoctor> hospitalDoctors =  hospitalDoctorRepository.findAll();
+		List<HospitalDoctor> hospitalDoctors = hospitalDoctorRepository.findAll();
 		List<HospitalDoctorDetailedResponseDto> responseDtos = convertToDetailedResponseDtoList(hospitalDoctors);
 		logger.info("Fetched {} hospital doctors from the database", hospitalDoctors.size());
 		return responseDtos;
@@ -46,7 +47,7 @@ public class HospitalDoctorService {
 //	Get all hospital-doctors  (Only Active Status)
 	public List<HospitalDoctorDetailedResponseDto> getAllActiveHospitalDoctors() {
 		logger.info("Fetching all hospital doctors from the database");
-		List<HospitalDoctor> hospitalDoctors =  hospitalDoctorRepository.findAllByStatus(Status.ACTIVE);
+		List<HospitalDoctor> hospitalDoctors = hospitalDoctorRepository.findAllByStatus(Status.ACTIVE);
 		List<HospitalDoctorDetailedResponseDto> responseDtos = convertToDetailedResponseDtoList(hospitalDoctors);
 		logger.info("Fetched {} hospital doctors from the database", hospitalDoctors.size());
 		return responseDtos;
@@ -55,25 +56,28 @@ public class HospitalDoctorService {
 //	Get the list of all hospital-doctors by hospitalId
 	public List<HospitalDoctorDetailedResponseDto> getAllHospitalDoctorsByHospitalId(Long hospitalId) {
 		logger.info("Fetching all hospital doctors for hospitalId: {} from the database", hospitalId);
-		List<HospitalDoctor> hospitalDoctors =  hospitalDoctorRepository.findAllByHospital_HospitalId(hospitalId);
+		List<HospitalDoctor> hospitalDoctors = hospitalDoctorRepository.findAllByHospital_HospitalId(hospitalId);
 		List<HospitalDoctorDetailedResponseDto> responseDtos = convertToDetailedResponseDtoList(hospitalDoctors);
-		logger.info("Fetched {} hospital doctors for hospitalId: {} from the database", hospitalDoctors.size(), hospitalId);
+		logger.info("Fetched {} hospital doctors for hospitalId: {} from the database", hospitalDoctors.size(),
+				hospitalId);
 		return responseDtos;
 	}
 
 //	Get the list of all Active hospital-doctors by hospitalId
 	public List<HospitalDoctorDetailedResponseDto> getAllActiveHospitalDoctorsByHospitalId(Long hospitalId) {
 		logger.info("Fetching all hospital doctors for hospitalId: {} from the database", hospitalId);
-		List<HospitalDoctor> hospitalDoctors =  hospitalDoctorRepository.findAllByHospital_HospitalIdAndStatus(hospitalId, Status.ACTIVE);
+		List<HospitalDoctor> hospitalDoctors = hospitalDoctorRepository
+				.findAllByHospital_HospitalIdAndStatus(hospitalId, Status.ACTIVE);
 		List<HospitalDoctorDetailedResponseDto> responseDtos = convertToDetailedResponseDtoList(hospitalDoctors);
-		logger.info("Fetched {} hospital doctors for hospitalId: {} from the database", hospitalDoctors.size(), hospitalId);
+		logger.info("Fetched {} hospital doctors for hospitalId: {} from the database", hospitalDoctors.size(),
+				hospitalId);
 		return responseDtos;
 	}
 
 //	Get the list of all hospital-doctors by doctorId
 	public List<HospitalDoctorDetailedResponseDto> getAllHospitalDoctorsByDoctorId(Long doctorId) {
 		logger.info("Fetching all hospital doctors for doctorId: {} from the database", doctorId);
-		List<HospitalDoctor> hospitalDoctors =  hospitalDoctorRepository.findAllByDoctor_DoctorId(doctorId);
+		List<HospitalDoctor> hospitalDoctors = hospitalDoctorRepository.findAllByDoctor_DoctorId(doctorId);
 		List<HospitalDoctorDetailedResponseDto> responseDtos = convertToDetailedResponseDtoList(hospitalDoctors);
 		logger.info("Fetched {} hospital doctors for doctorId: {} from the database", hospitalDoctors.size(), doctorId);
 		return responseDtos;
@@ -82,7 +86,8 @@ public class HospitalDoctorService {
 //	Get the list of all Active hospital-doctors by doctorId
 	public List<HospitalDoctorDetailedResponseDto> getAllActiveHospitalDoctorsByDoctorId(Long doctorId) {
 		logger.info("Fetching all hospital doctors for doctorId: {} from the database", doctorId);
-		List<HospitalDoctor> hospitalDoctors =  hospitalDoctorRepository.findAllByDoctor_DoctorIdAndStatus(doctorId, Status.ACTIVE);
+		List<HospitalDoctor> hospitalDoctors = hospitalDoctorRepository.findAllByDoctor_DoctorIdAndStatus(doctorId,
+				Status.ACTIVE);
 		List<HospitalDoctorDetailedResponseDto> responseDtos = convertToDetailedResponseDtoList(hospitalDoctors);
 		logger.info("Fetched {} hospital doctors for doctorId: {} from the database", hospitalDoctors.size(), doctorId);
 		return responseDtos;
@@ -94,10 +99,10 @@ public class HospitalDoctorService {
 		Long doctorId = requestDto.getDoctorId();
 		Long hospitalId = requestDto.getHospitalId();
 
-		 if (hospitalDoctorRepository.findByHospital_HospitalIdAndDoctor_DoctorId(hospitalId, doctorId).isPresent()) {
-		        throw new HospitalDoctorException("HospitalDoctor already exists with doctorId: "
-		                + doctorId + " and hospitalId: " + hospitalId);
-		    }
+		if (hospitalDoctorRepository.findByHospital_HospitalIdAndDoctor_DoctorId(hospitalId, doctorId).isPresent()) {
+			throw new HospitalDoctorException(
+					"HospitalDoctor already exists with doctorId: " + doctorId + " and hospitalId: " + hospitalId);
+		}
 		Doctor doctor = doctorService.getDoctorEntityById(doctorId);
 		Hospital hospital = hospitalService.getHospitalEntityById(hospitalId);
 		HospitalDoctor hospitalDoctor = convertToEntity(requestDto, doctor, hospital);
@@ -107,15 +112,16 @@ public class HospitalDoctorService {
 		hospitalDoctor.setJoinDate(LocalDate.now());
 		HospitalDoctor savedHospitalDoctor = hospitalDoctorRepository.save(hospitalDoctor);
 		HospitalDoctorResponseDto responseDto = convertToResponseDto(savedHospitalDoctor);
-		logger.info("Added new hospital doctor to the database with doctorId: {} and hospitalId: {}", savedHospitalDoctor.getDoctor().getDoctorId(), savedHospitalDoctor.getHospital().getHospitalId());
+		logger.info("Added new hospital doctor to the database with doctorId: {} and hospitalId: {}",
+				savedHospitalDoctor.getDoctor().getDoctorId(), savedHospitalDoctor.getHospital().getHospitalId());
 		return responseDto;
 	}
 
 //	Soft delete a hospital doctor by setting the status to INACTIVE
 	public HospitalDoctorResponseDto softDeleteHospitalDoctor(Long hospitalDoctorId) {
 		logger.info("Soft deleting hospital doctor with id: {} from the database", hospitalDoctorId);
-		HospitalDoctor hospitalDoctor = hospitalDoctorRepository.findById(hospitalDoctorId)
-				.orElseThrow(() -> new HospitalDoctorException("HospitalDoctor not found with id: " + hospitalDoctorId));
+		HospitalDoctor hospitalDoctor = hospitalDoctorRepository.findById(hospitalDoctorId).orElseThrow(
+				() -> new HospitalDoctorException("HospitalDoctor not found with id: " + hospitalDoctorId));
 		hospitalDoctor.setStatus(Status.INACTIVE);
 		hospitalDoctorRepository.save(hospitalDoctor);
 		logger.info("Soft deleted hospital doctor with id: {} from the database", hospitalDoctorId);
@@ -124,13 +130,16 @@ public class HospitalDoctorService {
 
 //	Soft delete a hospital-doctors by doctorId and hospitalId
 	public HospitalDoctorResponseDto softDeleteHospitalDoctorByDoctorIdAndHospitalId(Long doctorId, Long hospitalId) {
-		logger.info("Soft deleting hospital doctor with doctorId: {} and hospitalId: {} from the database", doctorId, hospitalId);
-		HospitalDoctor hospitalDoctor = hospitalDoctorRepository.findByHospital_HospitalIdAndDoctor_DoctorId(
-				hospitalId, doctorId).orElseThrow(
-						() -> new HospitalDoctorException("HospitalDoctor not found with doctorId: " + doctorId + " and hospitalId: " + hospitalId));
+		logger.info("Soft deleting hospital doctor with doctorId: {} and hospitalId: {} from the database", doctorId,
+				hospitalId);
+		HospitalDoctor hospitalDoctor = hospitalDoctorRepository
+				.findByHospital_HospitalIdAndDoctor_DoctorId(hospitalId, doctorId)
+				.orElseThrow(() -> new HospitalDoctorException(
+						"HospitalDoctor not found with doctorId: " + doctorId + " and hospitalId: " + hospitalId));
 		hospitalDoctor.setStatus(Status.INACTIVE);
 		hospitalDoctorRepository.save(hospitalDoctor);
-		logger.info("Soft deleted hospital doctor with doctorId: {} and hospitalId: {} from the database", doctorId, hospitalId);
+		logger.info("Soft deleted hospital doctor with doctorId: {} and hospitalId: {} from the database", doctorId,
+				hospitalId);
 		return convertToResponseDto(hospitalDoctor);
 
 	}
@@ -145,7 +154,8 @@ public class HospitalDoctorService {
 	}
 
 //	Helper method to convert HospitalDoctorCreateRequestDto to HospitalDoctor entity
-	private HospitalDoctor convertToEntity(HospitalDoctorCreateRequestDto requestDto, Doctor doctor,Hospital hospital) {
+	private HospitalDoctor convertToEntity(HospitalDoctorCreateRequestDto requestDto, Doctor doctor,
+			Hospital hospital) {
 		HospitalDoctor hospitalDoctor = new HospitalDoctor();
 		hospitalDoctor.setDoctor(doctor);
 		hospitalDoctor.setHospital(hospital);
@@ -181,7 +191,8 @@ public class HospitalDoctorService {
 	}
 
 //	Convert a list of HospitalDoctor entities to a list of HospitalDoctorDetailedResponseDto
-	private List<HospitalDoctorDetailedResponseDto> convertToDetailedResponseDtoList(List<HospitalDoctor> hospitalDoctors) {
+	private List<HospitalDoctorDetailedResponseDto> convertToDetailedResponseDtoList(
+			List<HospitalDoctor> hospitalDoctors) {
 		List<HospitalDoctorDetailedResponseDto> detailedResponseDtos = new java.util.ArrayList<>();
 		for (HospitalDoctor hospitalDoctor : hospitalDoctors) {
 			detailedResponseDtos.add(convertToDetailedResponseDto(hospitalDoctor));

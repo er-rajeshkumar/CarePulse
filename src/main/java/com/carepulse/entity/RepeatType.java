@@ -1,9 +1,6 @@
 package com.carepulse.entity;
 
 public enum RepeatType {
-	DAILY,
-	WEEKLY,
-	MONTHLY,
-	CUSTOM
+	DAILY, WEEKLY, MONTHLY, CUSTOM
 
 }

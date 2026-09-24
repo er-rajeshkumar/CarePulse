@@ -24,13 +24,11 @@ public class HospitalPatientService {
 	private final HospitalService hospitalService;
 	private final PatientService patientService;
 
-	public HospitalPatientService(
-			HospitalPatientRepository hospitalPatientRepository,
-			HospitalService hospitalService,
+	public HospitalPatientService(HospitalPatientRepository hospitalPatientRepository, HospitalService hospitalService,
 			PatientService patientService) {
 		this.hospitalPatientRepository = hospitalPatientRepository;
 		this.hospitalService = hospitalService;
-	    this.patientService = patientService;
+		this.patientService = patientService;
 	}
 
 	Logger logger = LoggerFactory.getLogger(HospitalPatientService.class);
@@ -50,7 +48,8 @@ public class HospitalPatientService {
 //	method to get all data of hospital and patient from db by hospitalId
 	public List<HospitalPatientDetailedResponseDto> getAllHospitalPatientByHospitalId(Long hospitalId) {
 		logger.info("Fetching all Hospital and Patient data from the database for hospitalId: {}", hospitalId);
-		List<HospitalPatient> hospitalPatientDetailedResponseDtos = hospitalPatientRepository.findAllByHospital_HospitalId(hospitalId);
+		List<HospitalPatient> hospitalPatientDetailedResponseDtos = hospitalPatientRepository
+				.findAllByHospital_HospitalId(hospitalId);
 		List<HospitalPatientDetailedResponseDto> hospitalPatientDetailedResponseDtoList = new java.util.ArrayList<>();
 		for (HospitalPatient hospitalPatient : hospitalPatientDetailedResponseDtos) {
 			HospitalPatientDetailedResponseDto dto = mapToDto(hospitalPatient);
@@ -62,7 +61,8 @@ public class HospitalPatientService {
 //	method to get all data of hospital and patient from db by patientId
 	public List<HospitalPatientDetailedResponseDto> getAllHospitalPatientByPatientId(Long patientId) {
 		logger.info("Fetching all Hospital and Patient data from the database for patientId: {}", patientId);
-		List<HospitalPatient> hospitalPatientDetailedResponseDtos = hospitalPatientRepository.findAllByPatient_PatientId(patientId);
+		List<HospitalPatient> hospitalPatientDetailedResponseDtos = hospitalPatientRepository
+				.findAllByPatient_PatientId(patientId);
 		List<HospitalPatientDetailedResponseDto> hospitalPatientDetailedResponseDtoList = new java.util.ArrayList<>();
 		for (HospitalPatient hospitalPatient : hospitalPatientDetailedResponseDtos) {
 			HospitalPatientDetailedResponseDto dto = mapToDto(hospitalPatient);
@@ -73,36 +73,32 @@ public class HospitalPatientService {
 
 //	Method to add a new HospitalPatient entry to the database
 	public HospitalPatientDetailedResponseDto addHospitalPatient(HospitalPatientCreateRequestDto requestDto) {
-	    logger.info("Adding new HospitalPatient entry to the database");
+		logger.info("Adding new HospitalPatient entry to the database");
 
-	    Long hospitalId = requestDto.getHospitalId();
-	    Long patientId = requestDto.getPatientId();
+		Long hospitalId = requestDto.getHospitalId();
+		Long patientId = requestDto.getPatientId();
 
-	    // Check whether patient is already registered in this hospital
-	    if (hospitalPatientRepository
-	            .findByHospital_HospitalIdAndPatient_PatientId(hospitalId, patientId)
-	            .isPresent()) {
+		// Check whether patient is already registered in this hospital
+		if (hospitalPatientRepository.findByHospital_HospitalIdAndPatient_PatientId(hospitalId, patientId)
+				.isPresent()) {
 
-	        throw new RuntimeException(
-	                "Patient is already registered in hospital. "
-	                + "hospitalId: " + hospitalId
-	                + ", patientId: " + patientId);
-	    }
+			throw new RuntimeException("Patient is already registered in hospital. " + "hospitalId: " + hospitalId
+					+ ", patientId: " + patientId);
+		}
 
-	    // Get existing entities
-	    Hospital hospital = hospitalService.getHospitalEntityById(hospitalId);
-	    Patient patient = patientService.getPatientEntityById(patientId);
+		// Get existing entities
+		Hospital hospital = hospitalService.getHospitalEntityById(hospitalId);
+		Patient patient = patientService.getPatientEntityById(patientId);
 
-	    // Create relationship
-	    HospitalPatient hospitalPatient = new HospitalPatient();
+		// Create relationship
+		HospitalPatient hospitalPatient = new HospitalPatient();
 
-	    hospitalPatient.setHospital(hospital);
-	    hospitalPatient.setPatient(patient);
+		hospitalPatient.setHospital(hospital);
+		hospitalPatient.setPatient(patient);
 
-	    HospitalPatient savedHospitalPatient =
-	            hospitalPatientRepository.save(hospitalPatient);
+		HospitalPatient savedHospitalPatient = hospitalPatientRepository.save(hospitalPatient);
 
-	    return mapToDto(savedHospitalPatient);
+		return mapToDto(savedHospitalPatient);
 	}
 
 //	Helper method to map HospitalPatient entity to HospitalPatientDetailedResponseDto
@@ -114,7 +110,8 @@ public class HospitalPatientService {
 		dto.setHospitalName(hospitalPatient.getHospital().getHospitalName());
 		dto.setPatientId(hospitalPatient.getPatient().getPatientId());
 
-		dto.setPatientFullName(hospitalPatient.getPatient().getFirstName() + " " + hospitalPatient.getPatient().getLastName());
+		dto.setPatientFullName(
+				hospitalPatient.getPatient().getFirstName() + " " + hospitalPatient.getPatient().getLastName());
 		dto.setPatientGender(hospitalPatient.getPatient().getSex().toString());
 		if (hospitalPatient.getPatient().getDob() != null) {
 			dto.setPatientDateOfBirth(hospitalPatient.getPatient().getDob().toString());

@@ -9,8 +9,9 @@ import com.carepulse.entity.PatientCase;
 public interface PatientCaseRepository extends JpaRepository<PatientCase, Long> {
 
 	List<PatientCase> findByPatient_PatientId(Long patientId);
-	List<PatientCase> findByDoctor_DoctorId(Long patientId);
-	List<PatientCase> findByHospital_HospitalId(Long patientId);
 
+	List<PatientCase> findByDoctor_DoctorId(Long patientId);
+
+	List<PatientCase> findByHospital_HospitalId(Long patientId);
 
 }

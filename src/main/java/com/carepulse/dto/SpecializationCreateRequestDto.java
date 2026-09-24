@@ -7,7 +7,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 
-
 public class SpecializationCreateRequestDto {
 
 	@Column(name = "SPECIALIZATION_ID")
@@ -67,6 +66,5 @@ public class SpecializationCreateRequestDto {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
 
 }
