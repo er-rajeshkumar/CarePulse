@@ -10,6 +10,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Medication {
@@ -17,75 +19,79 @@ public class Medication {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MEDICATION_ID", nullable = false)
-	private Long MedicationId;
-	
-	@Column(name = "PATIENT_CASE_ID")
-	private Long patientCaseId;
-	
-	@Column(name = "MEDICINE_ID")
-	private Long medicineId;
-	
-	@Column(name = "DOCTOR_ID")
-	private Long doctorId;
-	
+	private Long medicationId;
+
+	@ManyToOne
+	@JoinColumn(name = "PATIENT_CASE_ID")
+	private PatientCase patientCase;
+
+	@ManyToOne
+	@JoinColumn(name = "MEDICINE_ID")
+	private Medicine medicine;
+
+	@ManyToOne
+	@JoinColumn(name = "DOCTOR_ID")
+	private Doctor doctor;
+
 	@Column(name = "DOSAGE")
 	private String dosage;
-	
+
 	@Column(name = "FREQUENCY")
 	private String frequency;
-	
+
 	@Column(name = "ROUTE")
 	private String route;
-	
+
 	@Column(name = "START_DATE")
 	private LocalDate startDate;
-	
+
 	@Column(name = "END_DATE")
 	private LocalDate endDate;
-	
+
 	@Column(name = "INSTRUCTIONS")
 	private String instructions;
-	
+
 	@Enumerated(EnumType.STRING)
-    @Column(name = "STATUS")
+	@Column(name = "STATUS")
 	private Status status;
-	
+
 	@Column(name = "CREATED_AT")
 	private Date createdAt;
-	
+
 	@Column(name = "UPDATED_AT")
 	private Date updatedAt;
 
 	public Long getMedicationId() {
-		return MedicationId;
+		return medicationId;
 	}
 
 	public void setMedicationId(Long medicationId) {
-		MedicationId = medicationId;
+		this.medicationId = medicationId;
 	}
 
-	public Long getPatientCaseId() {
-		return patientCaseId;
+
+	public PatientCase getPatientCase() {
+		return patientCase;
 	}
 
-	public void setPatientCaseId(Long patientCaseId) {
-		this.patientCaseId = patientCaseId;
+	public void setPatientCase(PatientCase patientCase) {
+		this.patientCase = patientCase;
 	}
 
-	public Long getMedicineId() {
-		return medicineId;
+	public Medicine getMedicine() {
+		return medicine;
 	}
 
-	public void setMedicineId(Long medicineId) {
-		this.medicineId = medicineId;
+	public void setMedicine(Medicine medicine) {
+		this.medicine = medicine;
 	}
 
-	public Long getDoctorId() {
-		return doctorId;
+	public Doctor getDoctor() {
+		return doctor;
 	}
 
-	public void setDoctorId(Long doctorId) {
-		this.doctorId = doctorId;
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
 	public String getDosage() {
@@ -159,5 +165,5 @@ public class Medication {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
+
 }

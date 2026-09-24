@@ -75,6 +75,13 @@ public class DoctorService {
 		DoctorResponseDto doctorResponseDto = mapToDto(doctor);
 		return doctorResponseDto;
 	}
+	
+//	Method to check if doctor exists by id from the database
+	public boolean isDoctorExistsById(Long id) {
+		logger.info("Checking if Doctor exists with id " + id +" in the database");
+		boolean isExists =  doctorRepository.existsByDoctorId(id);
+		return isExists;
+	}
 
 //	Method to update doctor by id from the database
 	public DoctorResponseDto updateDoctorById(Long id, DoctorCreateRequestDto doctorCreateRequestDto) {

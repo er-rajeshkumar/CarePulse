@@ -1,22 +1,24 @@
 package com.carepulse.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
-
-import com.carepulse.entity.Doctor;
-import com.carepulse.entity.Medicine;
-import com.carepulse.entity.Patient;
-import com.carepulse.entity.Status;
 
 public class MedicationResponseDto {
+	
+	private Long medicationId;
 
-private Long MedicationId;
-	
-	private Patient patient;
-	private Medicine medicine;
-	private Doctor doctor;
-	
-	
+	private Long patientCaseId;
+	private String caseTitle;
+
+	private Long patientId;
+	private String patientFullName;
+
+	private Long doctorId;
+	private String doctorFullName;
+
+	private Long medicineId;
+	private String medicineName;
+	private String strength;
+
 	private String dosage;
 	private String frequency;
 	private String route;
@@ -24,28 +26,64 @@ private Long MedicationId;
 	private LocalDate endDate;
 	private String instructions;
 	public Long getMedicationId() {
-		return MedicationId;
+		return medicationId;
 	}
 	public void setMedicationId(Long medicationId) {
-		MedicationId = medicationId;
+		this.medicationId = medicationId;
 	}
-	public Patient getPatient() {
-		return patient;
+	public Long getPatientCaseId() {
+		return patientCaseId;
 	}
-	public void setPatient(Patient patient) {
-		this.patient = patient;
+	public void setPatientCaseId(Long patientCaseId) {
+		this.patientCaseId = patientCaseId;
 	}
-	public Medicine getMedicine() {
-		return medicine;
+	public String getCaseTitle() {
+		return caseTitle;
 	}
-	public void setMedicine(Medicine medicine) {
-		this.medicine = medicine;
+	public void setCaseTitle(String caseTitle) {
+		this.caseTitle = caseTitle;
 	}
-	public Doctor getDoctor() {
-		return doctor;
+	public Long getPatientId() {
+		return patientId;
 	}
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
+	}
+	public String getPatientFullName() {
+		return patientFullName;
+	}
+	public void setPatientFullName(String patientFullName) {
+		this.patientFullName = patientFullName;
+	}
+	public Long getDoctorId() {
+		return doctorId;
+	}
+	public void setDoctorId(Long doctorId) {
+		this.doctorId = doctorId;
+	}
+	public String getDoctorFullName() {
+		return doctorFullName;
+	}
+	public void setDoctorFullName(String doctorFullName) {
+		this.doctorFullName = doctorFullName;
+	}
+	public Long getMedicineId() {
+		return medicineId;
+	}
+	public void setMedicineId(Long medicineId) {
+		this.medicineId = medicineId;
+	}
+	public String getMedicineName() {
+		return medicineName;
+	}
+	public void setMedicineName(String medicineName) {
+		this.medicineName = medicineName;
+	}
+	public String getStrength() {
+		return strength;
+	}
+	public void setStrength(String strength) {
+		this.strength = strength;
 	}
 	public String getDosage() {
 		return dosage;
@@ -82,23 +120,5 @@ private Long MedicationId;
 	}
 	public void setInstructions(String instructions) {
 		this.instructions = instructions;
-	}
-	public Status getStatus() {
-		return status;
-	}
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 }

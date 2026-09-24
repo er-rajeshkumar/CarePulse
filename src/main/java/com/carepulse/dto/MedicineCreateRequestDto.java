@@ -26,12 +26,7 @@ public class MedicineCreateRequestDto {
 
 	private Date createdAt;
 	private Date updatedAt;
-	public Long getMedicineId() {
-		return medicineId;
-	}
-	public void setMedicineId(Long medicineId) {
-		this.medicineId = medicineId;
-	}
+
 	public String getMedicineName() {
 		return medicineName;
 	}

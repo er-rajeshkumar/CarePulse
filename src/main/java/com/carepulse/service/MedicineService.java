@@ -81,6 +81,20 @@ public class MedicineService {
 		return convertToDto(medicine);
 	}
 	
+//	Method to get medicine entity by ID
+	public Medicine getMedicineEntityById(Long medicineId) {
+		logger.info("Fetching medicine entity with ID: {} from the database", medicineId);
+		boolean isExists = medicineRepository.existsById(medicineId);
+		if (!isExists) {
+			logger.error("Medicine not found with ID: {}", medicineId);
+			throw new MedicineException("Medicine not found with ID: " + medicineId);
+		}
+		Medicine medicine = medicineRepository.findById(medicineId)
+				.orElseThrow(() -> new MedicineException("Medicine not found with ID: " + medicineId));
+		logger.info("Fetched medicine entity with ID: {} from the database", medicineId);
+		return medicine;
+	}
+	
 //	Method to check if medicine exists by ID
 	public boolean isMedicineExistsById(Long medicineId) {
 		logger.info("Checking if medicine exists with ID: {}", medicineId);
@@ -136,7 +150,7 @@ public class MedicineService {
 	public MedicineResponseDto updateMedicine(Long id, MedicineCreateRequestDto medicineCreateRequestDto) {
 		logger.info("Adding new medicine to the database");
 		Medicine medicine = medicineRepository.findById(id)
-				.orElseThrow(() -> new MedicineException("Medicine not found with ID: " + medicineCreateRequestDto.getMedicineId()));
+				.orElseThrow(() -> new MedicineException("Medicine not found with ID: " + id));
 	    medicine.setMedicineName(medicineCreateRequestDto.getMedicineName());
 	    medicine.setBrandName(medicineCreateRequestDto.getBrandName());
 	    medicine.setForm(medicineCreateRequestDto.getForm());

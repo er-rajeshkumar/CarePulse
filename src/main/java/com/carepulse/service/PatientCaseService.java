@@ -52,12 +52,26 @@ public class PatientCaseService {
 		return dto;
 		}
 
+//	Method to check if a patient case exists by ID
+	public boolean checkPatientCaseExistsById(Long id) {
+		logger.info("Checking if patient case exists with ID: {}", id);
+		return patientCaseRepository.existsById(id);
+	}
+	
 //	Method to get patient case by ID
 	public PatientCaseDetailedResponseDto getPatientCaseById(Long id) {
 		logger.info("Fetching patient case with ID: {}", id);
 		PatientCase patientCase = patientCaseRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Patient case not found with ID: " + id));
 		return convertToDto(patientCase);
+	}
+	
+//	Method to get patient case entity by ID
+	public PatientCase getPatientCaseEntityById(Long id) {
+		logger.info("Fetching patient case entity with ID: {}", id);
+		PatientCase patientCase = patientCaseRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Patient case not found with ID: " + id));
+		return patientCase;
 	}
 
 //	Method to get patient cases by patient ID

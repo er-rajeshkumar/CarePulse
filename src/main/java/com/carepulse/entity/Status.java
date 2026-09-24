@@ -8,6 +8,7 @@ public enum Status {
 	SUSPENDED,
 	COMPLETED,
 	CANCELLED,
-	ON_HOLD
+	ON_HOLD,
+	PAUSED
 }
 
