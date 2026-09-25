@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CarePulse API Explorer">
+    <title>CarePulse API Explorer</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/api-explorer.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <span class="logo-icon">+</span>
+                <span>CarePulse</span>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/api-explorer.html">API Explorer</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section explorer-section">
+        <div class="container">
+            <div class="section-heading explorer-heading">
+                <span class="section-label">API TESTING</span>
+                <h2>CarePulse API Explorer</h2>
+                <p>Select a resource and operation to call real backend endpoints without Postman.</p>
+            </div>
+
+            <div class="explorer-grid">
+                <div class="explorer-card">
+                    <h3>Request Builder</h3>
+
+                    <label for="baseUrl">Base URL</label>
+                    <input id="baseUrl" type="text" value="">
+
+                    <label for="resourceSelect">Resource</label>
+                    <select id="resourceSelect"></select>
+
+                    <label for="operationSelect">Operation</label>
+                    <select id="operationSelect"></select>
+
+                    <div id="operationMeta" class="operation-meta"></div>
+
+                    <div id="pathParamsContainer"></div>
+
+                    <div id="bodyContainer" class="hidden">
+                        <label for="requestBody">Request Body (JSON)</label>
+                        <textarea id="requestBody" rows="14"></textarea>
+                    </div>
+
+                    <div class="request-actions">
+                        <button id="executeBtn" class="btn primary" type="button">Execute API</button>
+                        <button id="resetBtn" class="btn secondary" type="button">Reset Inputs</button>
+                    </div>
+                </div>
+
+                <div class="explorer-card">
+                    <h3>Response</h3>
+                    <div id="responseSummary" class="response-summary">No request executed yet.</div>
+
+                    <div class="response-actions">
+                        <button id="jsonViewBtn" class="btn secondary active" type="button">JSON View</button>
+                        <button id="tableViewBtn" class="btn secondary" type="button">Table View</button>
+                    </div>
+
+                    <pre id="jsonOutput">Run a request to see API output.</pre>
+                    <div id="tableOutput" class="table-wrap hidden"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/api-explorer.js"></script>
+</body>
+</html>

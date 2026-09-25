@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor API Check</title>
+    <link rel="stylesheet" href="/css/api-lab.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>Doctor API Check</h1>
+        <a class="home-link" href="/api-lab.html">Back to API Lab</a>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>Doctor Endpoints</h2>
+            <p>Use quick buttons for common doctor API checks.</p>
+
+            <div class="row">
+                <button class="btn" data-endpoint="/carepulse/doctors/test" type="button">Doctor Test</button>
+                <button class="btn" data-endpoint="/carepulse/doctors" type="button">All Doctors</button>
+                <button class="btn" data-endpoint="/carepulse/doctors/active" type="button">Active Doctors</button>
+            </div>
+
+            <label for="doctorId">Doctor ID</label>
+            <div class="row">
+                <input id="doctorId" type="number" min="1" placeholder="Enter doctor ID">
+                <button id="doctorByIdBtn" class="btn" type="button">Get Doctor By ID</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Response</h2>
+            <div class="meta" id="responseMeta">No request yet.</div>
+            <pre id="responseOutput">Click any button to test doctor APIs.</pre>
+        </section>
+    </main>
+
+    <script src="/js/doctor-api-check.js"></script>
+</body>
+</html>

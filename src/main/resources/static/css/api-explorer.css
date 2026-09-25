@@ -1,0 +1,138 @@
+.explorer-section {
+    padding-top: 50px;
+}
+
+.explorer-heading {
+    margin-bottom: 30px;
+}
+
+.explorer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.explorer-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.explorer-card h3 {
+    margin-bottom: 14px;
+}
+
+label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #d3dbe8;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    background: #ffffff;
+}
+
+textarea {
+    min-height: 230px;
+    font-family: Consolas, monospace;
+}
+
+.operation-meta {
+    margin-top: 10px;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    color: #1d4ed8;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.path-param-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.request-actions,
+.response-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.response-summary {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    font-size: 13px;
+}
+
+#jsonOutput {
+    margin-top: 12px;
+    background: #0b1020;
+    color: #e2e8f0;
+    border-radius: 10px;
+    padding: 14px;
+    min-height: 340px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.table-wrap {
+    margin-top: 12px;
+    max-height: 400px;
+    overflow: auto;
+    border: 1px solid #dbe4f0;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.table-wrap th,
+.table-wrap td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.table-wrap th {
+    position: sticky;
+    top: 0;
+    background: #f1f5f9;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn.active {
+    border: 2px solid #2563eb;
+}
+
+@media (max-width: 992px) {
+    .explorer-grid {
+        grid-template-columns: 1fr;
+    }
+}

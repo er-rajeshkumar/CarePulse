@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarePulse API Lab</title>
+    <link rel="stylesheet" href="/css/api-lab.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>CarePulse API Lab</h1>
+        <a class="home-link" href="/">Back to Home</a>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>Doctor API Checks</h2>
+            <p>Open doctor-focused checks such as all doctors, active doctors, and doctor by ID.</p>
+            <a class="btn" href="/doctor-api-check.html">Open Doctor API Page</a>
+        </section>
+
+        <section class="card">
+            <h2>Quick Endpoint Tester</h2>
+            <p>Use this for any endpoint while backend APIs are in progress.</p>
+
+            <label for="method">Method</label>
+            <select id="method">
+                <option>GET</option>
+                <option>POST</option>
+                <option>PUT</option>
+                <option>DELETE</option>
+            </select>
+
+            <label for="path">Path (example: /carepulse/doctors)</label>
+            <input id="path" type="text" value="/carepulse/doctors">
+
+            <label for="body">Body (JSON, optional)</label>
+            <textarea id="body" rows="8" placeholder='{"name":"Sample"}'></textarea>
+
+            <div class="row">
+                <button id="sendBtn" class="btn" type="button">Send Request</button>
+                <button id="clearBtn" class="btn secondary" type="button">Clear Output</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Response</h2>
+            <div class="meta" id="responseMeta">No request yet.</div>
+            <pre id="responseOutput">Run a request to see response here.</pre>
+        </section>
+    </main>
+
+    <script src="/js/api-lab.js"></script>
+</body>
+</html>
