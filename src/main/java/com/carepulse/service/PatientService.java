@@ -139,19 +139,26 @@ public class PatientService {
 
 //	Helper method to convert Patient entity to PatientResponseDto
 	private PatientResponseDto convertToDto(Patient patient) {
-		PatientResponseDto dto = new PatientResponseDto();
-		dto.setPatientId(patient.getPatientId());
+	    PatientResponseDto dto = new PatientResponseDto();
+	    dto.setPatientId(patient.getPatientId());
 
-		String lastName = patient.getLastName() != null ? patient.getLastName() : "";
-		String middleName = patient.getMiddleName() != null ? patient.getMiddleName() : "";
-		String fullName = patient.getFirstName() + " " + middleName + " " + lastName;
-		dto.setFullName(fullName.trim());
-		dto.setPhone(patient.getPhone());
-		dto.setEmail(patient.getEmail());
-		dto.setSex(patient.getSex());
-		dto.setAddress(patient.getAddress());
-		dto.setStatus(patient.getStatus());
-		dto.setDob(patient.getDob() != null ? patient.getDob().toString() : null);
-		return dto;
+	    String firstName = patient.getFirstName() != null ? patient.getFirstName().trim() : "";
+	    String middleName = patient.getMiddleName() != null ? patient.getMiddleName().trim() : "";
+	    String lastName = patient.getLastName() != null ? patient.getLastName().trim() : "";
+
+	    String fullName = String.join(" ",
+	            java.util.stream.Stream.of(firstName, middleName, lastName)
+	                    .filter(name -> !name.isEmpty())
+	                    .toList());
+
+	    dto.setFullName(fullName);
+	    dto.setPhone(patient.getPhone());
+	    dto.setEmail(patient.getEmail());
+	    dto.setSex(patient.getSex());
+	    dto.setAddress(patient.getAddress());
+	    dto.setStatus(patient.getStatus());
+	    dto.setDob(patient.getDob() != null ? patient.getDob().toString() : null);
+
+	    return dto;
 	}
 }
