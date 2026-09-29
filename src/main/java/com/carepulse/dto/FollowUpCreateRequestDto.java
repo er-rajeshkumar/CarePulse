@@ -6,9 +6,14 @@ import java.time.LocalTime;
 
 import com.carepulse.entity.FollowUpStatus;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class FollowUpCreateRequestDto {
 
 	private Long followUpId;
+	@NotNull(message = "Patient case ID is required")
+	@Min(value = 1, message = "Patient case ID must be greater than 0")
 	private Long patientCaseId;
 	private LocalDate followUpDate;
 	private LocalTime followUpTime;

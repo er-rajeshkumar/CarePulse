@@ -4,15 +4,18 @@ import java.time.LocalDateTime;
 
 import com.carepulse.entity.MedicineTakeStatus;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class MedicineTakeCreateRequestDto {
 	private Long id;
 
 	@NotNull(message = "Medication ID cannot be null")
+	@Min(value = 1, message = "Medication ID must be greater than 0")
 	private Long medicationId;
 
 	@NotNull(message = "Reminder ID cannot be null")
+	@Min(value = 1, message = "Reminder ID must be greater than 0")
 	private Long reminderId;
 	private LocalDateTime scheduledTime;
 	private LocalDateTime actionTime;

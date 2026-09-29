@@ -5,17 +5,21 @@ import java.util.Date;
 
 import com.carepulse.entity.Status;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class MedicationCreateRequestDto {
 
 	@NotNull(message = "Patient case ID cannot be null")
+	@Min(value = 1, message = "Patient case ID must be greater than 0")
 	private Long patientCaseId;
 
 	@NotNull(message = "Medicine ID cannot be null")
+	@Min(value = 1, message = "Medicine ID must be greater than 0")
 	private Long medicineId;
 
 	@NotNull(message = "Doctor ID cannot be null")
+	@Min(value = 1, message = "Doctor ID must be greater than 0")
 	private Long doctorId;
 
 	private String dosage;

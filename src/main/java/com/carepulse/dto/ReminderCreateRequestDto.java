@@ -7,12 +7,14 @@ import com.carepulse.entity.ReminderType;
 import com.carepulse.entity.RepeatType;
 import com.carepulse.entity.Status;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class ReminderCreateRequestDto {
 	private Long reminderId;
 
 	@NotNull(message = "Medication ID cannot be null")
+	@Min(value = 1, message = "Medication ID must be greater than 0")
 	private Long medicationId;
 
 	@NotNull(message = "Reminder time cannot be null")

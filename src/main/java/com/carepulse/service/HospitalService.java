@@ -10,8 +10,11 @@ import com.carepulse.dto.HospitalCreateRequestDto;
 import com.carepulse.dto.HospitalResponseDto;
 import com.carepulse.entity.Hospital;
 import com.carepulse.entity.Status;
+import com.carepulse.exception.DuplicateEntityException;
 import com.carepulse.exception.HospitalNotFoundException;
 import com.carepulse.repository.HospitalRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class HospitalService {
@@ -52,7 +55,7 @@ public class HospitalService {
 	public Hospital getHospitalEntityById(Long id) {
 		logger.info("Fetching hospital entity with id: {} from the database", id);
 		Hospital hospital = hospitalRepository.findById(id)
-				.orElseThrow(() -> new HospitalNotFoundException("Hospital not found with id: " + id));
+				.orElseThrow(() -> new EntityNotFoundException("Hospital not found with id: " + id));
 		logger.info("Fetched hospital entity with id: {} from the database", id);
 		return hospital;
 	}
@@ -71,9 +74,7 @@ public class HospitalService {
 
 	public HospitalResponseDto getHospitalById(Long id) {
 		logger.info("Fetching hospital with id: {} from the database", id);
-		Hospital hospital = hospitalRepository.findById(id).orElseThrow(() ->
-
-		new HospitalNotFoundException("Hospital not found with id: " + id));
+		Hospital hospital = hospitalRepository.findById(id).orElseThrow(() ->new EntityNotFoundException("Hospital not found with id: " + id));
 		HospitalResponseDto hospitalResponseDto = mapHospitaltoDto(hospital);
 		logger.info("Fetched hospital with id: {} from the database", id);
 		logger.debug("Hospital details: {}", hospital);
@@ -97,13 +98,13 @@ public class HospitalService {
 		if (hospitalRepository.existsByHospitalEmail(hospitalCreateRequestDto.getHospitalEmail())) {
 			logger.error("Hospital with email: {} already exists in the database",
 					hospitalCreateRequestDto.getHospitalEmail());
-			throw new IllegalArgumentException(
+			throw new DuplicateEntityException(
 					"Hospital with email: " + hospitalCreateRequestDto.getHospitalEmail() + " already exists");
 		}
 		if (hospitalRepository.existsByHospitalCode(hospitalCreateRequestDto.getHospitalCode())) {
 			logger.error("Hospital with code: {} already exists in the database",
 					hospitalCreateRequestDto.getHospitalCode());
-			throw new IllegalArgumentException(
+			throw new DuplicateEntityException(
 					"Hospital with code: " + hospitalCreateRequestDto.getHospitalCode() + " already exists");
 		}
 		Hospital hospital = mapCreateDtoToHospital(hospitalCreateRequestDto);
@@ -121,7 +122,7 @@ public class HospitalService {
 				.orElseThrow(() -> new HospitalNotFoundException("Hospital not found with id: " + id));
 		if (hospitalRepository.existsByHospitalCodeAndHospitalIdNot(hospitalCreateRequestDto.getHospitalCode(), id)) {
 
-			throw new HospitalNotFoundException(
+			throw new EntityNotFoundException(
 					"Hospital code already exists: " + hospitalCreateRequestDto.getHospitalCode());
 		}
 		existingHospital.setHospitalName(hospitalCreateRequestDto.getHospitalName());
@@ -139,7 +140,7 @@ public class HospitalService {
 	public HospitalResponseDto deleteHospital(Long id) {
 		logger.info("Deleting hospital with id: {} from the database", id);
 		Hospital existingHospital = hospitalRepository.findById(id)
-				.orElseThrow(() -> new HospitalNotFoundException("Hospital not found with id: " + id));
+				.orElseThrow(() -> new EntityNotFoundException("Hospital not found with id: " + id));
 		existingHospital.setStatus(Status.DELETED);
 		existingHospital.setUpdatedAt(java.time.LocalDateTime.now());
 		hospitalRepository.save(existingHospital);

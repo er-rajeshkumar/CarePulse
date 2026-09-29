@@ -1,10 +1,7 @@
 package com.carepulse.controller;
 
-import java.util.List;
+import java.util.Map;
 
-import org.springframework.http.HttpStatus;
-//import org.hibernate.mapping.Map;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,49 +27,75 @@ public class DoctorController {
 
 //	Test doctor service
 	@GetMapping("/carepulse/doctors/test")
-	public String testDoctorService() {
-		return doctorService.getDoctorMessage();
+	public Map<String, Object> testDoctorService() {
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "Doctor service is working fine");
+		response.put("status", "success");
+		response.put("data", doctorService.getDoctorMessage());
+		return response;
 	}
 
 //	Get all doctors active and inactive
 	@GetMapping("/carepulse/doctors")
-	public List<DoctorResponseDto> getAllDoctors() {
-		return doctorService.getAllDoctor();
+	public Map<String, Object> getAllDoctors() {
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "All doctors retrieved successfully");
+		response.put("status", "success");
+		response.put("data", doctorService.getAllDoctor());
+		return response;
 	}
 
 //	Get all active doctors
 	@GetMapping("/carepulse/doctors/active")
-	public List<DoctorResponseDto> getAllActiveDoctors() {
-		return doctorService.getAllDoctorByStatus();
+	public Map<String, Object> getAllActiveDoctors() {
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "All active doctors retrieved successfully");
+		response.put("status", "success");
+		response.put("data", doctorService.getAllDoctorByStatus());
+		return response;
 	}
 
 //	Get doctor by id
 	@GetMapping("/carepulse/doctors/{id}")
-	public ResponseEntity<?> getDoctorById(@PathVariable Long id) {
-		DoctorResponseDto doctorResponseDto = doctorService.getDoctorById(id);
-		return new ResponseEntity<>(doctorResponseDto, HttpStatus.OK);
+	public Map<String, Object> getDoctorById(@PathVariable Long id) {
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "Doctor retrieved successfully");
+		response.put("status", "success");
+		response.put("data", doctorService.getDoctorById(id));
+		return response;
 	}
 
 //	Update doctor by id
 	@PutMapping("/carepulse/doctors/{id}")
-	public ResponseEntity<?> updateDoctorById(@PathVariable Long id,
+	public Map<String, Object> updateDoctorById(@PathVariable Long id,
 			@Valid @RequestBody DoctorCreateRequestDto doctorCreateRequestDto) {
-		DoctorResponseDto updatedDoctor = doctorService.updateDoctorById(id, doctorCreateRequestDto);
-		return new ResponseEntity<>(updatedDoctor, HttpStatus.OK);
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "Doctor updated successfully");
+		response.put("status", "success");
+		response.put("data", doctorService.updateDoctorById(id, doctorCreateRequestDto));
+		return response;
 	}
 
 //	Add new doctor
 	@PostMapping("/carepulse/doctors")
-	public ResponseEntity<?> addDoctor(@Valid @RequestBody DoctorCreateRequestDto doctorCreateRequestDto) {
+	public Map<String, Object> addDoctor(@Valid @RequestBody DoctorCreateRequestDto doctorCreateRequestDto) {
 		DoctorResponseDto newDoctor = doctorService.addDoctor(doctorCreateRequestDto);
-		return new ResponseEntity<>(newDoctor, HttpStatus.CREATED);
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "Doctor added successfully");
+		response.put("status", "success");
+		response.put("data", newDoctor);
+		
+		return response;
 	}
 
 //	Delete doctor by id
 	@DeleteMapping("/carepulse/doctors/{id}")
-	public ResponseEntity<?> deleteDoctorById(@PathVariable Long id) {
-		doctorService.deleteDoctorById(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	public Map<String, Object> deleteDoctorById(@PathVariable Long id) {
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "Doctor deleted successfully");
+		response.put("status", "success");
+		response.put("data", doctorService.deleteDoctorById(id));
+		return response;
 	}
 
 }

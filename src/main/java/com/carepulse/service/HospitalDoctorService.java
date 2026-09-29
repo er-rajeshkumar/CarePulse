@@ -94,7 +94,7 @@ public class HospitalDoctorService {
 	}
 
 //	Add a new hospital-doctors
-	public HospitalDoctorResponseDto addHospitalDoctor(HospitalDoctorCreateRequestDto requestDto) {
+	public HospitalDoctorDetailedResponseDto addHospitalDoctor(HospitalDoctorCreateRequestDto requestDto) {
 		logger.info("Adding new hospital doctor to the database");
 		Long doctorId = requestDto.getDoctorId();
 		Long hospitalId = requestDto.getHospitalId();
@@ -111,10 +111,7 @@ public class HospitalDoctorService {
 		// Set the join date to the current date
 		hospitalDoctor.setJoinDate(LocalDate.now());
 		HospitalDoctor savedHospitalDoctor = hospitalDoctorRepository.save(hospitalDoctor);
-		HospitalDoctorResponseDto responseDto = convertToResponseDto(savedHospitalDoctor);
-		logger.info("Added new hospital doctor to the database with doctorId: {} and hospitalId: {}",
-				savedHospitalDoctor.getDoctor().getDoctorId(), savedHospitalDoctor.getHospital().getHospitalId());
-		return responseDto;
+		return convertToDetailedResponseDto(savedHospitalDoctor);
 	}
 
 //	Soft delete a hospital doctor by setting the status to INACTIVE

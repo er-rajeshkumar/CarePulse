@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.carepulse.dto.HospitalDoctorCreateRequestDto;
 import com.carepulse.dto.HospitalDoctorDetailedResponseDto;
-import com.carepulse.dto.HospitalDoctorResponseDto;
 import com.carepulse.service.HospitalDoctorService;
 
 import jakarta.validation.Valid;
@@ -63,7 +62,8 @@ public class HospitalDoctorController {
 
 //	Add a new doctor to a hospital-doctor
 	@PostMapping("/carepulse/hospital-doctor")
-	public HospitalDoctorResponseDto addHospitalDoctor(@Valid @RequestBody HospitalDoctorCreateRequestDto requestDto) {
-		return hospitalDoctorService.addHospitalDoctor(requestDto);
+	public HospitalDoctorDetailedResponseDto addHospitalDoctor(
+			@Valid @RequestBody HospitalDoctorCreateRequestDto hospitalDoctorCreateRequestDto) {
+		return hospitalDoctorService.addHospitalDoctor(hospitalDoctorCreateRequestDto);
 	}
 }

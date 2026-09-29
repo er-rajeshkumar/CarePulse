@@ -1,14 +1,20 @@
 package com.carepulse.dto;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class PatientCaseCreateRequestDto {
 
 	@NotNull(message = "Hospital ID cannot be null")
+	@Min(value = 1, message = "Hospital ID must be greater than 0")
 	private Long hospitalId;
+	
 	@NotNull(message = "Patient ID cannot be null")
+	@Min(value = 1, message = "Patient ID must be greater than 0")
 	private Long patientId;
+	
 	@NotNull(message = "Doctor ID cannot be null")
+	@Min(value = 1, message = "Doctor ID must be greater than 0")
 	private Long doctorId;
 
 	@NotNull(message = "Case title cannot be null")

@@ -12,6 +12,22 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+	@ExceptionHandler(EntityNotFoundException.class)
+	public ResponseEntity<Map<String, String>> handleEntityNotFound(EntityNotFoundException exception) {
+		Map<String, String> response = new HashMap<>();
+		response.put("message", exception.getMessage());
+		response.put("Issue", "Entity not found");
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+	}
+	
+	@ExceptionHandler(DuplicateEntityException.class)
+	public ResponseEntity<Map<String, String>> handleDuplicateEntity(DuplicateEntityException exception) {
+		Map<String, String> response = new HashMap<>();
+		response.put("message", exception.getMessage());
+		response.put("Issue", "Duplicate entity");
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+	}
+	
 	@ExceptionHandler(PatientNotFoundException.class)
 	public ResponseEntity<Map<String, String>> handlePatientNotFound(PatientNotFoundException exception) {
 		Map<String, String> response = new HashMap<>();

@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 
 public class DoctorCreateRequestDto {
 
-	@NotBlank
+	@NotBlank(message = "First name is required")
 	private String firstName;
 	private String lastName;
 	@NotBlank
@@ -19,7 +19,7 @@ public class DoctorCreateRequestDto {
 	@Size(min = 10, max = 13)
 	private String phone;
 	private Long specializationId;
-	@NotBlank
+	@NotBlank(message = "Doctor registration number is required")
 	private String doctorRegistrationNo;
 	private Sex sex;
 	private LocalDateTime createdAt;

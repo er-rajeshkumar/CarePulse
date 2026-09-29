@@ -1,5 +1,8 @@
 package com.carepulse.dto;
 
+import java.time.LocalDate;
+
+import com.carepulse.entity.Sex;
 import com.carepulse.entity.Status;
 
 import jakarta.validation.constraints.Email;
@@ -13,7 +16,7 @@ public class PatientCreateRequestDto {
 	private String firstName;
 	private String middleName;
 	private String lastName;
-	private String sex;
+	private Sex sex;
 	@Email
 	private String email;
 	@Size(min = 10, max = 13)
@@ -23,12 +26,22 @@ public class PatientCreateRequestDto {
 
 	private Status status = Status.ACTIVE;
 
+	private LocalDate dob;
+	
 	public String getFirstName() {
 		return firstName;
 	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public LocalDate getDob() {
+		return dob;
+	}
+
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
 	}
 
 	public String getMiddleName() {
@@ -47,11 +60,11 @@ public class PatientCreateRequestDto {
 		this.lastName = lastName;
 	}
 
-	public String getSex() {
+	public Sex getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
 

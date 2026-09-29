@@ -10,7 +10,8 @@ import com.carepulse.dto.DoctorCreateRequestDto;
 import com.carepulse.dto.DoctorResponseDto;
 import com.carepulse.entity.Doctor;
 import com.carepulse.entity.Status;
-import com.carepulse.exception.DoctorNotFoundException;
+import com.carepulse.exception.DuplicateEntityException;
+import com.carepulse.exception.EntityNotFoundException;
 import com.carepulse.repository.DoctorRepository;
 
 @Service
@@ -71,7 +72,7 @@ public class DoctorService {
 	public DoctorResponseDto getDoctorById(Long id) {
 		logger.info("Fetching Doctor with id " + id + " from the database");
 		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
-				.orElseThrow(() -> new DoctorNotFoundException("Doctor not found with id: " + id));
+				.orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + id));
 		DoctorResponseDto doctorResponseDto = mapToDto(doctor);
 		return doctorResponseDto;
 	}
@@ -87,7 +88,7 @@ public class DoctorService {
 	public DoctorResponseDto updateDoctorById(Long id, DoctorCreateRequestDto doctorCreateRequestDto) {
 		logger.info("Updating Doctor with id " + id + " in the database");
 		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
-				.orElseThrow(() -> new DoctorNotFoundException("Doctor not found with id: " + id));
+				.orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + id));
 		doctor.setFirstName(doctorCreateRequestDto.getFirstName());
 		doctor.setLastName(doctorCreateRequestDto.getLastName());
 		doctor.setSex(doctorCreateRequestDto.getSex());
@@ -107,11 +108,11 @@ public class DoctorService {
 		logger.debug("DoctorCreateRequestDto: " + doctorCreateRequestDto.toString());
 		if (doctorRepository.existsByEmail(doctorCreateRequestDto.getEmail())) {
 			logger.error("Doctor email already exists: " + doctorCreateRequestDto.getEmail());
-			throw new RuntimeException("Doctor email already exists");
+			throw new DuplicateEntityException("Doctor email already exists" + doctorCreateRequestDto.getEmail());
 		}
 		if (doctorRepository.existsByDoctorRegistrationNo(doctorCreateRequestDto.getDoctorRegistrationNo())) {
 			logger.error("Registration number already exists: " + doctorCreateRequestDto.getDoctorRegistrationNo());
-			throw new RuntimeException("Registration number already exists");
+			throw new DuplicateEntityException("Registration number already exists" + doctorCreateRequestDto.getDoctorRegistrationNo());
 		}
 		Doctor doctor = new Doctor();
 		doctor.setFirstName(doctorCreateRequestDto.getFirstName());
@@ -130,19 +131,20 @@ public class DoctorService {
 	}
 
 //	Delete doctor by id from the database
-	public void deleteDoctorById(Long id) {
+	public DoctorResponseDto deleteDoctorById(Long id) {
 		logger.info("Deleting Doctor with id " + id + " from the database");
 		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
-				.orElseThrow(() -> new DoctorNotFoundException("Doctor not found with id: " + id));
+				.orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + id));
 		doctor.setStatus(Status.DELETED);
 		doctorRepository.save(doctor);
+		return mapToDto(doctor);
 	}
 
 //	Method to get doctor entity by id from the database
 	public Doctor getDoctorEntityById(Long id) {
 		logger.info("Fetching Doctor entity with id " + id + " from the database");
 		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
-				.orElseThrow(() -> new DoctorNotFoundException("Doctor not found with id: " + id));
+				.orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + id));
 		return doctor;
 	}
 
