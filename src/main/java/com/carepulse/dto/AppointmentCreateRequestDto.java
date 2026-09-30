@@ -7,7 +7,7 @@ import com.carepulse.entity.AppointmentStatus;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-@@ValidAppointmentTime
+
 public class AppointmentCreateRequestDto {
 
 private Long appointmentId;
