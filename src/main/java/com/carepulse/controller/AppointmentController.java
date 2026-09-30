@@ -4,9 +4,15 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.carepulse.dto.AppointmentCreateRequestDto;
+import com.carepulse.dto.updateDto.AppointmentUpdateRequestDto;
 import com.carepulse.service.AppointmentService;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class AppointmentController {
@@ -77,6 +83,26 @@ public class AppointmentController {
 		return response;
 	}
 	
+//	Method to add a new appointment
+	@PostMapping("/carepulse/appointments/")
+	public Map<String, Object> addAppointment(@Valid @RequestBody AppointmentCreateRequestDto appointmentRequest) {
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "Appointment added successfully");
+		response.put("status", "success");
+		response.put("data", appointmentService.addAppointment(appointmentRequest));
+		return response;
+	}
 	
 
+//	Method to update an existing appointment
+	@PostMapping("/carepulse/appointments/{id}")
+	public Map<String, Object> updateAppointment(@PathVariable Long id, @Valid @RequestBody AppointmentUpdateRequestDto appointmentRequest) {
+		Map<String, Object> response = new java.util.HashMap<>();
+		response.put("message", "Appointment updated successfully");
+		response.put("status", "success");
+		response.put("data", appointmentService.updateAppointment(id, appointmentRequest));
+		return response;
+	}
+	
+	
 }

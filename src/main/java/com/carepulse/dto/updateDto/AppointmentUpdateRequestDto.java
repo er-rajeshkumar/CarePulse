@@ -5,14 +5,20 @@ import java.time.LocalTime;
 
 import com.carepulse.entity.AppointmentStatus;
 
+import jakarta.validation.constraints.Positive;
+
 public class AppointmentUpdateRequestDto {
 	
+	@Positive(message = "Patient ID must be a positive number")	
 	private Long patientId;
 	
+	@Positive(message = "Doctor ID must be a positive number")
 	private Long doctorId;
 	
+	@Positive(message = "Hospital ID must be a positive number")
 	private Long hospitalId;
 	
+	@Positive(message = "Patient Case ID must be a positive number")
 	private Long patientCaseId;
 	
 	private LocalDate appointmentDate;

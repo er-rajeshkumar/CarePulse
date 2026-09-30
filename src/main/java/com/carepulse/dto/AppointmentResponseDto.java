@@ -1,14 +1,9 @@
 package com.carepulse.dto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import com.carepulse.entity.AppointmentStatus;
-import com.carepulse.entity.Doctor;
-import com.carepulse.entity.Hospital;
-import com.carepulse.entity.Patient;
-import com.carepulse.entity.PatientCase;
 
 public class AppointmentResponseDto {
 
@@ -36,7 +31,7 @@ public class AppointmentResponseDto {
 	
 //	private PatientCase patientCase;
 	private Long patientCaseId;
-	private String patientCaseDescription;
+	private String patientCaseCaseTitle;
 	private String patientCaseDiagnosis;
 	
 	private LocalDate appointmentDate;
@@ -228,12 +223,13 @@ public class AppointmentResponseDto {
 		this.patientCaseId = patientCaseId;
 	}
 
-	public String getPatientCaseDescription() {
-		return patientCaseDescription;
+
+	public String getPatientCaseCaseTitle() {
+		return patientCaseCaseTitle;
 	}
 
-	public void setPatientCaseDescription(String patientCaseDescription) {
-		this.patientCaseDescription = patientCaseDescription;
+	public void setPatientCaseCaseTitle(String patientCaseCaseTitle) {
+		this.patientCaseCaseTitle = patientCaseCaseTitle;
 	}
 
 	public String getPatientCaseDiagnosis() {

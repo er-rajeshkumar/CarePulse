@@ -5,20 +5,28 @@ import java.time.LocalTime;
 
 import com.carepulse.entity.AppointmentStatus;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+@@ValidAppointmentTime
 public class AppointmentCreateRequestDto {
 
 private Long appointmentId;
-	
+
+	@NotNull(message = "Patient ID cannot be null")
+	@Positive(message = "Patient ID must be a positive number")
 	private Long patientId;
 	
 	private Long doctorId;
 	
+	@NotNull(message = "Hospital ID cannot be null")
+	@Positive(message = "Hospital ID must be a positive number")
 	private Long hospitalId;
 	
 	private Long patientCaseId;
 	
 	private LocalDate appointmentDate;
 	
+	@NotNull(message = "Start time cannot be null")
 	private LocalTime startTime;
 	
 	private LocalTime endTime;

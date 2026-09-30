@@ -80,6 +80,7 @@ public class DoctorService {
 		return doctorResponseDto;
 	}
 
+	
 //	Method to check if doctor exists by id from the database
 	public boolean isDoctorExistsById(Long id) {
 		logger.info("Checking if Doctor exists with id " + id + " in the database");
