@@ -44,10 +44,10 @@ public class Patient {
 	@Column(name = "DOB")
 	private LocalDate dob;
 
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL" , unique = true)
 	private String email;
 
-	@Column(name = "PHONE")
+	@Column(name = "PHONE" , unique = true)
 	private String phone;
 
 	@Column(name = "ADDRESS")

@@ -24,7 +24,7 @@ public class Doctor {
 	@Column(name = "LAST_NAME")
 	private String lastName;
 
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", unique = true)
 	private String email;
 
 	@Column(name = "PHONE")
@@ -33,7 +33,7 @@ public class Doctor {
 	@Column(name = "SPECIALIZATION_ID")
 	private Long specializationId;
 
-	@Column(name = "DOCTOR_REGISTRATION_NO")
+	@Column(name = "DOCTOR_REGISTRATION_NO", unique = true)
 	private String doctorRegistrationNo;
 
 	@Enumerated(EnumType.STRING)

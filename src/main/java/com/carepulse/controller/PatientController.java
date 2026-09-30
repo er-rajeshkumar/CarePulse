@@ -68,6 +68,7 @@ public class PatientController {
 		return response;
 	}
 
+//	Add a new patient
 	@PostMapping("/carepulse/patients")
 	public Map<String, Object> addPatient(@Valid @RequestBody PatientCreateRequestDto request) {
 

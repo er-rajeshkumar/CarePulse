@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.carepulse.dto.DoctorCreateRequestDto;
 import com.carepulse.dto.DoctorResponseDto;
+import com.carepulse.dto.updateDto.DoctorUpdateRequestDto;
 import com.carepulse.entity.Doctor;
 import com.carepulse.entity.Status;
 import com.carepulse.exception.DuplicateEntityException;
 import com.carepulse.exception.EntityNotFoundException;
 import com.carepulse.repository.DoctorRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class DoctorService {
@@ -85,24 +88,19 @@ public class DoctorService {
 	}
 
 //	Method to update doctor by id from the database
-	public DoctorResponseDto updateDoctorById(Long id, DoctorCreateRequestDto doctorCreateRequestDto) {
+	@Transactional
+	public DoctorResponseDto updateDoctorById(Long id, DoctorUpdateRequestDto doctorCreateRequestDto) {
 		logger.info("Updating Doctor with id " + id + " in the database");
 		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
 				.orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + id));
-		doctor.setFirstName(doctorCreateRequestDto.getFirstName());
-		doctor.setLastName(doctorCreateRequestDto.getLastName());
-		doctor.setSex(doctorCreateRequestDto.getSex());
-		doctor.setSpecializationId(doctorCreateRequestDto.getSpecializationId());
-		doctor.setEmail(doctorCreateRequestDto.getEmail());
-		doctor.setPhone(doctorCreateRequestDto.getPhone());
-		doctor.setDoctorRegistrationNo(doctorCreateRequestDto.getDoctorRegistrationNo());
-		doctor.setStatus(Status.ACTIVE);
+		modifyDoctorEntity(doctor, doctorCreateRequestDto);
 		doctor.setUpdatedAt(java.time.LocalDateTime.now());
 		doctorRepository.save(doctor);
 		return mapToDto(doctor);
 	}
 
 //	Method to add new doctor to the database
+	@Transactional
 	public DoctorResponseDto addDoctor(DoctorCreateRequestDto doctorCreateRequestDto) {
 		logger.info("Adding new Doctor to the database");
 		logger.debug("DoctorCreateRequestDto: " + doctorCreateRequestDto.toString());
@@ -131,6 +129,7 @@ public class DoctorService {
 	}
 
 //	Delete doctor by id from the database
+	@Transactional
 	public DoctorResponseDto deleteDoctorById(Long id) {
 		logger.info("Deleting Doctor with id " + id + " from the database");
 		Doctor doctor = doctorRepository.findByDoctorIdAndStatus(id, Status.ACTIVE)
@@ -159,6 +158,49 @@ public class DoctorService {
 		dto.setPhone(doctor.getPhone());
 		dto.setDoctorRegistrationNo(doctor.getDoctorRegistrationNo());
 		return dto;
+	}
+	
+	
+//	Helper method to map DoctorCreateRequestDto to Doctor entity
+	private Doctor mapCreateDtoToDoctor(DoctorCreateRequestDto doctorCreateRequestDto) {
+		Doctor doctor = new Doctor();
+		doctor.setFirstName(doctorCreateRequestDto.getFirstName());
+		doctor.setLastName(doctorCreateRequestDto.getLastName());
+		doctor.setSex(doctorCreateRequestDto.getSex());
+		doctor.setSpecializationId(doctorCreateRequestDto.getSpecializationId());
+		doctor.setEmail(doctorCreateRequestDto.getEmail());
+		doctor.setPhone(doctorCreateRequestDto.getPhone());
+		doctor.setDoctorRegistrationNo(doctorCreateRequestDto.getDoctorRegistrationNo());
+		return doctor;
+	}
+	
+//	Helper method to modify doctor entity with DoctorCreateRequestDto
+	private Doctor modifyDoctorEntity(Doctor doctor, DoctorUpdateRequestDto doctorCreateRequestDto) {
+		if (doctorCreateRequestDto.getFirstName() != null) {
+			doctor.setFirstName(doctorCreateRequestDto.getFirstName());
+		}
+		if (doctorCreateRequestDto.getLastName() != null) {
+			doctor.setLastName(doctorCreateRequestDto.getLastName());
+		}
+		if (doctorCreateRequestDto.getSex() != null) {
+			doctor.setSex(doctorCreateRequestDto.getSex());
+		}
+		if (doctorCreateRequestDto.getSpecializationId() != null) {
+			doctor.setSpecializationId(doctorCreateRequestDto.getSpecializationId());
+		}
+		if (doctorCreateRequestDto.getEmail() != null) {
+			doctor.setEmail(doctorCreateRequestDto.getEmail());
+		}
+		if (doctorCreateRequestDto.getPhone() != null) {
+			doctor.setPhone(doctorCreateRequestDto.getPhone());
+		}
+		if (doctorCreateRequestDto.getDoctorRegistrationNo() != null) {
+			doctor.setDoctorRegistrationNo(doctorCreateRequestDto.getDoctorRegistrationNo());
+		}
+		if (doctorCreateRequestDto.getStatus() != null) {
+			doctor.setStatus(doctorCreateRequestDto.getStatus());
+		}
+		return doctor;
 	}
 
 }

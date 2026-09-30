@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.carepulse.dto.DoctorCreateRequestDto;
 import com.carepulse.dto.DoctorResponseDto;
+import com.carepulse.dto.updateDto.DoctorUpdateRequestDto;
 import com.carepulse.service.DoctorService;
 
 import jakarta.validation.Valid;
@@ -68,11 +69,11 @@ public class DoctorController {
 //	Update doctor by id
 	@PutMapping("/carepulse/doctors/{id}")
 	public Map<String, Object> updateDoctorById(@PathVariable Long id,
-			@Valid @RequestBody DoctorCreateRequestDto doctorCreateRequestDto) {
+			@Valid @RequestBody DoctorUpdateRequestDto doctorUpdateRequestDto) {
 		Map<String, Object> response = new java.util.HashMap<>();
 		response.put("message", "Doctor updated successfully");
 		response.put("status", "success");
-		response.put("data", doctorService.updateDoctorById(id, doctorCreateRequestDto));
+		response.put("data", doctorService.updateDoctorById(id, doctorUpdateRequestDto));
 		return response;
 	}
 

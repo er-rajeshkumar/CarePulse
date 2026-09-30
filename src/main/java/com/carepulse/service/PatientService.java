@@ -16,6 +16,8 @@ import com.carepulse.exception.EntityNotFoundException;
 import com.carepulse.exception.PatientNotFoundException;
 import com.carepulse.repository.PatientRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class PatientService {
 
@@ -85,6 +87,8 @@ public class PatientService {
 		return dto;
 	}
 
+	// Method to add a new patient to the database
+	@Transactional
 	public PatientResponseDto addPatient(PatientCreateRequestDto request) {
 
 		if (patientRepository.existsByEmail(request.getEmail())) {
@@ -102,17 +106,18 @@ public class PatientService {
 		return dto;
 	}
 
+	// Method to update an existing patient in the database
+	@Transactional
 	public PatientResponseDto updatePatient(Long id, PatientUpdateRequestDto request) {
-		boolean exists = patientRepository.existsById(id);
-		if (!exists) {
-			throw new EntityNotFoundException("Patient not found with id: " + id);
-		}
-		Patient existingPatient = convertUpdateDtoToEntity(request, id);
-		logger.info("Updated patient with id: " + id);
-		logger.debug("Updated patient details: " + existingPatient.toString());
+		Patient existingPatient = patientRepository.findByPatientIdAndStatus(id, Status.ACTIVE)
+				.orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + id + " or already deleted"));
+		modifyPatientEntity(existingPatient, request);
+		patientRepository.save(existingPatient);
 		return convertToDto(existingPatient);
 	}
 
+	// Method to delete a patient from the database
+	@Transactional
 	public Patient deletePatient(Long id) {
 		boolean exists = patientRepository.existsById(id);
 		if (!exists) {
@@ -203,5 +208,38 @@ public class PatientService {
 		
 		
 		return patient;
+	}
+	
+//	Helper method to modify Patient entity with PatientUpdateRequestDto
+	public Patient modifyPatientEntity(Patient existingPatient, PatientUpdateRequestDto request) {
+		if (request.getFirstName() != null) {
+			existingPatient.setFirstName(request.getFirstName());
+		}
+		if (request.getMiddleName() != null) {
+			existingPatient.setMiddleName(request.getMiddleName());
+		}
+		if (request.getLastName() != null) {
+			existingPatient.setLastName(request.getLastName());
+		}
+		if (request.getPhone() != null) {
+			existingPatient.setPhone(request.getPhone());
+		}
+		if (request.getEmail() != null) {
+			existingPatient.setEmail(request.getEmail());
+		}
+		if (request.getSex() != null) {
+			existingPatient.setSex(request.getSex());
+		}
+		if (request.getAddress() != null) {
+			existingPatient.setAddress(request.getAddress());
+		}
+		if (request.getStatus() != null) {
+			existingPatient.setStatus(request.getStatus());
+		}
+		if (request.getDob() != null) {
+			existingPatient.setDob(request.getDob());
+		}
+		
+		return existingPatient;
 	}
 }
