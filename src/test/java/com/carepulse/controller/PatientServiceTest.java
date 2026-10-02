@@ -9,9 +9,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.carepulse.dto.PatientResponseDto;
+import com.carepulse.dto.responceDto.PatientResponseDto;
 import com.carepulse.entity.Patient;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 import com.carepulse.repository.PatientRepository;
 import com.carepulse.service.PatientService;
 

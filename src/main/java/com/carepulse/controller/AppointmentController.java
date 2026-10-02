@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carepulse.dto.AppointmentCreateRequestDto;
+import com.carepulse.dto.createDto.AppointmentCreateRequestDto;
 import com.carepulse.dto.updateDto.AppointmentUpdateRequestDto;
 import com.carepulse.service.AppointmentService;
 

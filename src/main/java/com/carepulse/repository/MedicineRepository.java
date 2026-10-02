@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.carepulse.entity.Medicine;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 
 public interface MedicineRepository extends JpaRepository<Medicine, Long> {
 

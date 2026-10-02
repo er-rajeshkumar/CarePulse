@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carepulse.dto.FollowUpCreateRequestDto;
-import com.carepulse.dto.FollowUpDetailedResponseDto;
+import com.carepulse.dto.createDto.FollowUpCreateRequestDto;
+import com.carepulse.dto.responceDto.FollowUpDetailedResponseDto;
 import com.carepulse.service.FollowUpService;
 
 import jakarta.validation.Valid;

@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.MedicationCreateRequestDto;
-import com.carepulse.dto.MedicationResponseDto;
+import com.carepulse.dto.createDto.MedicationCreateRequestDto;
+import com.carepulse.dto.responceDto.MedicationResponseDto;
 import com.carepulse.entity.Doctor;
 import com.carepulse.entity.Medication;
 import com.carepulse.entity.Medicine;

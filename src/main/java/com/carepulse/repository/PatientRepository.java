@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.carepulse.entity.Patient;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
@@ -21,4 +21,6 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 	boolean existsByPhone(String phoneNumber);
 	
 	boolean existsById(Long id);
+	
+	long count();
 }

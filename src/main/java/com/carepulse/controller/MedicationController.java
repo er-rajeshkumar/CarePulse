@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carepulse.dto.MedicationCreateRequestDto;
-import com.carepulse.dto.MedicationResponseDto;
+import com.carepulse.dto.createDto.MedicationCreateRequestDto;
+import com.carepulse.dto.responceDto.MedicationResponseDto;
 import com.carepulse.service.MedicationService;
 
 import jakarta.validation.Valid;

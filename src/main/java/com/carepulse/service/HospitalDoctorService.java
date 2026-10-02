@@ -7,15 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.DoctorResponseDto;
-import com.carepulse.dto.HospitalDoctorCreateRequestDto;
-import com.carepulse.dto.HospitalDoctorDetailedResponseDto;
-import com.carepulse.dto.HospitalDoctorResponseDto;
-import com.carepulse.dto.HospitalResponseDto;
+import com.carepulse.dto.createDto.HospitalDoctorCreateRequestDto;
+import com.carepulse.dto.responceDto.DoctorResponseDto;
+import com.carepulse.dto.responceDto.HospitalDoctorDetailedResponseDto;
+import com.carepulse.dto.responceDto.HospitalDoctorResponseDto;
+import com.carepulse.dto.responceDto.HospitalResponseDto;
 import com.carepulse.entity.Doctor;
 import com.carepulse.entity.Hospital;
 import com.carepulse.entity.HospitalDoctor;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 import com.carepulse.exception.HospitalDoctorException;
 import com.carepulse.repository.HospitalDoctorRepository;
 

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carepulse.dto.DoctorCreateRequestDto;
-import com.carepulse.dto.DoctorResponseDto;
+import com.carepulse.dto.createDto.DoctorCreateRequestDto;
+import com.carepulse.dto.responceDto.DoctorResponseDto;
 import com.carepulse.dto.updateDto.DoctorUpdateRequestDto;
 import com.carepulse.service.DoctorService;
 

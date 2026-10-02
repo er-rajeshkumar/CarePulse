@@ -6,11 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.PatientCreateRequestDto;
-import com.carepulse.dto.PatientResponseDto;
+import com.carepulse.dto.createDto.PatientCreateRequestDto;
+import com.carepulse.dto.responceDto.PatientResponseDto;
 import com.carepulse.dto.updateDto.PatientUpdateRequestDto;
 import com.carepulse.entity.Patient;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 import com.carepulse.exception.DuplicateEntityException;
 import com.carepulse.exception.EntityNotFoundException;
 import com.carepulse.exception.PatientNotFoundException;

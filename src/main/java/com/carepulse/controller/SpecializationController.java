@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carepulse.dto.SpecializationCreateRequestDto;
 import com.carepulse.dto.SpecializationResponseDto;
+import com.carepulse.dto.createDto.SpecializationCreateRequestDto;
 import com.carepulse.service.SpecializationService;
 
 import jakarta.validation.Valid;

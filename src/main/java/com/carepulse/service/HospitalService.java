@@ -6,10 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.HospitalCreateRequestDto;
-import com.carepulse.dto.HospitalResponseDto;
+import com.carepulse.dto.responceDto.HospitalCreateRequestDto;
+import com.carepulse.dto.responceDto.HospitalResponseDto;
 import com.carepulse.entity.Hospital;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 import com.carepulse.exception.DuplicateEntityException;
 import com.carepulse.exception.HospitalNotFoundException;
 import com.carepulse.repository.HospitalRepository;

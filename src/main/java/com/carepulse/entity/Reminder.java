@@ -3,6 +3,10 @@ package com.carepulse.entity;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import com.carepulse.enums.ReminderType;
+import com.carepulse.enums.RepeatType;
+import com.carepulse.enums.Status;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

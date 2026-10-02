@@ -3,7 +3,7 @@ package com.carepulse.dto.updateDto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import com.carepulse.entity.AppointmentStatus;
+import com.carepulse.enums.AppointmentStatus;
 
 import jakarta.validation.constraints.Positive;
 

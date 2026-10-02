@@ -3,8 +3,8 @@ package com.carepulse.dto.updateDto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import com.carepulse.entity.Sex;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Sex;
+import com.carepulse.enums.Status;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

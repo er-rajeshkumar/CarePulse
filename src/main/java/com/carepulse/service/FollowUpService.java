@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.FollowUpCreateRequestDto;
-import com.carepulse.dto.FollowUpDetailedResponseDto;
+import com.carepulse.dto.createDto.FollowUpCreateRequestDto;
+import com.carepulse.dto.responceDto.FollowUpDetailedResponseDto;
 import com.carepulse.entity.Doctor;
 import com.carepulse.entity.FollowUp;
 import com.carepulse.entity.Hospital;

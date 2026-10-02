@@ -8,10 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.PatientCaseCreateRequestDto;
-import com.carepulse.dto.PatientCaseDetailedResponseDto;
-import com.carepulse.entity.CaseStatus;
+import com.carepulse.dto.createDto.PatientCaseCreateRequestDto;
+import com.carepulse.dto.responceDto.PatientCaseDetailedResponseDto;
 import com.carepulse.entity.PatientCase;
+import com.carepulse.enums.CaseStatus;
 import com.carepulse.exception.PatientNotFoundException;
 import com.carepulse.repository.DoctorRepository;
 import com.carepulse.repository.HospitalRepository;

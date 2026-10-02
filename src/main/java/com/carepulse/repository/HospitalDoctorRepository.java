@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.carepulse.entity.HospitalDoctor;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 
 public interface HospitalDoctorRepository extends JpaRepository<HospitalDoctor, Long> {
 
@@ -26,4 +26,9 @@ public interface HospitalDoctorRepository extends JpaRepository<HospitalDoctor, 
 	Optional<HospitalDoctor> findByHospital_HospitalIdAndDoctor_DoctorId(Long hospitalId, Long doctorId);
 
 	boolean existsByHospital_HospitalIdAndDoctor_DoctorId(Long hospitalId, Long doctorId);
+	
+	long countByHospital_HospitalIdAndStatus(Long hospitalId, Status status);
+	long countByHospital_HospitalId(Long hospitalId);
+	
+	
 }

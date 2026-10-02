@@ -6,10 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.SpecializationCreateRequestDto;
 import com.carepulse.dto.SpecializationResponseDto;
+import com.carepulse.dto.createDto.SpecializationCreateRequestDto;
 import com.carepulse.entity.Specialization;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 import com.carepulse.exception.SpecializationException;
 import com.carepulse.repository.SpecializationRepository;
 
@@ -51,7 +51,7 @@ public class SpecializationService {
 	public List<SpecializationResponseDto> getAllActiveSpecializations() {
 		logger.info("Fetching all active Specializations from the database");
 		List<Specialization> specializations = specializationRepository
-				.findAllByStatus(com.carepulse.entity.Status.ACTIVE);
+				.findAllByStatus(com.carepulse.enums.Status.ACTIVE);
 		List<SpecializationResponseDto> specializationResponseDtos = new java.util.ArrayList<>();
 		for (Specialization specialization : specializations) {
 			logger.info("Specialization ID: {}, Name: {}", specialization.getSpecializationId(),

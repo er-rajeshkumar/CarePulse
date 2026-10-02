@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.HospitalPatientCreateRequestDto;
-import com.carepulse.dto.HospitalPatientDetailedResponseDto;
+import com.carepulse.dto.createDto.HospitalPatientCreateRequestDto;
+import com.carepulse.dto.responceDto.HospitalPatientDetailedResponseDto;
 import com.carepulse.entity.Hospital;
 import com.carepulse.entity.HospitalPatient;
 import com.carepulse.entity.Patient;

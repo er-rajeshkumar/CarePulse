@@ -3,6 +3,8 @@ package com.carepulse.entity;
 import java.time.LocalDate;
 import java.util.Date;
 
+import com.carepulse.enums.Status;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

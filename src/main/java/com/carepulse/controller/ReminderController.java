@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carepulse.dto.ReminderCreateRequestDto;
-import com.carepulse.dto.ReminderDetailedResponseDto;
+import com.carepulse.dto.createDto.ReminderCreateRequestDto;
+import com.carepulse.dto.responceDto.ReminderDetailedResponseDto;
 import com.carepulse.service.ReminderService;
 
 import jakarta.validation.Valid;

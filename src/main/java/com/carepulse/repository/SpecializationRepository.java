@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.carepulse.entity.Specialization;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 
 public interface SpecializationRepository extends JpaRepository<Specialization, Long> {
 

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carepulse.dto.HospitalDoctorCreateRequestDto;
-import com.carepulse.dto.HospitalDoctorDetailedResponseDto;
+import com.carepulse.dto.createDto.HospitalDoctorCreateRequestDto;
+import com.carepulse.dto.responceDto.HospitalDoctorDetailedResponseDto;
 import com.carepulse.service.HospitalDoctorService;
 
 import jakarta.validation.Valid;

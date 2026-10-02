@@ -8,10 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.carepulse.dto.MedicineCreateRequestDto;
-import com.carepulse.dto.MedicineResponseDto;
+import com.carepulse.dto.createDto.MedicineCreateRequestDto;
+import com.carepulse.dto.responceDto.MedicineResponseDto;
 import com.carepulse.entity.Medicine;
-import com.carepulse.entity.Status;
+import com.carepulse.enums.Status;
 import com.carepulse.exception.MedicineException;
 import com.carepulse.repository.MedicineRepository;
 
