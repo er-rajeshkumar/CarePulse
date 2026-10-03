@@ -1,14 +1,19 @@
 package com.carepulse.dto.responceDto;
 
+import java.util.List;
+
 public class AdminDashboardResponseDto {
 
     private Long totalPatients;
     private Long totalDoctors;
     private Long totalHospitals;
-
     private Long totalAppointments;
-
     private Long activeCases;
+
+    private List<StatusWisePatientCountDto> statusWisePatientCounts;
+    private List<HospitalCountDto> hospitalWiseDoctorCounts;
+    private List<HospitalCountDto> hospitalWisePatientCounts;
+    
 
 	public Long getTotalPatients() {
 		return totalPatients;
@@ -49,6 +54,30 @@ public class AdminDashboardResponseDto {
 	public void setActiveCases(Long activeCases) {
 		this.activeCases = activeCases;
 	}
-    
-    
+
+	public List<StatusWisePatientCountDto> getStatusWisePatientCounts() {
+		return statusWisePatientCounts;
+	}
+
+	public void setStatusWisePatientCounts(List<StatusWisePatientCountDto> statusWisePatientCounts) {
+		this.statusWisePatientCounts = statusWisePatientCounts;
+	}
+
+	public List<HospitalCountDto> getHospitalWiseDoctorCounts() {
+		return hospitalWiseDoctorCounts;
+	}
+
+	public void setHospitalWiseDoctorCounts(List<HospitalCountDto> hospitalWiseDoctorCounts) {
+		this.hospitalWiseDoctorCounts = hospitalWiseDoctorCounts;
+	}
+
+	public List<HospitalCountDto> getHospitalWisePatientCounts() {
+		return hospitalWisePatientCounts;
+	}
+
+	public void setHospitalWisePatientCounts(List<HospitalCountDto> hospitalWisePatientCounts) {
+		this.hospitalWisePatientCounts = hospitalWisePatientCounts;
+	}
+
+
 }

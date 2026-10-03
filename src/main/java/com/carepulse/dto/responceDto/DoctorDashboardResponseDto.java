@@ -50,6 +50,6 @@ public class DoctorDashboardResponseDto {
 	public void setActiveCaseCount(Long activeCaseCount) {
 		this.activeCaseCount = activeCaseCount;
 	}
-    
-    
+
+
 }

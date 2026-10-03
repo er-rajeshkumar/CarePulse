@@ -26,9 +26,9 @@ public class DoctorCreateRequestDto {
 	private LocalDateTime createdAt;
 
 	private Status status;
-	
-	
-	
+
+
+
 	public Status getStatus() {
 		return status;
 	}

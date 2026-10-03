@@ -18,11 +18,11 @@ import jakarta.validation.Valid;
 public class AppointmentController {
 
 	private final AppointmentService appointmentService;
-	
+
 	public AppointmentController(AppointmentService appointmentService) {
 		this.appointmentService = appointmentService;
 	}
-	
+
 //	Method to test appointment service
 	@GetMapping("/carepulse/appointments/test")
 	public Map<String, Object> testAppointmentService() {
@@ -32,7 +32,7 @@ public class AppointmentController {
 		response.put("data", appointmentService.getAppointmentMessage());
 		return response;
 	}
-	
+
 //	Method to get all appointments
 	@GetMapping("/carepulse/appointments")
 	public Map<String, Object> getAllAppointments() {
@@ -52,7 +52,7 @@ public class AppointmentController {
 		response.put("data", appointmentService.getAppointmentById(id));
 		return response;
 	}
-	
+
 //	Method to get appointments by doctor ID
 	@GetMapping("/carepulse/appointments/doctor/{doctorId}")
 	public Map<String, Object> getAppointmentsByDoctorId(@PathVariable Long doctorId) {
@@ -62,7 +62,7 @@ public class AppointmentController {
 		response.put("data", appointmentService.getAppointmentsByDoctorId(doctorId));
 		return response;
 	}
-	
+
 //	Method to get appointments by patient ID
 	@GetMapping("/carepulse/appointments/patient/{patientId}")
 	public Map<String, Object> getAppointmentsByPatientId(@PathVariable Long patientId) {
@@ -72,7 +72,7 @@ public class AppointmentController {
 		response.put("data", appointmentService.getAppointmentsByPatientId(patientId));
 		return response;
 	}
-	
+
 //	Method to get appointments by hospital ID
 	@GetMapping("/carepulse/appointments/hospital/{hospitalId}")
 	public Map<String, Object> getAppointmentsByHospitalId(@PathVariable Long hospitalId) {
@@ -82,7 +82,7 @@ public class AppointmentController {
 		response.put("data", appointmentService.getAppointmentsByHospitalId(hospitalId));
 		return response;
 	}
-	
+
 //	Method to add a new appointment
 	@PostMapping("/carepulse/appointments/")
 	public Map<String, Object> addAppointment(@Valid @RequestBody AppointmentCreateRequestDto appointmentRequest) {
@@ -92,7 +92,7 @@ public class AppointmentController {
 		response.put("data", appointmentService.addAppointment(appointmentRequest));
 		return response;
 	}
-	
+
 
 //	Method to update an existing appointment
 	@PostMapping("/carepulse/appointments/{id}")
@@ -103,6 +103,6 @@ public class AppointmentController {
 		response.put("data", appointmentService.updateAppointment(id, appointmentRequest));
 		return response;
 	}
-	
-	
+
+
 }

@@ -27,7 +27,7 @@ public class PatientCreateRequestDto {
 	private Status status = Status.ACTIVE;
 
 	private LocalDate dob;
-	
+
 	public String getFirstName() {
 		return firstName;
 	}

@@ -157,7 +157,7 @@ public class PatientService {
 
 	    return dto;
 	}
-	
+
 //	Helper method to convert PatientCreateRequestDto to Patient entity
 	public Patient convertCreateDtoToEntity(PatientCreateRequestDto request) {
 		Patient patient = new Patient();
@@ -172,8 +172,8 @@ public class PatientService {
 		patient.setAddress(request.getAddress());
 		return patient;
 	}
-	
-	
+
+
 //	Helper method to convert PatientUpdateRequestDto to Patient entity
 	public Patient convertUpdateDtoToEntity(PatientUpdateRequestDto request, Long id) {
 		Patient patient = new Patient();
@@ -205,11 +205,11 @@ public class PatientService {
 		if (request.getDob() != null) {
 			patient.setDob(request.getDob());
 		}
-		
-		
+
+
 		return patient;
 	}
-	
+
 //	Helper method to modify Patient entity with PatientUpdateRequestDto
 	public Patient modifyPatientEntity(Patient existingPatient, PatientUpdateRequestDto request) {
 		if (request.getFirstName() != null) {
@@ -239,7 +239,7 @@ public class PatientService {
 		if (request.getDob() != null) {
 			existingPatient.setDob(request.getDob());
 		}
-		
+
 		return existingPatient;
 	}
 }

@@ -8,29 +8,29 @@ import com.carepulse.enums.AppointmentStatus;
 import jakarta.validation.constraints.Positive;
 
 public class AppointmentUpdateRequestDto {
-	
-	@Positive(message = "Patient ID must be a positive number")	
+
+	@Positive(message = "Patient ID must be a positive number")
 	private Long patientId;
-	
+
 	@Positive(message = "Doctor ID must be a positive number")
 	private Long doctorId;
-	
+
 	@Positive(message = "Hospital ID must be a positive number")
 	private Long hospitalId;
-	
+
 	@Positive(message = "Patient Case ID must be a positive number")
 	private Long patientCaseId;
-	
+
 	private LocalDate appointmentDate;
-	
+
 	private LocalTime startTime;
-	
+
 	private LocalTime endTime;
-	
+
 	private AppointmentStatus status;
-	
+
 	private String reason;
-	
+
 	private String notes;
 
 	public Long getPatientId() {
@@ -112,5 +112,5 @@ public class AppointmentUpdateRequestDto {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
+
 }

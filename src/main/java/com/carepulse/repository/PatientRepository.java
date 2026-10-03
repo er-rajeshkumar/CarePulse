@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.carepulse.entity.Patient;
 import com.carepulse.enums.Status;
@@ -19,8 +20,14 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 	boolean existsByEmail(String email);
 
 	boolean existsByPhone(String phoneNumber);
-	
+
+	@Override
 	boolean existsById(Long id);
-	
-	long count();
+
+	@Query("""
+		       SELECT p.status, COUNT(p)
+		       FROM Patient p
+		       GROUP BY p.status
+		       """)
+	List<Object[]> getPatientCountByStatus();
 }

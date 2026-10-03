@@ -85,7 +85,7 @@ public class DoctorController {
 		response.put("message", "Doctor added successfully");
 		response.put("status", "success");
 		response.put("data", newDoctor);
-		
+
 		return response;
 	}
 

@@ -14,7 +14,7 @@ import jakarta.validation.constraints.Pattern;
 
 public class HospitalCreateRequestDto {
 
-	
+
 	private Long hospitalId;
 
 	@NotNull(message = "Hospital code cannot be null")

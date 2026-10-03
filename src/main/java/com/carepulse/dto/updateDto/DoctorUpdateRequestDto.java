@@ -25,8 +25,8 @@ public class DoctorUpdateRequestDto {
 	private Sex sex;
 	private LocalDateTime updatedAt;
 	private Status status;
-	
-	
+
+
 	public Status getStatus() {
 		return status;
 	}
@@ -81,6 +81,6 @@ public class DoctorUpdateRequestDto {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
+
+
 }

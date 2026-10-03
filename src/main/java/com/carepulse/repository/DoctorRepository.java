@@ -19,5 +19,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 	boolean existsByDoctorRegistrationNo(String doctorRegistrationNo);
 
 	boolean existsByDoctorId(Long doctorId);
+	@Override
 	long count();
 }

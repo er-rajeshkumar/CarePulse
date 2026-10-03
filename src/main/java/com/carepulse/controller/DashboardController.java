@@ -14,11 +14,11 @@ import com.carepulse.service.DashboardService;
 public class DashboardController {
 
 	private final DashboardService dashboardService;
-	
+
 	public DashboardController(DashboardService dashboardService) {
 		this.dashboardService = dashboardService;
 	}
-	
+
 	@GetMapping("/patient/{patientId}")
 	public Map<String, Object> getPatientDashboard(@PathVariable Long patientId) {
 		Map<String, Object> response = new java.util.HashMap<>();
@@ -27,7 +27,7 @@ public class DashboardController {
 		response.put("data", dashboardService.getPatientDashboard(patientId));
 		return response;
 	}
-	
+
 
 	@GetMapping("/doctor/{doctorId}")
 	public Map<String, Object> getDoctorDashboard(@PathVariable Long doctorId) {

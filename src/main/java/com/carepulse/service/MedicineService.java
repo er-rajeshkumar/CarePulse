@@ -67,7 +67,7 @@ public class MedicineService {
 		return medicineResponseDtos;
 	}
 
-//	Method to get medicine by ID 
+//	Method to get medicine by ID
 	public MedicineResponseDto getMedicineById(Long medicineId) {
 		logger.info("Fetching medicine with ID: {} from the database", medicineId);
 		boolean isExists = medicineRepository.existsById(medicineId);

@@ -80,7 +80,7 @@ public class DoctorService {
 		return doctorResponseDto;
 	}
 
-	
+
 //	Method to check if doctor exists by id from the database
 	public boolean isDoctorExistsById(Long id) {
 		logger.info("Checking if Doctor exists with id " + id + " in the database");
@@ -160,8 +160,8 @@ public class DoctorService {
 		dto.setDoctorRegistrationNo(doctor.getDoctorRegistrationNo());
 		return dto;
 	}
-	
-	
+
+
 //	Helper method to map DoctorCreateRequestDto to Doctor entity
 	private Doctor mapCreateDtoToDoctor(DoctorCreateRequestDto doctorCreateRequestDto) {
 		Doctor doctor = new Doctor();
@@ -174,7 +174,7 @@ public class DoctorService {
 		doctor.setDoctorRegistrationNo(doctorCreateRequestDto.getDoctorRegistrationNo());
 		return doctor;
 	}
-	
+
 //	Helper method to modify doctor entity with DoctorCreateRequestDto
 	private Doctor modifyDoctorEntity(Doctor doctor, DoctorUpdateRequestDto doctorCreateRequestDto) {
 		if (doctorCreateRequestDto.getFirstName() != null) {

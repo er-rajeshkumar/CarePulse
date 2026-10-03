@@ -8,6 +8,7 @@ public class PatientDashboardResponseDto {
     private String patientName;
 
     private Long activeCasesCount;
+    
     private Long appointmentCount;
 
     private String primaryDoctorName;
@@ -70,6 +71,6 @@ public class PatientDashboardResponseDto {
 	public void setNextAppointmentDate(LocalDate nextAppointmentDate) {
 		this.nextAppointmentDate = nextAppointmentDate;
 	}
-    
-    
+
+
 }

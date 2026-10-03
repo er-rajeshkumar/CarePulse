@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Entity not found");
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
-	
+
 	@ExceptionHandler(DuplicateEntityException.class)
 	public ResponseEntity<Map<String, String>> handleDuplicateEntity(DuplicateEntityException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Duplicate entity");
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
 	}
-	
+
 	@ExceptionHandler(PatientNotFoundException.class)
 	public ResponseEntity<Map<String, String>> handlePatientNotFound(PatientNotFoundException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Patient not found");
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
-	
+
 	@ExceptionHandler(DoctorNotFoundException.class)
 	public ResponseEntity<Map<String, String>> handleDoctorNotFound(DoctorNotFoundException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Doctor not found");
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
-	
+
 	@ExceptionHandler(SpecializationException.class)
 	public ResponseEntity<Map<String, String>> handleSpecializationException(SpecializationException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -51,7 +51,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Specialization not found");
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	}
-	
+
 	@ExceptionHandler(IllegalArgumentException.class)
 	public ResponseEntity<Map<String, String>> handleIllegalArgumentException(IllegalArgumentException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Invalid argument Enter valid parameter");
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	}
-	
+
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Map<String, String>> handleGenericException(Exception exception) {
 		Map<String, String> response = new HashMap<>();
@@ -67,7 +67,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Internal Server Error");
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 	}
-	
+
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<Map<String, String>> handleRuntimeException(RuntimeException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -75,7 +75,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Runtime Exception");
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 	}
-	
+
 	@ExceptionHandler(NullPointerException.class)
 	public ResponseEntity<Map<String, String>> handleNullPointerException(NullPointerException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -83,7 +83,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Null Pointer Exception");
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 	}
-	
+
 	@ExceptionHandler(IllegalStateException.class)
 	public ResponseEntity<Map<String, String>> handleIllegalStateException(IllegalStateException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -91,7 +91,7 @@ public class GlobalExceptionHandler {
 		response.put("Issue", "Illegal State Exception");
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 	}
-	
+
 	@ExceptionHandler(UnsupportedOperationException.class)
 	public ResponseEntity<Map<String, String>> handleUnsupportedOperationException(UnsupportedOperationException exception) {
 		Map<String, String> response = new HashMap<>();
@@ -100,7 +100,7 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 	}
 
-	
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Map<String, Object>> handleValidationException(
 	        MethodArgumentNotValidException ex) {
@@ -121,5 +121,5 @@ public class GlobalExceptionHandler {
 
 	    return ResponseEntity.badRequest().body(response);
 	}
-	
+
 }

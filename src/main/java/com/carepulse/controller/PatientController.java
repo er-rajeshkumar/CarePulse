@@ -43,7 +43,7 @@ public class PatientController {
 		Map<String, Object> response = new HashMap<>();
 		response.put("message", "All patients retrieved successfully");
 		response.put("status", "success");
-		
+
 		response.put("data", patientService.getAllPatients());
 		return response;
 	}
@@ -110,7 +110,7 @@ public class PatientController {
 		response.put("patientId", deletedPatient.getPatientId());
 		response.put("status", "success");
 		response.put("deletedPatient", deletedPatient);
-		
+
 		return response;
 	}
 

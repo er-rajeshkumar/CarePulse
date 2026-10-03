@@ -30,7 +30,7 @@ public class PatientUpdateRequestDto {
 	private Status status = Status.ACTIVE;
 
 	private LocalDate dob;
-	
+
 	private LocalDateTime updatedAt;
 
 	public Long getPatientId() {
@@ -112,11 +112,11 @@ public class PatientUpdateRequestDto {
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
-	
+
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
-	
+
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}

@@ -23,6 +23,7 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
 	boolean existsByHospitalCode(String hospitalCode);
 
 	boolean existsByHospitalCodeAndHospitalIdNot(String hospitalCode, Long hospitalId);
+	@Override
 	long count();
 
 }

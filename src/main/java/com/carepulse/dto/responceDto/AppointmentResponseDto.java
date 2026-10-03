@@ -8,44 +8,44 @@ import com.carepulse.enums.AppointmentStatus;
 public class AppointmentResponseDto {
 
 	private Long appointmentId;
-	
+
 //	private Patient patient;
 	private Long patientId;
 	private String patientName;
 	private String patientEmail;
 	private String patientPhone;
-	
+
 //	private Doctor doctor;
 	private Long doctorId;
 	private String doctorName;
 	private String doctorEmail;
 	private String doctorPhone;
 	private String doctorSpecialization;
-	
+
 //	private Hospital hospital;
 	private Long hospitalId;
 	private String hospitalName;
 	private String hospitalAddress;
 	private String hospitalPhone;
 	private String hospitalEmail;
-	
+
 //	private PatientCase patientCase;
 	private Long patientCaseId;
 	private String patientCaseCaseTitle;
 	private String patientCaseDiagnosis;
-	
+
 	private LocalDate appointmentDate;
-	
+
 	private LocalTime startTime;
-	
+
 	private LocalTime endTime;
-	
+
 	private AppointmentStatus status;
-	
+
 	private String reason;
-	
+
 	private String notes;
-	
+
 	public Long getAppointmentId() {
 		return appointmentId;
 	}
@@ -54,7 +54,7 @@ public class AppointmentResponseDto {
 		this.appointmentId = appointmentId;
 	}
 
-	
+
 	public LocalDate getAppointmentDate() {
 		return appointmentDate;
 	}

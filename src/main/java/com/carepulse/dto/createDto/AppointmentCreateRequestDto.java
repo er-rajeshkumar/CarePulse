@@ -15,26 +15,26 @@ private Long appointmentId;
 	@NotNull(message = "Patient ID cannot be null")
 	@Positive(message = "Patient ID must be a positive number")
 	private Long patientId;
-	
+
 	private Long doctorId;
-	
+
 	@NotNull(message = "Hospital ID cannot be null")
 	@Positive(message = "Hospital ID must be a positive number")
 	private Long hospitalId;
-	
+
 	private Long patientCaseId;
-	
+
 	private LocalDate appointmentDate;
-	
+
 	@NotNull(message = "Start time cannot be null")
 	private LocalTime startTime;
-	
+
 	private LocalTime endTime;
-	
+
 	private AppointmentStatus status;
-	
+
 	private String reason;
-	
+
 	private String notes;
 
 	public Long getAppointmentId() {
@@ -124,6 +124,6 @@ private Long appointmentId;
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
+
 
 }

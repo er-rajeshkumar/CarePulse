@@ -8,8 +8,9 @@ import com.carepulse.entity.FollowUp;
 
 public interface FollowUpRepository extends JpaRepository<FollowUp, Long> {
 
+	@Override
 	boolean existsById(Long followUpId);
-	
+
 	List<FollowUp> findByPatientCaseId(Long patientCaseId);
 	List<FollowUp> findByPatientCase_Doctor_DoctorId(Long doctorId);
 	List<FollowUp> findByPatientCase_Patient_PatientId(Long patientId);

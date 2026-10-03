@@ -25,7 +25,7 @@ public class Appointment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "APPOINTMENT_ID")
 	private Long appointmentId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "PATIENT_ID")
 	private Patient patient;
@@ -33,11 +33,11 @@ public class Appointment {
 	@ManyToOne
 	@JoinColumn(name = "DOCTOR_ID")
 	private Doctor doctor;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "HOSPITAL_ID")
 	private Hospital hospital;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "PATIENT_CASE_ID")
 	private PatientCase patientCase;
@@ -45,26 +45,26 @@ public class Appointment {
 
 	@Column(name = "APPOINTMENT_DATE")
 	private LocalDate appointmentDate;
-	
+
 	@Column(name = "START_TIME")
 	private LocalTime startTime;
-	
+
 	@Column(name = "END_TIME")
 	private LocalTime endTime;
-	
+
 	@Column(name = "STATUS")
 	@Enumerated(EnumType.STRING)
 	private AppointmentStatus status;
-	
+
 	@Column(name = "REASON")
 	private String reason;
-	
+
 	@Column(name = "NOTES")
 	private String notes;
-	
+
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
-	
+
 	@Column(name = "UPDATED_AT")
 	private LocalDateTime updatedAt;
 
@@ -75,7 +75,7 @@ public class Appointment {
 	public void setAppointmentId(Long appointmentId) {
 		this.appointmentId = appointmentId;
 	}
-	
+
 
 	public Patient getPatient() {
 		return patient;
@@ -172,5 +172,5 @@ public class Appointment {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
+
 }

@@ -58,7 +58,7 @@ public class HospitalDashboardResponseDto {
 	public void setAppointmentCountToday(Long appointmentCountToday) {
 		this.appointmentCountToday = appointmentCountToday;
 	}
-    
-    
+
+
 
 }

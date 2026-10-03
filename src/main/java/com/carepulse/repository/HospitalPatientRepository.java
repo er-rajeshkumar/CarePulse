@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.carepulse.entity.HospitalPatient;
 
@@ -20,4 +21,15 @@ public interface HospitalPatientRepository extends JpaRepository<HospitalPatient
 	boolean existsByHospital_HospitalIdAndPatient_PatientId(Long hospitalId, Long patientId);
 
 	boolean existsByHospital_HospitalIdAndHospitalPatientNo(Long hospitalId, String hospitalPatientNo);
+
+	@Query("""
+			       SELECT hp.hospital.hospitalId,
+			              hp.hospital.hospitalName,
+			              COUNT(hp)
+			       FROM HospitalPatient hp
+			       GROUP BY hp.hospital.hospitalId,
+			                hp.hospital.hospitalName
+			""")
+	List<Object[]> getPatientCountByHospital();
+
 }

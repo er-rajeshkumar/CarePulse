@@ -31,7 +31,7 @@ public class AppointmentService {
 	private final PatientService patientService;
 	private final HospitalService hospitalService;
 	private final PatientCaseService patientCaseService;
-	
+
 	public AppointmentService(AppointmentRepository appointmentRepository,
 			DoctorService doctorService, PatientService patientService, HospitalService hospitalService,
 			PatientCaseService patientCaseService) {
@@ -41,7 +41,7 @@ public class AppointmentService {
 		this.hospitalService = hospitalService;
 		this.patientCaseService = patientCaseService;
 	}
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AppointmentService.class);
 	public void testLog() {
 		logger.trace("TRACE Log");
@@ -50,7 +50,7 @@ public class AppointmentService {
 		logger.warn("WARN Log");
 		logger.error("ERROR Log");
 	}
-	
+
 	public String getAppointmentMessage() {
 		return "Appointment Service is working";
 	}
@@ -64,7 +64,7 @@ public class AppointmentService {
 		}
 		return appointmentDtos;
 	}
-	
+
 	// Method to get appointment by id
 	public AppointmentResponseDto getAppointmentById(Long appointmentId) {
 		logger.info("Fetching Appointment with ID: {}", appointmentId);
@@ -72,7 +72,7 @@ public class AppointmentService {
 				.orElseThrow(() -> new EntityNotFoundException("Appointment not found with ID: " + appointmentId));
 		return mapToDto(appointment);
 	}
-	
+
 
 	// Method to get appointments by doctor id
 	public List<AppointmentResponseDto> getAppointmentsByDoctorId(Long doctorId) {
@@ -84,7 +84,7 @@ public class AppointmentService {
 		}
 		return appointmentDtos;
 	}
-	
+
 	// Method to get appointments by patient id
 	public List<AppointmentResponseDto> getAppointmentsByPatientId(Long patientId) {
 		logger.info("Fetching Appointments for Patient with ID: {}", patientId);
@@ -95,7 +95,7 @@ public class AppointmentService {
 		}
 		return appointmentDtos;
 	}
-	
+
 	// Method to get appointments by hospital id
 	public List<AppointmentResponseDto> getAppointmentsByHospitalId(Long hospitalId) {
 		logger.info("Fetching Appointments for Hospital with ID: {}", hospitalId);
@@ -106,8 +106,8 @@ public class AppointmentService {
 		}
 		return appointmentDtos;
 	}
-	
-	
+
+
 	// Method to add a new appointment
 	@Transactional
 	public AppointmentResponseDto addAppointment(AppointmentCreateRequestDto requestDto) {
@@ -117,55 +117,55 @@ public class AppointmentService {
 		Appointment savedAppointment = appointmentRepository.save(appointment);
 		return mapToDto(savedAppointment);
 	}
-	
+
 	// Method to update an existing appointment
 	@Transactional
 	public AppointmentResponseDto updateAppointment(Long appointmentId, AppointmentUpdateRequestDto requestDto) {
 		logger.info("Updating Appointment with ID: {}", appointmentId);
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId)
 				.orElseThrow(() -> new EntityNotFoundException("Appointment not found with ID: " + appointmentId));
-		
+
 		// Update the existing appointment with new values
 		updateDtoToEntity(existingAppointment, requestDto);
 		existingAppointment.setUpdatedAt(LocalDateTime.now());
-		
+
 		Appointment updatedAppointment = appointmentRepository.save(existingAppointment);
 		return mapToDto(updatedAppointment);
 	}
-	
-	
-	
+
+
+
 	//Helper method to convert Appointment entity to AppointmentResponseDto
 	private AppointmentResponseDto mapToDto(Appointment appointment) {
 		AppointmentResponseDto responseDto = new AppointmentResponseDto();
-		
+
 		Doctor doctor = appointment.getDoctor();
 		responseDto.setDoctorId(doctor.getDoctorId());
 		responseDto.setDoctorName(NameUtil.getFullName(doctor.getFirstName(), doctor.getLastName()));
 		responseDto.setDoctorSpecialization(doctor.getSpecializationId().toString());
 		responseDto.setDoctorEmail(doctor.getEmail());
 		responseDto.setDoctorPhone(doctor.getPhone());
-		
+
 		Patient patient = appointment.getPatient();
 		responseDto.setPatientId(patient.getPatientId());
 		responseDto.setPatientName(NameUtil.getFullName(patient.getFirstName(), patient.getLastName()));
 		responseDto.setPatientEmail(patient.getEmail());
 		responseDto.setPatientPhone(patient.getPhone());
-		
+
 		Hospital hospital = appointment.getHospital();
 		responseDto.setHospitalId(hospital.getHospitalId());
 		responseDto.setHospitalName(hospital.getHospitalName());
 		responseDto.setHospitalAddress(hospital.getHospitalAddress());
 		responseDto.setHospitalPhone(hospital.getHospitalPhone());
 		responseDto.setHospitalEmail(hospital.getHospitalEmail());
-		
+
 		PatientCase patientCase = appointment.getPatientCase();
 		if (patientCase != null) {
 		    responseDto.setPatientCaseId(patientCase.getId());
 		    responseDto.setPatientCaseCaseTitle(patientCase.getCaseTitle());
 		    responseDto.setPatientCaseDiagnosis(patientCase.getDiagnosis());
 		}
-		
+
 		responseDto.setAppointmentId(appointment.getAppointmentId());
 		responseDto.setAppointmentDate(appointment.getAppointmentDate());
 		responseDto.setStatus(appointment.getStatus());
@@ -178,17 +178,17 @@ public class AppointmentService {
 			responseDto.setStartTime(appointment.getStartTime());
 			responseDto.setEndTime(null);
 		}
-		
+
 		return responseDto;
 	}
-	
+
 	// Helper method to convert AppointmentCreateRequestDto to Appointment entity
 	private Appointment createDtoToEntity(AppointmentCreateRequestDto requestDto) {
 		Appointment appointment = new Appointment();
 
 		Doctor doctor = doctorService.getDoctorEntityById(requestDto.getDoctorId());
 		appointment.setDoctor(doctor);
-		
+
 		Hospital hospital = hospitalService.getHospitalEntityById(requestDto.getHospitalId());
 		appointment.setHospital(hospital);
 
@@ -198,73 +198,73 @@ public class AppointmentService {
 
 		    appointment.setPatientCase(patientCase);
 		}
-		
-		
+
+
 		Patient patient = patientService.getPatientEntityById(requestDto.getPatientId());
 		appointment.setPatient(patient);
-		
+
 		appointment.setAppointmentDate(requestDto.getAppointmentDate());
 		appointment.setStartTime(requestDto.getStartTime());
 		appointment.setEndTime(requestDto.getEndTime());
 		appointment.setStatus(requestDto.getStatus());
 		appointment.setReason(requestDto.getReason());
 		appointment.setNotes(requestDto.getNotes());
-		
+
 		return appointment;
 	}
-	
-	
-	// Logic is not complete yet, but I will provide the helper method to convert AppointmentUpdateRequestDto to Appointment entity. 
+
+
+	// Logic is not complete yet, but I will provide the helper method to convert AppointmentUpdateRequestDto to Appointment entity.
 	//You can use this method in your updateAppointment method to map the updated values from the request DTO to the existing appointment entity.
 	// Helper method to convert AppointmentUpdateRequestDto to Appointment entity
 	private Appointment updateDtoToEntity(Appointment appointment, AppointmentUpdateRequestDto requestDto) {
-		
+
 		if (requestDto.getDoctorId() != null) {
 			Doctor doctor = doctorService.getDoctorEntityById(requestDto.getDoctorId());
 			appointment.setDoctor(doctor);
 		}
-		
+
 		if (requestDto.getHospitalId() != null) {
 			Hospital hospital = hospitalService.getHospitalEntityById(requestDto.getHospitalId());
 			appointment.setHospital(hospital);
 		}
-		
+
 		if (requestDto.getPatientCaseId() != null) {
 		    PatientCase patientCase = patientCaseService.getPatientCaseEntityById(requestDto.getPatientCaseId());
 		    appointment.setPatientCase(patientCase);
 		}
-		
+
 		if (requestDto.getPatientId() != null) {
 			Patient patient = patientService.getPatientEntityById(requestDto.getPatientId());
 			appointment.setPatient(patient);
 		}
-		
+
 		if (requestDto.getAppointmentDate() != null) {
 			appointment.setAppointmentDate(requestDto.getAppointmentDate());
 		}
-		
+
 		if (requestDto.getStartTime() != null) {
 			appointment.setStartTime(requestDto.getStartTime());
 		}
-		
-		
+
+
 		if (requestDto.getEndTime() != null) {
 			appointment.setEndTime(requestDto.getEndTime());
 		}
-		
+
 		if (requestDto.getStatus() != null) {
 			appointment.setStatus(requestDto.getStatus());
 		}
-		
+
 		if (requestDto.getReason() != null) {
 			appointment.setReason(requestDto.getReason());
 		}
-		
+
 		if (requestDto.getNotes() != null) {
 			appointment.setNotes(requestDto.getNotes());
 		}
-		
+
 		return appointment;
 	}
-	
+
 }

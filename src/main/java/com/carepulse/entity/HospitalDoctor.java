@@ -53,13 +53,13 @@ public class HospitalDoctor {
 
 	/**
 	 * public Long getHospitalId() { return hospitalId; }
-	 * 
+	 *
 	 * public void setHospitalId(Long hospitalId) { this.hospitalId = hospitalId; }
-	 * 
+	 *
 	 * public Long getDoctorId() { return doctorId; }
-	 * 
+	 *
 	 * public void setDoctorId(Long doctorId) { this.doctorId = doctorId; }
-	 * 
+	 *
 	 **/
 
 	public LocalDate getJoinDate() {
